@@ -123,7 +123,7 @@ img{max-width:100%;display:block}
   background-image:url("assets/hero-boardroom-mobile.jpg");
   background-image:image-set(url("assets/hero-boardroom-mobile.webp") type("image/webp"),url("assets/hero-boardroom-mobile.jpg") type("image/jpeg"))}}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;
-  gap:clamp(2rem,4vw,4rem);align-items:center;padding-block:clamp(3rem,7vh,5.5rem);flex:1}
+  gap:clamp(2rem,4vw,4rem);align-items:center;padding-block:clamp(2.2rem,4.5vh,3.6rem);flex:1}
 .hero h1{color:#fff}
 .hero .lead{color:var(--text-inv-soft)}
 .hero__chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.5rem}
@@ -158,7 +158,10 @@ img{max-width:100%;display:block}
 @media (max-width:520px){.feature-bar .wrap{grid-template-columns:1fr;gap:.9rem;padding-block:1.1rem}}
 
 /* 7. CHECK-WIDGET (weiße Karte) ------------------------------- */
+/* Desktop: fester Platzhalter in Höhe des größten Schritts —
+   der Hero bleibt stabil 100vh, die Karte atmet nach unten ins Bild */
 .check-side{position:relative}
+@media (min-width:961px){.check-side{min-height:735px}}
 .handnote{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem;
   color:#fff;font-family:"Caveat",cursive;font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:700;
   transform:rotate(-2deg);line-height:1;padding-left:.4rem}
