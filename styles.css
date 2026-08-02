@@ -295,6 +295,37 @@ img{max-width:100%;display:block}
 @media (max-width:960px){.cards3{grid-template-columns:1fr}}
 .foot-note{margin-top:1.6rem;font-size:.92rem;color:var(--text-soft);font-style:italic;max-width:46rem}
 
+/* 9b. VERGLEICH INSOLVENZ VS. SANIERUNG ----------------------- */
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem;max-width:56rem}
+.cmpcard{border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.3rem;border:1.5px solid}
+.cmpcard b{display:block;font-size:1rem;margin-bottom:.7rem;letter-spacing:.02em}
+.cmpcard ul{list-style:none;margin:0;padding:0}
+.cmpcard li{position:relative;padding:.32rem 0 .32rem 1.1rem;font-size:.95rem}
+.cmpcard li::before{content:"";position:absolute;left:0;top:.85em;width:7px;height:7px;border-radius:50%}
+.cmpcard .cmpfoot{display:block;margin-top:.9rem;font-weight:800;font-size:.9rem}
+.cmpcard--bad{border-color:rgba(217,74,60,.45);background:#fdf1ef}
+.cmpcard--bad b,.cmpcard--bad .cmpfoot{color:#b3372a}
+.cmpcard--bad li::before{background:#d94a3c}
+.cmpcard--good{border-color:rgba(51,162,74,.5);background:var(--green-050)}
+.cmpcard--good b,.cmpcard--good .cmpfoot{color:#1f7a35}
+.cmpcard--good li::before{background:var(--green)}
+@media (max-width:700px){.cmp2{grid-template-columns:1fr}}
+
+/* 9c. PLAN & MEHRHEIT ----------------------------------------- */
+.plan2{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2.3rem;align-items:center;max-width:60rem}
+.plan-list{list-style:none;margin:0;padding:0}
+.plan-list li{padding:.55rem 0 .55rem 1.6rem;position:relative;border-bottom:1px solid var(--line);font-size:.97rem}
+.plan-list li:last-child{border-bottom:0}
+.plan-list li::before{content:"";position:absolute;left:0;top:1.05em;width:8px;height:8px;border-radius:50%;background:var(--green)}
+.planvote{text-align:center}
+.planvote p{font-size:.9rem;color:var(--text-soft);max-width:22rem;margin:1rem auto 0}
+.donut{width:150px;height:150px;border-radius:50%;margin-inline:auto;display:grid;place-items:center;
+  background:conic-gradient(var(--green) 0 270deg,#dfe4ec 270deg 360deg)}
+.donut span{width:104px;height:104px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;
+  font-weight:800;font-size:1.7rem;color:var(--strong)}
+.cards3--tight{margin-top:2rem}
+@media (max-width:860px){.plan2{grid-template-columns:1fr}}
+
 /* 10. TIMELINE (Ablauf) --------------------------------------- */
 .timeline{list-style:none;margin:2.5rem 0 0;padding:0;max-width:46rem}
 .timeline li{position:relative;padding:0 0 2.2rem 3.4rem}
@@ -308,6 +339,9 @@ img{max-width:100%;display:block}
 
 /* 11. FROSTED (Diskretion) ------------------------------------ */
 .frost2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
+.frost2--grid3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:960px){.frost2--grid3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.frost2--grid3{grid-template-columns:1fr}}
 .frost{background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:var(--r-lg);
   padding:1.7rem 1.6rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .frost .ico{width:34px;height:34px;margin-bottom:.8rem;color:#8fb0e8}
