@@ -238,6 +238,7 @@
   if (tline && !reduced && window.matchMedia('(min-width: 961px)').matches) {
     tline.classList.add('scrub');
     var tcards = [].slice.call(tline.querySelectorAll('.tcard'));
+    var trider = document.getElementById('trider');
     var N = tcards.length;
     var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
     var ticking = false;
@@ -259,6 +260,20 @@
         c.style.setProperty('--cg', cg.toFixed(3));
         c.style.setProperty('--cd', (cg >= 1 ? 1 : 0));
       });
+      /* Wandernder Punkt: Position zwischen den Stationen interpolieren,
+         Farbe je nach Zone (ink -> petrol -> rot) */
+      if (trider) {
+        var stations = tcards.map(function (c) {
+          return c.offsetTop + (c.classList.contains('tcard--win') ? 87.5 : 56.5);
+        });
+        var fi = clamp(f, 0, N - 1);
+        var i0 = Math.min(N - 2, Math.floor(fi));
+        var frac = clamp(fi - i0, 0, 1);
+        var y = stations[i0] + (stations[i0 + 1] - stations[i0]) * frac;
+        trider.style.transform = 'translate(-50%,' + (y - 7).toFixed(1) + 'px)';
+        var zone = Math.round(fi);
+        trider.className = 'trider' + (zone >= 3 ? ' trider--red' : zone === 2 ? ' trider--win' : '');
+      }
     };
     var onTScroll = function () {
       if (!ticking) { ticking = true; requestAnimationFrame(tupdate); }

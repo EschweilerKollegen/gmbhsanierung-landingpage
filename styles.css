@@ -313,6 +313,13 @@ img{max-width:100%;display:block}
 .tcard:not(:last-child)::after{content:"";position:absolute;left:-28px;top:60px;width:1.5px;
   height:calc(100% - 60px + 1.5rem + 56px);background:var(--blue);transform-origin:top;transform:scaleY(1)}
 .tcard--win:not(:last-child)::after{background:#b0473c;top:90px;height:calc(100% - 90px + 1.5rem + 56px)}
+/* Wandernder Punkt: fährt beim Scrollen die Achse hinunter und wechselt die Farbe */
+.trider{display:none;position:absolute;left:4.75px;top:0;width:14px;height:14px;border-radius:50%;
+  background:var(--ink);box-shadow:0 0 0 3.5px #f5f4f0,0 2px 8px rgba(9,32,27,.25);z-index:2;
+  transition:background-color .3s ease;will-change:transform;pointer-events:none}
+.tline.scrub .trider{display:block}
+.trider--win{background:var(--blue)}
+.trider--red{background:#b0473c}
 /* Scroll-Scrubbing: Aufbau oben → unten, an die Scrollposition gekoppelt.
    Ohne .scrub (Mobile/reduced-motion) ist alles statisch sichtbar. */
 .tline.scrub .tcard{opacity:var(--co,0);transform:translateY(var(--cy,16px));
