@@ -145,17 +145,33 @@ img{max-width:100%;display:block}
 @media (max-width:520px){.witness .avs img{width:42px;height:42px;margin-left:-12px}}
 @media (max-width:960px){.hero .wrap{grid-template-columns:1fr;padding-block:2.5rem}.hero{min-height:0}}
 
-/* 6. FEATURE BAR ---------------------------------------------- */
-.feature-bar{position:relative;z-index:1;background:rgba(8,15,28,.86);color:#fff;
-  border-top:1px solid var(--line-dark);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.feature-bar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;padding-block:1.5rem}
-.feature-bar .fitem{display:flex;align-items:center;gap:.9rem}
-.feature-bar .fico{width:38px;height:38px;flex:0 0 auto;color:#6f95e0}
-.feature-bar .fico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.feature-bar b{display:block;font-size:.98rem}
-.feature-bar span{font-size:.82rem;color:var(--text-inv-soft)}
-@media (max-width:960px){.feature-bar .wrap{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.feature-bar .wrap{grid-template-columns:1fr;gap:.9rem;padding-block:1.1rem}}
+/* 6. TRUST-BAR (Glas-Karte im Hero, identisch Hauptseite) ------ */
+.hero__featbar{position:relative;z-index:1;width:100%;padding-bottom:clamp(20px,3vh,34px)}
+.hero .wrap.hero__featbar{display:block;flex:0 0 auto;padding-block:0 clamp(20px,3vh,34px)}
+.featbar{background:rgba(20,35,60,.78);border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:var(--r-md);box-shadow:var(--sh-lg);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem 1rem;
+  padding:clamp(22px,2.6vw,32px) clamp(18px,2vw,28px);color:#fff;text-align:center}
+.featbar__item .ck{width:34px;height:34px;display:block;margin:0 auto .6rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+.featbar__item b{display:block;font-size:.95rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.15rem}
+.featbar__item span{font-size:.78rem;line-height:1.45;color:rgba(255,255,255,.78);display:block;max-width:22ch;margin-inline:auto}
+/* Mobil: Trust-Bar als versetzte Smart-Chips */
+@media (max-width:760px){
+  .featbar{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;
+    background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
+  .featbar__item{display:grid;grid-template-columns:auto 1fr;column-gap:.6rem;row-gap:.1rem;align-items:center;width:auto;text-align:left;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-radius:999px;padding:.6rem 1.05rem .6rem .7rem}
+  .featbar__item:nth-child(even){align-self:flex-end}
+  .featbar__item .ck{width:22px;height:22px;margin:0;grid-row:1/3}
+  .featbar__item b{font-size:.88rem;margin:0;white-space:nowrap;grid-column:2}
+  .featbar__item span{display:none;grid-column:2;font-size:.7rem;font-weight:400;color:var(--text-inv-soft);line-height:1.35;max-width:26ch;margin:0;text-align:left}
+  .featbar__item:nth-child(3) span{display:block}
+  .featbar__item:nth-child(3){border-radius:18px;align-items:start}
+  .featbar__item:nth-child(3) .ck{margin-top:2px}
+  .hero__featbar{padding-bottom:16px}
+}
 
 /* 7. CHECK-WIDGET (weiße Karte) ------------------------------- */
 /* Desktop: fester Platzhalter in Höhe des größten Schritts —
