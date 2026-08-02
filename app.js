@@ -94,15 +94,19 @@
         '<button type="button" class="btn" id="checkNext">Weiter <span class="arw">→</span></button>' +
         '</div>';
     } else if (s.form) {
+      var k = state.answers.kontakt || {};
       html += '<p class="check-hint">Ihre Daten werden vertraulich behandelt.</p>' +
-        '<input type="text" id="f_name" placeholder="Vor- und Zuname" autocomplete="name">' +
-        '<input type="email" id="f_email" placeholder="E-Mail-Adresse" autocomplete="email">' +
-        '<input type="tel" id="f_tel" placeholder="Telefonnummer" autocomplete="tel">' +
+        '<div class="fields2">' +
+        '<div class="field"><label for="f_name">Vor- und Zuname</label><input type="text" id="f_name" autocomplete="name" placeholder="Max Mustermann" value="' + (k.name || '') + '"></div>' +
+        '<div class="field"><label for="f_firma">Unternehmensname</label><input type="text" id="f_firma" autocomplete="organization" placeholder="Mustermann GmbH" value="' + (k.firma || '') + '"></div>' +
+        '<div class="field"><label for="f_email">E-Mail</label><input type="email" id="f_email" autocomplete="email" placeholder="name@firma.de" value="' + (k.email || '') + '"></div>' +
+        '<div class="field"><label for="f_tel">Telefon</label><input type="tel" id="f_tel" autocomplete="tel" placeholder="+49 …" value="' + (k.tel || '') + '"></div>' +
+        '</div>' +
         '<div class="msf__nav">' +
         '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
-        '<button type="button" class="btn" id="checkSubmit">Ersteinschätzung anfordern <span class="arw">→</span></button>' +
+        '<button type="button" class="btn" id="checkSubmit">Check absenden</button>' +
         '</div>' +
-        '<p class="privacy">Vertraulich &amp; unverbindlich. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz" style="color:#8fb0e8">Datenschutzerklärung</a>.</p>';
+        '<p class="form-legal">Mit dem Absenden stimmen Sie der Kontaktaufnahme zu. Es entstehen keine Kosten. Details in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>';
     } else {
       html += '<div class="check-opts">';
       s.opts.forEach(function (o) {
@@ -185,13 +189,15 @@
 
   function onSubmit() {
     var name = document.getElementById('f_name').value.trim();
+    var firma = document.getElementById('f_firma').value.trim();
     var email = document.getElementById('f_email').value.trim();
     var tel = document.getElementById('f_tel').value.trim();
-    if (!name || !email || !tel) {
+    state.answers.kontakt = { name: name, firma: firma, email: email, tel: tel };
+    if (!name || !firma || !email || !tel) {
       document.getElementById('checkSubmit').textContent = 'Bitte alle Felder ausfüllen';
+      setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1400);
       return;
     }
-    state.answers.kontakt = { name: name, email: email, tel: tel };
     /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
        (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
     dl('lead', { lead_value: 1000, currency: 'EUR' });

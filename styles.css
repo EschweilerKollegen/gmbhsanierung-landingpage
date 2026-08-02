@@ -194,11 +194,20 @@ img{max-width:100%;display:block}
 .check-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem}
 .check-back{background:none;border:0;color:var(--text-soft);font:inherit;font-size:.9rem;cursor:pointer}
 .check-back:hover{color:var(--strong)}
-.check-card input,.check-card select{width:100%;background:#fff;
-  border:1px solid var(--line);color:var(--strong);border-radius:var(--r-md);
-  padding:.85rem 1rem;font:inherit;margin-bottom:.65rem}
-.check-card input::placeholder{color:#9aa4b2}
-.check-card input:focus,.check-card select:focus{outline:2px solid rgba(55,94,184,.35);border-color:var(--blue)}
+/* Kontakt-Schritt: 2-Spalten-Felder mit Labels (identisch Hauptseite) */
+.fields2{display:grid;grid-template-columns:1fr 1fr;gap:0 .8rem}
+.fields2 .field{margin-bottom:.75rem}
+.field>label{display:block;font-size:.86rem;font-weight:700;margin-bottom:.35rem;color:var(--strong)}
+.field input{width:100%;padding:.85rem .95rem;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  font:inherit;font-size:1rem;background:#fff;color:var(--text);transition:border-color .15s,box-shadow .15s}
+.field input::placeholder{color:#9aa4b2}
+.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-050);outline:none}
+.form-legal{font-size:.72rem;color:var(--text-soft);margin-top:.65rem;text-align:center;line-height:1.45}
+.form-legal a{text-decoration:underline;color:var(--text-soft)}
+@media (max-width:460px){.fields2{grid-template-columns:1fr}
+  .field>label{font-size:.78rem;margin-bottom:.25rem}
+  .field input{padding:.58rem .75rem;font-size:.92rem}
+  .form-legal{font-size:.62rem;margin-top:.5rem;line-height:1.4}}
 .check-card .privacy{font-size:.78rem;color:var(--text-soft);margin-top:.5rem}
 .check-card .privacy a{color:var(--blue)}
 .check-success{text-align:center;padding:1.5rem 0}
