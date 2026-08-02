@@ -476,16 +476,31 @@ img{max-width:100%;display:block}
   .timeline li::before{width:44px;height:44px;font-size:.92rem}
   .timeline li::after{left:21px;top:46px}}
 
-/* 11. FROSTED (Diskretion) ------------------------------------ */
+/* 11. DISKRETION & KONTROLLE (tiefblaue Bühne, Muster Mockup) -- */
+.diskret{position:relative;overflow:hidden;
+  background:
+    radial-gradient(65% 60% at 50% 30%, rgba(45,77,155,.55), transparent 70%),
+    linear-gradient(160deg, #0f1d40 0%, #14245c 48%, #0c1734 100%)}
+.diskret::before{content:"";position:absolute;left:-140px;bottom:-180px;width:520px;height:520px;
+  border-radius:50%;border:1.5px solid rgba(255,255,255,.09);pointer-events:none}
+.diskret::after{content:"";position:absolute;left:-60px;bottom:-100px;width:340px;height:340px;
+  border-radius:50%;border:1.5px solid rgba(255,255,255,.07);pointer-events:none}
+.diskret .wrap{position:relative;z-index:1}
+.diskret .wrap::after{content:"";position:absolute;top:-20px;right:0;width:170px;height:120px;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.28) 1.2px, transparent 1.3px);background-size:17px 17px;opacity:.5}
+.diskret .em-blue{color:#6f95e0}
 .frost2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
 .frost2--grid3{grid-template-columns:repeat(3,1fr)}
 @media (max-width:960px){.frost2--grid3{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.frost2--grid3{grid-template-columns:1fr}}
-.frost{background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:var(--r-lg);
+.frost{background:rgba(64,96,190,.16);border:1px solid rgba(130,160,240,.28);border-radius:18px;
   padding:1.7rem 1.6rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.frost .ico{width:34px;height:34px;margin-bottom:.8rem;color:#8fb0e8}
-.frost .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.6}
-.frost p{font-size:.96rem;margin:0}
+.frost h3{color:#fff}
+.frost .ico{width:56px;height:56px;margin-bottom:1rem;border-radius:16px;color:#fff;
+  background:linear-gradient(160deg,#4a6ede,#3653b4);display:grid;place-items:center;
+  box-shadow:0 8px 22px rgba(20,35,90,.45)}
+.frost .ico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.frost p{font-size:.96rem;margin:0;color:#c6d2e8}
 @media (max-width:860px){.frost2{grid-template-columns:1fr}}
 
 /* 12. AUSSCHLUSS ---------------------------------------------- */
