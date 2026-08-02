@@ -395,6 +395,15 @@
     }
   }
 
+  /* ---------- FAQ: immer nur ein Eintrag offen ---------- */
+  var faqItems = [].slice.call(document.querySelectorAll('#faq details'));
+  faqItems.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      faqItems.forEach(function (o) { if (o !== d && o.open) o.open = false; });
+    });
+  });
+
   /* ---------- 75%-Ring: zeichnet sich beim Einscrollen (synchron zum Zähler) ---------- */
   var donutArc = document.getElementById('donutArc');
   if (donutArc && 'IntersectionObserver' in window) {
