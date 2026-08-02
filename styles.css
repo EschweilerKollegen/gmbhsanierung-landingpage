@@ -117,9 +117,14 @@ img{max-width:100%;display:block}
   gap:clamp(2rem,4vw,4rem);align-items:center;padding-block:clamp(3rem,7vh,5.5rem);flex:1}
 .hero h1{color:#fff}
 .hero .lead{color:var(--text-inv-soft)}
-.trust-line{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.5rem;padding:0;list-style:none}
-.trust-line li{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:600;color:#d6e0ef}
-.trust-line li::before{content:"✓";color:var(--green);font-weight:800}
+.hero__chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.5rem}
+.hchip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.08);border:1px solid var(--line-dark);
+  color:#fff;padding:.5rem .9rem;border-radius:var(--r-pill);font-size:.86rem;font-weight:600;cursor:default;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.hchip:hover{transform:scale(1.06);background:var(--blue);border-color:var(--blue)}
+.hchip .dot{width:8px;height:8px;border-radius:50%;background:#3ecf6e;transition:background .18s ease;flex:0 0 auto}
+.hchip:hover .dot{background:#fff}
+@media (max-width:520px){.hchip{font-size:.73rem;padding:.34rem .6rem;gap:.38rem}.hchip .dot{width:6px;height:6px}.hero__chips{gap:.36rem}}
 .witness{display:flex;align-items:center;gap:1.05rem;margin-top:1.8rem}
 .witness .avs{display:flex;flex:0 0 auto}
 .witness .avs img{width:52px;height:52px;border-radius:50%;object-fit:cover;
