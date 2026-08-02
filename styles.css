@@ -503,6 +503,42 @@ img{max-width:100%;display:block}
 .frost p{font-size:.96rem;margin:0;color:#c6d2e8}
 @media (max-width:860px){.frost2{grid-template-columns:1fr}}
 
+/* 11a2. PERSON / ANSPRECHPARTNER (Muster Hauptseite) ---------- */
+.split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,4vw,56px);align-items:start}
+.split--person{align-items:center}
+.person{margin:0;max-width:520px;margin-inline:auto}
+.person__gallery{display:grid;grid-template-columns:1.45fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:1/1.04}
+.pg{position:relative;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-md);background:linear-gradient(165deg,#dfe4ee,#c2cbdc)}
+.pg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pg:hover img{transform:scale(1.045)}
+.pg--main{grid-row:1/3}
+.pg--main img{object-position:50% 16%}
+.pg--a img{object-position:50% 26%}
+.pg--b img{object-position:50% 22%}
+.person__plate{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-md);
+  padding:1.1rem 1.3rem;margin:-2.2rem 1.2rem 0;position:relative}
+.person__plate b{display:block;font-size:1.12rem;color:var(--strong);letter-spacing:-.01em}
+.person__plate span{display:block;font-size:.82rem;color:var(--text-soft);margin-top:.15rem}
+.person__plate em{display:block;font-size:.9rem;color:var(--strong);margin-top:.6rem;font-style:italic;line-height:1.5}
+.cert-chip{display:inline-flex;align-items:center;gap:.55rem;margin-top:1.5rem;padding:.55rem 1.05rem;border:1px solid var(--line);border-radius:var(--r-pill);background:var(--paper-2);font-size:.87rem;font-weight:700;color:var(--strong)}
+.cert-chip svg{width:18px;height:18px;flex:0 0 auto;color:var(--blue)}
+.frows2{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(30px,3.5vw,52px);border-top:1px solid var(--line);padding-top:.6rem}
+.frow{display:flex;gap:1rem;align-items:flex-start;padding:1.5rem clamp(16px,2.4vw,36px)}
+.frow:nth-child(even){border-left:1px solid var(--line)}
+.frow:nth-child(n+3){border-top:1px solid var(--line)}
+.frow:nth-child(odd){padding-left:0}
+.frow:nth-child(even){padding-right:0}
+.frow .ic{flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--blue);display:grid;place-items:center}
+.frow .ic svg{width:22px;height:22px}
+.frow b{color:var(--strong);font-weight:700;display:block;margin-bottom:.15rem}
+.frow p{color:var(--text-soft);font-size:.92rem;margin:0}
+@media (max-width:860px){
+  .split{grid-template-columns:1fr}
+  .frows2{grid-template-columns:1fr}
+  .frow{padding-left:0;padding-right:0}
+  .frow:nth-child(even){border-left:0}
+  .frow:nth-child(n+2){border-top:1px solid var(--line)}}
+
 /* 11b. HAFTUNG: Wellen-Motiv + Karten mit blauer Kante -------- */
 .haftung{position:relative;overflow:hidden;
   background-image:url("assets/wellen-weiss.jpg");
