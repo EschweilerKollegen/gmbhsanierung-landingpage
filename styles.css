@@ -497,8 +497,19 @@ img{max-width:100%;display:block}
 @media (max-width:960px){
   .vprog{display:none}
   .vgrid{grid-template-columns:1fr;gap:.9rem}
-  .varr{transform:rotate(90deg);font-size:1.15rem;line-height:1}
+  .varr{transform:rotate(90deg);font-size:1.15rem;line-height:1;justify-self:center}
   .vnshield,.vnote__div{display:none}
+  /* Karten mobil als Zeile: Icon links, Text rechts, Nummer als Badge */
+  .vcard{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:1rem;row-gap:.25rem;
+    grid-template-areas:"ico head" "ico body";align-items:center;text-align:left;
+    padding:1.15rem 2.9rem 1.15rem 1.2rem}
+  .vnum{position:absolute;top:.9rem;right:.9rem;width:28px;height:28px;font-size:.9rem;margin:0}
+  .vico{grid-area:ico;width:54px;height:54px;margin:0}
+  .vico svg{width:26px;height:26px}
+  .vcard h3{grid-area:head;font-size:1.02rem;align-self:end}
+  .vcard h3 br{display:none}
+  .vdiv{display:none}
+  .vcard p{grid-area:body;font-size:.88rem;align-self:start}
 }
 
 /* Aus der Praxis: anonymisierte Fallskizze (LKW-Motiv) -------- */
@@ -539,10 +550,10 @@ img{max-width:100%;display:block}
   .prx__tag{font-size:.57rem;letter-spacing:.02em;padding:.38rem .62rem;gap:.35rem;box-shadow:none}
   .prx__tag svg{width:12px;height:12px}
   .prx__res2{grid-template-columns:1fr}
-  .prx__res{padding:1.2rem 1.2rem 1.1rem}
+  .prx__res{display:flex;align-items:flex-start;gap:.95rem;padding:1.15rem 1.2rem 1.1rem}
   .prx__res p{font-size:.9rem}
-  .prx__rico{width:48px;height:48px;margin-bottom:.7rem}
-  .prx__rico svg{width:23px;height:23px}
+  .prx__rico{width:46px;height:46px;margin-bottom:0;flex:0 0 auto}
+  .prx__rico svg{width:22px;height:22px}
   .prx__res + .prx__res{border-left:0;border-top:1px solid var(--line)}
   .prx__story{gap:.9rem}
   .prx__ico{width:56px;height:56px}
