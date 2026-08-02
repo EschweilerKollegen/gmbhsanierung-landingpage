@@ -6,6 +6,14 @@
     try { window.dataLayer.push(Object.assign({ event: ev }, data || {})); } catch (e) {}
   };
 
+  /* ---------- Header: transparent → stuck ---------- */
+  var header = document.getElementById('siteHeader');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-stuck', window.scrollY > 40); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   /* ---------- Scroll-Reveals (reduced-motion-safe) ---------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var reveals = document.querySelectorAll('.reveal');

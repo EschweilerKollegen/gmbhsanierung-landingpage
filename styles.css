@@ -86,11 +86,14 @@ img{max-width:100%;display:block}
 
 /* 4. HEADER --------------------------------------------------- */
 .site-header{position:sticky;top:0;z-index:50;height:72px;display:flex;align-items:center;
-  background:rgba(14,26,44,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line-dark)}
+  background:transparent;transition:background .25s ease,box-shadow .25s ease}
+.site-header.is-stuck,.site-header.solid{background:rgba(10,17,30,.92);
+  backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);
+  box-shadow:0 1px 0 rgba(255,255,255,.08)}
 .site-header .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.brand{font-weight:800;color:#fff;text-decoration:none;font-size:1.06rem;letter-spacing:-.01em}
-.brand span{color:#8fb0e8}
+.brand{display:flex;align-items:center;flex:0 0 auto;text-decoration:none}
+.brand__logo{height:30px;width:auto;display:block}
+@media (max-width:520px){.brand__logo{height:24px}}
 .nav{display:flex;align-items:center;gap:1.4rem}
 .nav a{color:#cfd9ea;text-decoration:none;font-size:.94rem;font-weight:600}
 .nav a:hover{color:#fff}
