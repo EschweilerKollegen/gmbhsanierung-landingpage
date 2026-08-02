@@ -161,6 +161,7 @@ img{max-width:100%;display:block}
   border-radius:26px;padding:clamp(1.5rem,2.5vw,2.3rem);box-shadow:var(--sh-lg)}
 .check-card h3{color:var(--strong);margin-bottom:.2rem}
 .check-card .micro{color:var(--text-soft)}
+.check-intro{font-size:.95rem;color:var(--text-soft);margin:.55rem 0 0;line-height:1.55}
 .check-progress{display:flex;gap:.35rem;margin:1.05rem 0 .55rem}
 .check-progress i{height:5px;flex:1;border-radius:3px;background:#e9edf3}
 .check-progress i.on{background:var(--ink)}
