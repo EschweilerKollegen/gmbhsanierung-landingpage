@@ -528,11 +528,29 @@ img{max-width:100%;display:block}
   .hnote{flex-direction:column;align-items:flex-start;gap:.9rem}
   .hnote__label{border-right:0;padding-right:0}}
 
-/* 12. AUSSCHLUSS ---------------------------------------------- */
-.no-list{list-style:none;margin:2rem 0 0;padding:0;max-width:46rem}
-.no-list li{display:flex;gap:.8rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--line);font-size:.98rem}
-.no-list li:last-child{border-bottom:0}
-.no-list li::before{content:"—";font-weight:800;color:var(--text-soft);flex:0 0 auto}
+/* 12. AUSSCHLUSS (Wann wir absagen) --------------------------- */
+.absagen{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(2rem,4vw,4rem);align-items:start}
+.absagen__left{position:sticky;top:100px}
+.hstroke{display:block;width:46px;height:3px;border-radius:2px;background:var(--blue);margin:.5rem 0 1.2rem}
+.alist{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.alist li{display:flex;align-items:center;gap:1.2rem;background:#fff;border-radius:14px;
+  padding:1.15rem 1.4rem;box-shadow:var(--sh-sm)}
+.alist li::before{content:"";width:3px;align-self:stretch;min-height:34px;border-radius:2px;background:var(--blue);flex:0 0 auto}
+.alist .nico{width:64px;height:64px;flex:0 0 auto;border-radius:50%;background:var(--blue-tint);
+  display:grid;place-items:center;color:var(--blue)}
+.alist .nico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.alist p{margin:0;font-size:.97rem;line-height:1.6;color:var(--text)}
+.alist b{color:var(--strong)}
+.absagen__note{display:flex;align-items:center;gap:1.5rem;margin-top:1.8rem;
+  background:#fbfcfe;border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.8rem}
+.iico{width:48px;height:48px;flex:0 0 auto;border-radius:50%;background:var(--blue);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:1.15rem;font-style:italic;
+  box-shadow:0 0 0 10px var(--blue-050)}
+.absagen__note p{margin:0;font-size:.97rem;color:var(--text);line-height:1.65}
+@media (max-width:900px){.absagen{grid-template-columns:1fr}
+  .absagen__left{position:static}
+  .alist .nico{width:50px;height:50px}.alist .nico svg{width:23px;height:23px}
+  .absagen__note{flex-direction:column;align-items:flex-start;gap:1rem}}
 
 /* 13. FAQ ----------------------------------------------------- */
 .faq{max-width:46rem;margin-top:2.2rem}
