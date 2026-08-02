@@ -80,7 +80,10 @@
         '<input type="tel" id="f_tel" placeholder="Telefonnummer" autocomplete="tel">' +
         '<select id="f_zeit"><option value="">Beste Erreichbarkeit wählen …</option>' +
         '<option>Vormittags</option><option>Nachmittags</option><option>Abends</option></select>' +
-        '<button class="btn check-submit" id="checkSubmit">Ersteinschätzung anfordern <span class="arw">→</span></button>' +
+        '<div class="msf__nav">' +
+        '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
+        '<button type="button" class="btn" id="checkSubmit">Ersteinschätzung anfordern <span class="arw">→</span></button>' +
+        '</div>' +
         '<p class="privacy">Vertraulich &amp; unverbindlich. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz" style="color:#8fb0e8">Datenschutzerklärung</a>.</p>';
     } else {
       html += '<div class="check-opts">';
@@ -88,14 +91,20 @@
         var sel = s.multi
           ? (state.answers[s.key] || []).indexOf(o[0]) > -1
           : state.answers[s.key] === o[0];
-        html += '<button class="check-opt' + (sel ? ' sel' : '') + '" data-val="' + o[0] + '"><span class="dot"></span>' + o[1] + '</button>';
+        html += '<button type="button" class="check-opt' + (sel ? ' sel' : '') + '" data-val="' + o[0] + '"><span class="dot"></span>' + o[1] + '</button>';
       });
       html += '</div>';
       if (s.note && state.answers[s.key] && s.note[state.answers[s.key]]) {
         html += '<div class="check-note">' + s.note[state.answers[s.key]] + '</div>';
       }
-      if (s.multi) html += '<div class="check-nav"><button class="check-back" id="checkBack"' + (state.step === 0 ? ' style="visibility:hidden"' : '') + '>← Zurück</button><button class="btn btn--primary" id="checkNext">Weiter</button></div>';
-      else if (state.step > 0) html += '<div class="check-nav"><button class="check-back" id="checkBack">← Zurück</button><span></span></div>';
+      if (state.step === 0) {
+        html += '<div class="msf__nav"><button type="button" class="btn btn--block" id="checkNext">Weiter <span class="arw">→</span></button></div>';
+      } else {
+        html += '<div class="msf__nav">' +
+          '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
+          '<button type="button" class="btn" id="checkNext">Weiter <span class="arw">→</span></button>' +
+          '</div>';
+      }
     }
     body.innerHTML = html;
     bind();
@@ -115,15 +124,20 @@
           btn.classList.toggle('sel');
         } else {
           state.answers[s.key] = val;
-          dl('check_step_' + (state.step + 1), { antwort: val });
-          if (s.note && s.note[val]) { render(); setTimeout(next, 1600); }
-          else next();
+          render();
         }
       });
     });
     var nextBtn = document.getElementById('checkNext');
     if (nextBtn) nextBtn.addEventListener('click', function () {
-      dl('check_step_' + (state.step + 1), { antwort: (state.answers[s.key] || []).join(',') });
+      var val = state.answers[s.key];
+      var hasVal = s.multi ? (val || []).length > 0 : !!val;
+      if (!hasVal) {
+        nextBtn.innerHTML = 'Bitte eine Antwort wählen';
+        setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
+        return;
+      }
+      dl('check_step_' + (state.step + 1), { antwort: s.multi ? val.join(',') : val });
       next();
     });
     var backBtn = document.getElementById('checkBack');
