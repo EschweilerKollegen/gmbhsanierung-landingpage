@@ -188,7 +188,7 @@ img{max-width:100%;display:block}
 /* Desktop: fester Platzhalter in Höhe des größten Schritts —
    der Hero bleibt stabil 100vh, die Karte atmet nach unten ins Bild */
 .check-side{position:relative}
-@media (min-width:961px){.check-side{min-height:735px}}
+@media (min-width:961px){.check-side{min-height:790px}}
 .handnote{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem;
   color:var(--blue);font-family:"Caveat",cursive;font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:700;
   transform:rotate(-2deg);line-height:1;padding-left:.4rem}
