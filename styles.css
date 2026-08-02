@@ -45,7 +45,8 @@ html{scroll-behavior:smooth;overflow-x:clip}
 body{margin:0;font-family:var(--font);color:var(--text);background:var(--paper);
   font-size:1.02rem;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{color:var(--strong);font-weight:800;line-height:1.08;margin:0 0 .4em;letter-spacing:-.02em}
-h1{font-size:clamp(2.1rem,5.4vw,3.6rem)}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.005em;
+  font-size:clamp(2.1rem,5.2vw,3.5rem);line-height:1.12}
 h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.005em;
   font-size:clamp(1.95rem,3.3vw,2.75rem);line-height:1.16;color:var(--strong)}
 /* Desktop-Zeilenumbrüche in Überschriften mobil aufheben:
@@ -84,13 +85,6 @@ img{max-width:100%;display:block}
 .center .eyebrow::after{margin-inline:auto}
 .section--ink .eyebrow{color:#e9f2ef}
 .section--ink .eyebrow::after{background:#57b585}
-/* Ausnahme Hero: dort bleibt die Pill aus dem freigegebenen Mockup */
-.hero .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;
-  letter-spacing:.15em;color:var(--blue);background:rgba(255,255,255,.72);
-  border:1px solid rgba(14,95,88,.22);padding:.5rem .95rem .5rem .8rem;
-  border-radius:var(--r-pill);margin-bottom:1.1rem;box-shadow:0 6px 22px rgba(9,32,27,.06)}
-.hero .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
-.hero .eyebrow::after{display:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
   background:var(--blue);color:#fff;font-weight:700;font-size:1rem;
   padding:.95rem 1.6rem;border:0;border-radius:var(--r-pill);box-shadow:var(--sh-md);
