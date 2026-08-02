@@ -493,19 +493,54 @@ img{max-width:100%;display:block}
 .section-cta .micro{margin-top:.7rem}
 
 /* 9c. PLAN & MEHRHEIT ----------------------------------------- */
-.plan2{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2.3rem;align-items:center;max-width:60rem}
-.plan-list{list-style:none;margin:0;padding:0}
-.plan-list li{padding:.55rem 0 .55rem 1.6rem;position:relative;border-bottom:1px solid var(--line);font-size:.97rem}
-.plan-list li:last-child{border-bottom:0}
-.plan-list li::before{content:"";position:absolute;left:0;top:1.05em;width:8px;height:8px;border-radius:50%;background:var(--green)}
-.planvote{text-align:center}
-.planvote p{font-size:.9rem;color:var(--text-soft);max-width:22rem;margin:1rem auto 0}
-.donut{width:150px;height:150px;border-radius:50%;margin-inline:auto;display:grid;place-items:center;
-  background:conic-gradient(var(--green) 0 270deg,#dde7e4 270deg 360deg)}
-.donut span{width:104px;height:104px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;
-  font-weight:800;font-size:1.7rem;color:var(--strong)}
-.cards3--tight{margin-top:2rem}
-@media (max-width:860px){.plan2{grid-template-columns:1fr}}
+/* Editorial-Layout: Serif links, animierter 75%-Ring rechts, 3er-Streifen unten */
+.plan-ed{background:#f2f2f0}
+.plan-ed__grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.pe__eyebrow{display:flex;align-items:center;gap:.8rem;font-size:.78rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.pe__eyebrow i{width:44px;height:2px;background:var(--blue)}
+.pe__h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.005em;
+  font-size:clamp(2.2rem,3.6vw,3.1rem);line-height:1.12;margin:1.2rem 0 0;color:var(--strong)}
+.pe__em{font-style:italic;color:#1f8f85;font-weight:500}
+.pe__copy{color:var(--text);margin:1.3rem 0 0;max-width:36rem;line-height:1.65}
+.pe__label{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);margin:2rem 0 .4rem}
+.pe-list{list-style:none;margin:0;padding:0;max-width:36rem}
+.pe-list li{display:flex;gap:.85rem;align-items:center;padding:.72rem 0;border-bottom:1px solid #e1e1dc}
+.pe-list li:last-child{border-bottom:0}
+.pe-list p{margin:0;font-size:.96rem;color:var(--text)}
+.pe-list b{color:var(--strong)}
+.pe__chev{width:22px;height:22px;flex:0 0 auto;border-radius:50%;background:var(--blue);display:grid;place-items:center}
+.pe__chev svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pe__vote{text-align:center}
+.donut{position:relative;width:clamp(260px,24vw,350px);margin-inline:auto}
+.donut__svg{display:block;width:100%;height:auto;transform:rotate(-90deg)}
+.donut__track,.donut__arc{fill:none;stroke-width:7}
+.donut__track{stroke:#e3e5e2}
+.donut__arc{stroke:var(--blue);stroke-linecap:round;
+  stroke-dasharray:433.5 578.1} /* 75 % von 2*Pi*92 — JS animiert beim Einscrollen */
+.donut__in{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:.55rem;padding:0 12%}
+.donut__num{font-family:Georgia,"Times New Roman",serif;font-weight:500;color:var(--strong);
+  font-size:clamp(3.2rem,4.6vw,4.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.donut__num i{font-style:normal;font-size:.45em;margin-left:.08em}
+.donut__rule{display:block;width:52px;height:1.5px;background:var(--blue)}
+.donut__cap{font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--strong)}
+.pe__votecap{margin:1.4rem 0 0;font-size:.98rem;color:var(--text)}
+.pe-strip{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(2.5rem,5vw,4rem);
+  background:#f6f6f4;border-top:1px solid #e2e2dd;border-bottom:1px solid #e2e2dd}
+.pe-cell{display:flex;gap:1.1rem;align-items:flex-start;padding:2rem 1.8rem}
+.pe-cell + .pe-cell{border-left:1px solid #e2e2dd}
+.pe-cell__ic{width:56px;height:56px;flex:0 0 auto;border-radius:50%;background:#e9ece9;display:grid;place-items:center}
+.pe-cell__ic svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pe-cell__over{display:block;font-size:.66rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
+.pe-cell h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.28rem;margin:0 0 .45rem;color:var(--strong)}
+.pe-cell p{margin:0;font-size:.9rem;color:var(--text);line-height:1.6}
+@media (max-width:960px){
+  .plan-ed__grid{grid-template-columns:1fr}
+  .pe__vote{margin-top:1rem}
+  .pe-strip{grid-template-columns:1fr}
+  .pe-cell + .pe-cell{border-left:0;border-top:1px solid #e2e2dd}
+}
 /* Verfahrens-Sektion: So läuft die Sanierung ab (Editorial + Scroll-Scrub) */
 .vsec{background:#f5f4f0}
 .vsec__grid{display:grid;grid-template-columns:.9fr 1.25fr;gap:clamp(2.5rem,5vw,5.5rem);align-items:start}

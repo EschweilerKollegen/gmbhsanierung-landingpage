@@ -395,6 +395,30 @@
     }
   }
 
+  /* ---------- 75%-Ring: zeichnet sich beim Einscrollen (synchron zum Zähler) ---------- */
+  var donutArc = document.getElementById('donutArc');
+  if (donutArc && 'IntersectionObserver' in window) {
+    var DC = 2 * Math.PI * 92;           /* Umfang */
+    var DTARGET = DC * 0.75;             /* 75 % */
+    donutArc.style.strokeDasharray = '0 ' + DC.toFixed(1);
+    var dio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        dio.disconnect();
+        if (reduced) { donutArc.style.strokeDasharray = DTARGET.toFixed(1) + ' ' + DC.toFixed(1); return; }
+        var dur = 1600, t0 = performance.now();
+        var dtick = function (t) {
+          var p = Math.min((t - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          donutArc.style.strokeDasharray = (DTARGET * eased).toFixed(1) + ' ' + DC.toFixed(1);
+          if (p < 1) requestAnimationFrame(dtick);
+        };
+        requestAnimationFrame(dtick);
+      });
+    }, { threshold: 0.5 });
+    dio.observe(donutArc);
+  }
+
   /* ---------- Zähl-Animationen: alle Elemente mit data-count ---------- */
   var counters = [].slice.call(document.querySelectorAll('[data-count]'));
   if (counters.length && 'IntersectionObserver' in window) {
