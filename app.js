@@ -256,12 +256,10 @@
         f += ci;
         c.style.setProperty('--co', ci.toFixed(3));
         c.style.setProperty('--cy', (16 * (1 - ci)).toFixed(1) + 'px');
-        var cg = clamp((ci - 0.7) / 0.3, 0, 1);
-        c.style.setProperty('--cg', cg.toFixed(3));
-        c.style.setProperty('--cd', (cg >= 1 ? 1 : 0));
       });
-      /* Wandernder Punkt: Position zwischen den Stationen interpolieren,
-         Farbe je nach Zone (ink -> petrol -> rot) */
+      /* Wandernder Punkt: Position zwischen den Stationen interpolieren.
+         Die Füllsegmente folgen EXAKT der Punktposition — der Punkt ist
+         die Spitze der Linie, alles bleibt geometrisch gekoppelt. */
       if (trider) {
         var stations = tcards.map(function (c) {
           return c.offsetTop + (c.classList.contains('tcard--win') ? 87.5 : 56.5);
@@ -272,6 +270,12 @@
         var y = stations[i0] + (stations[i0 + 1] - stations[i0]) * frac;
         trider.style.transform = 'translate(-50%,' + (y - 7).toFixed(1) + 'px)';
         trider.className = 'trider' + (fi >= 2.6 ? ' trider--red' : fi >= 1.7 ? ' trider--win' : '');
+        tcards.forEach(function (c, i) {
+          if (i >= N - 1) return;
+          var segFill = clamp((y - stations[i]) / (stations[i + 1] - stations[i]), 0, 1);
+          c.style.setProperty('--cg', segFill.toFixed(3));
+          c.style.setProperty('--cd', segFill >= 1 ? 1 : 0);
+        });
       }
     };
     var onTScroll = function () {

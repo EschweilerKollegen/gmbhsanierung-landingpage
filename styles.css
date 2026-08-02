@@ -324,7 +324,6 @@ img{max-width:100%;display:block}
    Ohne .scrub (Mobile/reduced-motion) ist alles statisch sichtbar. */
 .tline.scrub .tcard{opacity:calc(.25 + .75*var(--co,0));transform:translateY(var(--cy,16px));
   transition:transform .25s ease-out}
-.tline.scrub .tcard::before{opacity:var(--co,0)}
 .tline.scrub .tcard:not(:last-child)::after{transform:scaleY(var(--cg,0))}
 @media (max-width:960px){
   .wj__grid{grid-template-columns:1fr}
