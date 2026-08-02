@@ -348,7 +348,7 @@ img{max-width:100%;display:block}
 .cs__panel--good{
   background-image:url("assets/stat-ordner.jpg");
   background-image:image-set(url("assets/stat-ordner.webp") type("image/webp"),url("assets/stat-ordner.jpg") type("image/jpeg"))}
-.cs__pill{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:800;
+.cs__pill{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:800;white-space:nowrap;
   letter-spacing:.1em;text-transform:uppercase;border-radius:var(--r-pill);padding:.45rem .8rem;margin-bottom:1rem}
 .cs__pill svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cs__pill--bad{color:#c14e42;background:#fdf3f1;border:1px solid rgba(193,78,66,.35)}
@@ -376,8 +376,8 @@ img{max-width:100%;display:block}
 @media (max-width:860px){.emo__grid{grid-template-columns:1fr}.emo__media{order:2;margin-top:.5rem}}
 @media (max-width:560px){
   .cs__panel{padding:1rem .6rem 0;aspect-ratio:4/6.4}
-  .cs__pill{font-size:.56rem;letter-spacing:.06em;padding:.35rem .55rem;margin-bottom:.7rem;gap:.3rem}
-  .cs__pill svg{width:12px;height:12px}
+  .cs__pill{font-size:.52rem;letter-spacing:.02em;padding:.32rem .48rem;margin-bottom:.7rem;gap:.28rem}
+  .cs__pill svg{width:11px;height:11px}
   .cs__num{font-size:1.9rem}
   .cs__panel p{font-size:.78rem}
   .cs__vs{width:44px;height:44px;font-size:.7rem}
