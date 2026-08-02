@@ -361,7 +361,7 @@
   /* ---------- Mini-Starter (Schluss-CTA) ---------- */
   var mini = document.getElementById('miniStarter');
   if (mini) {
-    mini.querySelectorAll('.pill').forEach(function (p) {
+    mini.querySelectorAll('[data-val]').forEach(function (p) {
       p.addEventListener('click', function () {
         state.answers.lage = p.getAttribute('data-val');
         state.step = 1;

@@ -563,14 +563,38 @@ img{max-width:100%;display:block}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{padding:0 1.3rem 1.15rem;margin:0;color:var(--text-soft)}
 
-/* 14. FINAL CTA ----------------------------------------------- */
-.finalcta{background:linear-gradient(160deg,var(--ink-2),var(--ink));color:var(--text-inv)}
-.finalcta h2{color:#fff}
-.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0}
-.pill{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);color:#e6ecf5;
-  border-radius:var(--r-pill);padding:.7rem 1.2rem;font:inherit;font-size:.93rem;font-weight:600;
-  cursor:pointer;transition:background .15s ease,border-color .15s ease}
-.pill:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.3)}
+/* 14. FINAL CTA (Kompass-Motiv, helle Bühne) ------------------ */
+.cta2{position:relative;overflow:hidden;
+  background-image:url("assets/kompass.jpg");
+  background-image:image-set(url("assets/kompass.webp") type("image/webp"),url("assets/kompass.jpg") type("image/jpeg"));
+  background-size:cover;background-position:center right}
+.cta2::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(95deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.88) 38%, rgba(255,255,255,.45) 65%, rgba(255,255,255,.1) 100%)}
+.cta2 .wrap{position:relative;z-index:1}
+.cta2__q{font-weight:800;color:var(--strong);margin:1.8rem 0 .9rem;font-size:1.05rem}
+.startgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.startcard{display:flex;align-items:center;gap:.85rem;text-align:left;background:#fff;
+  border:1px solid var(--line);border-radius:14px;padding:.95rem 1.05rem;box-shadow:var(--sh-sm);
+  font:inherit;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.startcard:hover{transform:translateY(-2px);box-shadow:var(--sh-md);border-color:rgba(55,94,184,.45)}
+.scico{width:52px;height:52px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--line);
+  display:grid;place-items:center;color:var(--blue);background:#fff}
+.scico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sclabel{font-size:.92rem;font-weight:600;color:var(--strong);line-height:1.35;flex:1}
+.scarr{color:var(--strong);font-weight:700;transition:transform .15s ease}
+.startcard:hover .scarr{transform:translateX(3px);color:var(--blue)}
+.cta2__micro{display:flex;align-items:center;gap:.5rem;margin:1.1rem 0 0;font-size:.9rem;color:var(--text-soft)}
+.cta2__micro svg{width:19px;height:19px;flex:0 0 auto;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cta2__note{display:flex;align-items:center;gap:1.6rem;margin-top:1.8rem;
+  background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:16px;
+  padding:1.3rem 1.7rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cta2__notelabel{display:flex;align-items:center;gap:1rem;flex:0 0 auto;padding-right:1.6rem;border-right:1px solid var(--line)}
+.cta2__notelabel b{font-size:1.08rem;color:var(--strong);line-height:1.35}
+.cta2__note p{margin:0;font-size:.95rem;color:var(--text);line-height:1.6;max-width:34rem}
+@media (max-width:1100px){.startgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.startgrid{grid-template-columns:1fr}
+  .cta2__note{flex-direction:column;align-items:flex-start;gap:1rem}
+  .cta2__notelabel{border-right:0;padding-right:0}}
 
 /* 15. FOOTER -------------------------------------------------- */
 .site-footer{background:var(--ink);color:var(--text-inv-soft);border-top:1px solid var(--line-dark);
