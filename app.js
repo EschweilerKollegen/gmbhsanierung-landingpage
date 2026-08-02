@@ -268,6 +268,47 @@
     tupdate();
   }
 
+  /* ---------- Verfahrens-Schritte: Scroll-Scrub (wie Timeline) ----------
+     Fortschrittslinie füllt sich, Karten 1–4 erscheinen nacheinander,
+     der grüne Haken poppt am Ende. Rückwärts-Scrollen spult zurück. */
+  var vsec = document.getElementById('verfahren');
+  if (vsec && !reduced && window.matchMedia('(min-width: 961px)').matches) {
+    vsec.classList.add('scrub');
+    var vgrid = vsec.querySelector('.vgrid');
+    var vcards = [].slice.call(vsec.querySelectorAll('.vcard'));
+    var vsegs = [].slice.call(vsec.querySelectorAll('.vseg'));
+    var vdots = [].slice.call(vsec.querySelectorAll('.vdot'));
+    var vcheck = vsec.querySelector('.vcheck');
+    var vN = vcards.length;
+    var vclamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var vticking = false;
+    var vupdate = function () {
+      vticking = false;
+      var vh = window.innerHeight;
+      var r = vgrid.getBoundingClientRect();
+      var p = vclamp((vh * 0.88 - r.top) / (vh * 0.58), 0, 1);
+      var f = p * vN;
+      vcards.forEach(function (c, i) {
+        var ci = vclamp(f - i, 0, 1);
+        c.style.setProperty('--co', ci.toFixed(3));
+        c.style.setProperty('--cy', (14 * (1 - ci)).toFixed(1) + 'px');
+      });
+      vsegs.forEach(function (s, i) {
+        s.style.setProperty('--sf', vclamp(f - i, 0, 1).toFixed(3));
+      });
+      vdots.forEach(function (d, i) {
+        d.classList.toggle('is-on', f >= i + 0.05);
+      });
+      if (vcheck) vcheck.classList.toggle('is-done', p >= 0.985);
+    };
+    var onVScroll = function () {
+      if (!vticking) { vticking = true; requestAnimationFrame(vupdate); }
+    };
+    window.addEventListener('scroll', onVScroll, { passive: true });
+    window.addEventListener('resize', onVScroll, { passive: true });
+    vupdate();
+  }
+
   /* ---------- Warnzeichen-Klickstrecke (Muster Hauptseite) ----------
      Auswahl bleibt lokal, nichts wird gespeichert oder übertragen. */
   var signs = [].slice.call(document.querySelectorAll('.wsign'));
