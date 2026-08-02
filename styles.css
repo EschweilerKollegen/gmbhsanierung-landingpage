@@ -503,6 +503,31 @@ img{max-width:100%;display:block}
 .frost p{font-size:.96rem;margin:0;color:#c6d2e8}
 @media (max-width:860px){.frost2{grid-template-columns:1fr}}
 
+/* 11b. HAFTUNG: Wellen-Motiv + Karten mit blauer Kante -------- */
+.haftung{position:relative;overflow:hidden;
+  background-image:url("assets/wellen-weiss.jpg");
+  background-image:image-set(url("assets/wellen-weiss.webp") type("image/webp"),url("assets/wellen-weiss.jpg") type("image/jpeg"));
+  background-size:cover;background-position:center}
+.haftung .wrap{position:relative;z-index:1}
+.hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:2.4rem}
+.hcard{background:#fff;border-radius:12px;border-left:3px solid var(--blue);
+  padding:1.6rem 1.5rem;box-shadow:var(--sh-sm)}
+.hchead{display:flex;align-items:center;gap:1rem}
+.hchead h3{margin:0;font-size:1.12rem;line-height:1.3}
+.hico{width:64px;height:64px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--line);
+  background:#fff;display:grid;place-items:center;color:var(--blue)}
+.hico svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hline{display:block;width:36px;height:3px;border-radius:2px;background:var(--blue);margin:1rem 0 .9rem}
+.hcard p{margin:0;font-size:.95rem;color:var(--text);line-height:1.6}
+.hnote{display:flex;align-items:center;gap:1.6rem;background:#fff;border-radius:12px;
+  border-left:3px solid var(--blue);padding:1.2rem 1.6rem;box-shadow:var(--sh-sm);margin-top:1.4rem}
+.hnote__label{display:flex;align-items:center;gap:1rem;flex:0 0 auto;padding-right:1.6rem;border-right:1px solid var(--line)}
+.hnote__label b{font-size:1.05rem;color:var(--strong)}
+.hnote p{margin:0;font-size:.97rem;color:var(--text);line-height:1.6}
+@media (max-width:960px){.hcards{grid-template-columns:1fr}
+  .hnote{flex-direction:column;align-items:flex-start;gap:.9rem}
+  .hnote__label{border-right:0;padding-right:0}}
+
 /* 12. AUSSCHLUSS ---------------------------------------------- */
 .no-list{list-style:none;margin:2rem 0 0;padding:0;max-width:46rem}
 .no-list li{display:flex;gap:.8rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--line);font-size:.98rem}
