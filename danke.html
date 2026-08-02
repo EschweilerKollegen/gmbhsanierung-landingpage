@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vielen Dank – Termin wählen | GmbH-Sanierung.de</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://app.cal.com">
+<!-- Favicons & App-Icons -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0e1a2c">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKQ6DNXB');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body class="subpage">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKQ6DNXB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER: bewusst ohne CTA – auf dieser Seite gibt es nur ein Ziel -->
+<header class="site-header solid">
+  <div class="wrap">
+    <a href="/" class="brand"><img class="brand__logo" src="assets/ek-logo-weiss.png" alt="Eschweiler &amp; Kollegen – GmbH-Sanierung.de"></a>
+  </div>
+</header>
+
+<section class="section danke">
+  <div class="wrap danke__wrap">
+
+    <div class="danke__steps" aria-hidden="true">
+      <span class="danke__step danke__step--done"><span class="tick">✓</span> Anfrage eingegangen</span>
+      <span class="danke__bar"></span>
+      <span class="danke__step danke__step--now">Termin sichern</span>
+    </div>
+
+    <h1 id="dkTitle">Geschafft – Ihre Anfrage ist eingegangen.</h1>
+    <p class="danke__lead" id="dkLead">Machen Sie es sich jetzt einfach: <strong>Wählen Sie direkt Ihren Wunschtermin</strong> für das Erstgespräch. <span id="dkPrefill">Ihre Angaben sind bereits eingetragen – nur noch Zeitpunkt wählen und bestätigen, das dauert keine 30 Sekunden.</span></p>
+
+    <div class="danke__chips">
+      <span>Unverbindlich</span><span>Kostenlos</span><span>100&nbsp;% diskret</span>
+    </div>
+
+    <div class="danke__calcard">
+      <div id="cal-inline" class="danke__cal"></div>
+      <p class="danke__fallback">Öffnet der Kalender nicht? <a id="calFallback" href="https://cal.com/andre-eschweiler/30min" rel="noopener">Termin direkt auf cal.com wählen →</a></p>
+    </div>
+
+    <p class="danke__noslot">Kein passender Termin dabei? Kein Problem – <strong>wir melden uns in jedem Fall zeitnah bei Ihnen.</strong> Der gebuchte Termin ist nur der schnellste Weg.</p>
+
+  </div>
+</section>
+
+<!-- FOOTER (schlank) -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__legal">
+      <span>© <span id="year">2026</span> GmbH-Sanierung.de · Eine Marke der Eschweiler &amp; Kollegen Gesellschaftsmanagement UG (haftungsbeschränkt)</span>
+      <span><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="javascript:window.Cookiebot&&(Cookiebot.renderer&&Cookiebot.renderer.show?Cookiebot.renderer.show():Cookiebot.show&&Cookiebot.show())">Cookie-Einstellungen</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Cal.com Inline-Embed (offizieller Snippet) */
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+(function () {
+  var CAL_LINK = "andre-eschweiler/30min";
+
+  /* Lead-Daten aus dem Sanierungs-Check übernehmen (sessionStorage, nichts in der URL) */
+  var lead = {};
+  try { lead = JSON.parse(sessionStorage.getItem("eks_lead") || "{}"); } catch (e) {}
+
+  var notesLines = [];
+  var add = function (label, key) { if (lead[key]) notesLines.push(label + ": " + lead[key]); };
+  add("Telefon", "phone");
+  add("Unternehmen", "firma");
+  add("Lage", "lage");
+  add("Kerngeschäft trägt", "kerngeschaeft");
+  add("Zahlungen leistbar", "liquiditaet");
+  add("Größte Gläubiger", "glaeubiger");
+  add("Verbindlichkeiten", "verbindlichkeiten");
+  add("Größenordnung", "groesse");
+  add("Erreichbarkeit", "erreichbarkeit");
+  add("Wochentage", "erreichbarkeit_tage");
+
+  /* /danke gehört exklusiv den Check-Absendern (sauberes Conversion-Tracking).
+     Direktaufrufe ohne Lead-Daten -> zurück zur Startseite */
+  if (!lead.name && !lead.email) {
+    window.location.replace("/");
+    return;
+  }
+
+  var config = { layout: "month_view", theme: "light", useSlotsViewOnSmallScreen: "true" };
+  if (lead.name)  config.name  = lead.name;
+  if (lead.email) config.email = lead.email;
+  if (lead.phone) {
+    var tel = String(lead.phone).replace(/[^\d+]/g, "");
+    if (/^00/.test(tel)) tel = "+" + tel.slice(2);
+    else if (/^0[1-9]/.test(tel)) tel = "+49" + tel.slice(1);
+    else if (/^[1-9]/.test(tel)) tel = "+49" + tel;
+    if (/^\+\d{7,}$/.test(tel)) config.attendeePhoneNumber = tel;
+  }
+  if (notesLines.length) config.notes = "Sanierungs-Check:\n" + notesLines.join("\n");
+
+  Cal("init", "30min", { origin: "https://app.cal.com" });
+  Cal.ns["30min"]("inline", { elementOrSelector: "#cal-inline", calLink: CAL_LINK, config: config });
+  Cal.ns["30min"]("ui", { "theme": "light", "hideEventTypeDetails": false, "layout": "month_view" });
+
+  /* Nach erfolgreicher Buchung: weiter zur finalen Bestätigungsseite */
+  Cal.ns["30min"]("on", { action: "bookingSuccessful", callback: function (e) {
+    try {
+      var d = e && e.detail && e.detail.data;
+      var when = d && (d.date || (d.booking && d.booking.startTime) || (d.confirmed && d.confirmed.date));
+      if (when) sessionStorage.setItem("eks_termin", when);
+    } catch (err) {}
+    try { window.dataLayer.push({ event: "termin_gebucht" }); } catch (err) {}
+    window.location.href = "/termin-bestaetigt";
+  } });
+
+  /* Fallback-Link ebenfalls vorbefüllen */
+  var fb = document.getElementById("calFallback");
+  if (fb) {
+    var qs = [];
+    if (lead.name)  qs.push("name="  + encodeURIComponent(lead.name));
+    if (lead.email) qs.push("email=" + encodeURIComponent(lead.email));
+    if (config.attendeePhoneNumber) qs.push("attendeePhoneNumber=" + encodeURIComponent(config.attendeePhoneNumber));
+    if (config.notes) qs.push("notes=" + encodeURIComponent(config.notes));
+    if (qs.length) fb.href = "https://cal.com/" + CAL_LINK + "?" + qs.join("&");
+  }
+
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

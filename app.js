@@ -205,11 +205,29 @@
     /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
        (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
     dl('lead', { lead_value: 1000, currency: 'EUR' });
-    renderProgress();
-    body.innerHTML = '<div class="check-success"><div class="big">✓</div>' +
-      '<p class="check-q">Danke — wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung.</p>' +
-      '<p style="font-size:.92rem">Für eine verbindliche Aussage werten wir anschließend Ihre BWA/Bilanz aus — Sie können die Unterlagen einfach zum Gespräch mitbringen.</p></div>';
-    /* TODO: Redirect /danke (Cal-Prefill) nach Webhook-Anbindung */
+    /* Lead-Daten für die /danke-Journey (Cal-Prefill) — nur sessionStorage, nichts in der URL */
+    var labelFor = function (key, val) {
+      var st = null;
+      STEPS.forEach(function (x) { if (x.key === key) st = x; });
+      if (!st || !st.opts) return val;
+      var out = val;
+      st.opts.forEach(function (o) { if (o[0] === val) out = o[1]; });
+      return out;
+    };
+    var a = state.answers;
+    var eks = {
+      name: name, firma: firma, email: email, phone: tel,
+      lage: labelFor('lage', a.lage),
+      kerngeschaeft: labelFor('kerngeschaeft', a.kerngeschaeft),
+      liquiditaet: labelFor('liquiditaet', a.liquiditaet),
+      glaeubiger: (a.glaeubiger || []).map(function (v) { return labelFor('glaeubiger', v); }).join(', '),
+      verbindlichkeiten: labelFor('verbindlichkeiten', a.verbindlichkeiten),
+      groesse: labelFor('groesse', a.groesse),
+      erreichbarkeit: (a.erreichbarkeit || {}).fenster || '',
+      erreichbarkeit_tage: ((a.erreichbarkeit || {}).tage || []).join(', ')
+    };
+    try { sessionStorage.setItem('eks_lead', JSON.stringify(eks)); } catch (e) {}
+    window.location.href = '/danke';
   }
 
   /* ---------- Krisen-Timeline: Scroll-Scrubbing (vor & zurück) ----------

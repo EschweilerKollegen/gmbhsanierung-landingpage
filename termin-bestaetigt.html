@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termin bestätigt | GmbH-Sanierung.de</title>
+<meta name="robots" content="noindex,nofollow">
+<!-- Favicons & App-Icons -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0e1a2c">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKQ6DNXB');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body class="subpage">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKQ6DNXB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="site-header solid">
+  <div class="wrap">
+    <a href="/" class="brand"><img class="brand__logo" src="assets/ek-logo-weiss.png" alt="Eschweiler &amp; Kollegen – GmbH-Sanierung.de"></a>
+  </div>
+</header>
+
+<section class="section danke">
+  <div class="wrap danke__wrap">
+
+    <div class="danke__steps" aria-hidden="true">
+      <span class="danke__step danke__step--done"><span class="tick">✓</span> Anfrage eingegangen</span>
+      <span class="danke__bar"></span>
+      <span class="danke__step danke__step--done"><span class="tick">✓</span> Termin gebucht</span>
+    </div>
+
+    <h1>Ihr Termin steht – ab hier übernehmen wir.</h1>
+    <p class="tbk__when" id="tbWhen" hidden></p>
+    <p class="danke__lead"><span id="tbGreet"></span>Sie müssen jetzt <strong>nichts weiter tun</strong>. In wenigen Minuten erhalten Sie eine <strong>Bestätigungs-E-Mail</strong> mit allen Termindetails – darüber können Sie den Termin bei Bedarf auch verschieben. <span class="tbk__spam">Keine Mail? Werfen Sie einen Blick in den Spam-Ordner.</span></p>
+
+    <div class="tbk__grid">
+      <div class="tbk__item">
+        <b>So läuft das Gespräch</b>
+        <p>Ein Restrukturierungs-Experte aus unserem Haus bespricht mit Ihnen rund 30 Minuten Ihre Lage und die Möglichkeiten der StaRUG-Sanierung. Ihre Angaben aus dem Sanierungs-Check liegen ihm bereits vor.</p>
+      </div>
+      <div class="tbk__item">
+        <b>Nichts vorzubereiten</b>
+        <p>Sie brauchen keine Unterlagen zusammenzusuchen. Was im Einzelfall später nötig ist – etwa BWA oder Bilanz für die Zahlenprüfung – klären wir gemeinsam im Gespräch.</p>
+      </div>
+      <div class="tbk__item">
+        <b>Diskret &amp; unverbindlich</b>
+        <p>Das Gespräch ist kostenlos und verpflichtet Sie zu nichts. Ob und wie es danach weitergeht, entscheiden allein Sie.</p>
+      </div>
+    </div>
+
+    <div class="tbk__phonecard">
+      <p class="tbk__phonelabel">Zum Termin ruft Sie Ihr Ansprechpartner an – von dieser Nummer:</p>
+      <p class="tbk__phone">+49&nbsp;171&nbsp;479&nbsp;13&nbsp;14</p>
+      <div class="tbk__saveways">
+        <a class="btn btn--white tbk__save" href="assets/eschweiler-kollegen.vcf" download="Eschweiler-Kollegen.vcf">Nummer jetzt im Telefon speichern</a>
+        <div class="tbk__qr">
+          <img src="assets/nummer-qr.svg?v=3" alt="QR-Code: Kontakt Eschweiler &amp; Kollegen speichern" width="104" height="104" loading="lazy">
+          <span>Mit dem Handy scannen – unsere Nummer landet direkt in Ihrem Adressbuch.</span>
+        </div>
+      </div>
+      <p class="tbk__phonenote">Viele Geschäftsführer gehen bei unbekannten Nummern verständlicherweise nicht ans Telefon. Speichern Sie uns deshalb kurz ab – dann wissen Sie sofort: Das ist Ihr Gespräch.</p>
+    </div>
+
+    <p class="tbk__done">Das war’s – Sie können dieses Fenster jetzt schließen. Wir sehen uns zum Termin.</p>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__legal">
+      <span>© <span id="year">2026</span> GmbH-Sanierung.de · Eine Marke der Eschweiler &amp; Kollegen Gesellschaftsmanagement UG (haftungsbeschränkt)</span>
+      <span><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="javascript:window.Cookiebot&&(Cookiebot.renderer&&Cookiebot.renderer.show?Cookiebot.renderer.show():Cookiebot.show&&Cookiebot.show())">Cookie-Einstellungen</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* Gebuchte Zeit anzeigen, falls vom Kalender übergeben */
+  try {
+    var lead = JSON.parse(sessionStorage.getItem("eks_lead") || "{}");
+    if (lead.name) {
+      var g = document.getElementById("tbGreet");
+      if (g) g.textContent = "Danke, " + lead.name + ". ";
+    }
+    var when = sessionStorage.getItem("eks_termin");
+    if (when) {
+      var d = new Date(when);
+      if (!isNaN(d)) {
+        var el = document.getElementById("tbWhen");
+        el.textContent = "Ihr Termin: " + d.toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long" }) + " um " + d.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) + " Uhr";
+        el.hidden = false;
+      }
+    }
+    /* Journey abgeschlossen – Lead-Daten lokal aufräumen */
+    sessionStorage.removeItem("eks_lead");
+  } catch (e) {}
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
