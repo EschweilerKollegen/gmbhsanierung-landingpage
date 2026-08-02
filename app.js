@@ -208,6 +208,21 @@
     /* TODO: Redirect /danke (Cal-Prefill) nach Webhook-Anbindung */
   }
 
+  /* ---------- Krisen-Timeline: baut sich beim Scrollen auf ---------- */
+  var tline = document.getElementById('tline');
+  if (tline) {
+    if (!reduced && 'IntersectionObserver' in window) {
+      var tio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { tline.classList.add('go'); tio.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      tio.observe(tline);
+    } else {
+      tline.classList.add('go');
+    }
+  }
+
   /* ---------- Warnzeichen-Klickstrecke (Muster Hauptseite) ----------
      Auswahl bleibt lokal, nichts wird gespeichert oder übertragen. */
   var signs = [].slice.call(document.querySelectorAll('.wsign'));
