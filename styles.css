@@ -124,19 +124,11 @@ img{max-width:100%;display:block}
 /* 5. HERO ----------------------------------------------------- */
 .hero{position:relative;color:var(--text);overflow:hidden;
   margin-top:-72px;padding-top:72px;min-height:100vh;display:flex;flex-direction:column;
-  background:
-    radial-gradient(55% 65% at 88% 6%, rgba(238,226,203,.55), transparent 70%),
-    radial-gradient(55% 75% at 4% 95%, rgba(14,95,88,.10), transparent 70%),
-    radial-gradient(60% 80% at 102% 80%, rgba(14,95,88,.13), transparent 62%),
-    linear-gradient(180deg,#fbfdfd 0%,#f1f6f5 100%)}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:
-    radial-gradient(120% 90% at 50% 118%, transparent 58%, rgba(14,95,88,.05) 59%, transparent 60.5%),
-    radial-gradient(130% 100% at 48% 124%, transparent 62%, rgba(14,95,88,.045) 63%, transparent 64.5%),
-    radial-gradient(140% 110% at 46% 130%, transparent 66%, rgba(14,95,88,.04) 67%, transparent 68.5%)}
-.hero__curve{position:absolute;left:37%;bottom:12%;width:clamp(220px,19vw,300px);height:auto;
-  pointer-events:none;z-index:0;opacity:.85}
-@media (max-width:960px){.hero__curve{display:none}}
+  background-color:#f6f9f8;
+  background-image:url("assets/hero-wellen.jpg");
+  background-image:image-set(url("assets/hero-wellen.webp") type("image/webp"),url("assets/hero-wellen.jpg") type("image/jpeg"));
+  background-size:cover;background-position:center}
+@media (max-width:960px){.hero{background-position:left center}}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;
   gap:clamp(2rem,4vw,4rem);align-items:center;padding-block:clamp(2.2rem,4.5vh,3.6rem);flex:1}
 .hero h1{color:var(--strong)}
