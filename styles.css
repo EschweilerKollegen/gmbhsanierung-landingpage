@@ -732,6 +732,7 @@ img{max-width:100%;display:block}
 .qly__ic--no{background:#8a93a0}
 .qly ul{list-style:none;padding:0;margin:0 0 1.4rem;display:grid;gap:.7rem}
 .qly li{display:flex;gap:.65rem;align-items:flex-start;font-size:.95rem;color:var(--text)}
+.qly li strong{font-weight:700;color:var(--strong)}
 .qly__card--yes li::before{content:"\2713";font-weight:800;color:var(--blue);margin-top:-1px}
 .qly__card--no li::before{content:"\2715";font-weight:800;color:#8a93a0;font-size:.85rem;margin-top:2px}
 .qly__note{display:flex;gap:.7rem;align-items:flex-start;border-radius:var(--r-md);padding:.9rem 1rem;font-size:.9rem;margin-top:auto}
