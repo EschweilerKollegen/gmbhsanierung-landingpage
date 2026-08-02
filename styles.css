@@ -40,7 +40,7 @@
 
 /* 2. BASE ----------------------------------------------------- */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:var(--font);color:var(--text);background:var(--paper);
   font-size:1.02rem;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
@@ -457,7 +457,7 @@ img{max-width:100%;display:block}
 .pstep--go b{background:var(--green);color:#fff}
 .psarr{color:#9db0cc;font-weight:700}
 .psteps__note{font-size:.88rem;color:var(--text-soft);margin:.8rem 0 0;font-style:italic}
-@media (max-width:700px){.psteps{flex-direction:column;align-items:flex-start;gap:.55rem}.psarr{display:none}}
+@media (max-width:700px){.psteps{flex-direction:column;align-items:flex-start;gap:.55rem}.psarr{display:none}.pstep{white-space:normal;text-align:left}}
 
 /* Aus der Praxis: anonymisierte Fallskizze */
 .case{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:16px;
@@ -765,9 +765,12 @@ body.subpage .site-footer{margin-top:auto}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* 17. MOBILE FEIN --------------------------------------------- */
+@media (max-width:640px){
+  .m-hide{display:none}
+  .warn__cta .btn--lg,.tst-banner .btn--lg{width:100%;max-width:100%;justify-content:center;white-space:nowrap;font-size:.95rem;padding-inline:.8rem}
+}
 @media (max-width:390px){
   .btn{white-space:normal}
-  .m-hide{display:none}
 }
 
 /* 19. DANKE / TERMIN-BESTAETIGT (Muster Hauptseite) ---------- */
@@ -859,4 +862,12 @@ body.subpage .site-footer{margin-top:auto}
   .tbook .tb__grid{grid-template-columns:1fr}
   .tb__pitch{position:static}
   .tb__outs{margin-bottom:1.2rem}
+}
+
+/* Sehr schmale Screens: Haftungs-Karten kompakt, lange Worte trennen */
+@media (max-width:380px){
+  .hchead{gap:.7rem}
+  .hico{width:48px;height:48px}
+  .hico svg{width:24px;height:24px}
+  .hchead h3{font-size:1rem;hyphens:auto;overflow-wrap:anywhere}
 }
