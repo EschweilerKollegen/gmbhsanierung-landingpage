@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vielen Dank – Termin wählen | GmbH-Sanierung.de</title>
-<meta name="robots" content="noindex,nofollow">
+<title>Termin buchen – Kostenfreies Erstgespräch | GmbH-Sanierung.de</title>
+<meta name="robots" content="noindex,follow">
 <link rel="preconnect" href="https://app.cal.com">
 <!-- Favicons & App-Icons -->
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -28,35 +28,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- HEADER: bewusst ohne CTA – auf dieser Seite gibt es nur ein Ziel -->
 <header class="site-header solid">
   <div class="wrap">
     <a href="/" class="brand"><img class="brand__logo" src="assets/ek-logo-weiss.png" alt="Eschweiler &amp; Kollegen – GmbH-Sanierung.de"></a>
+    <nav class="nav"><a class="btn btn--primary" href="/#check">Sanierungs-Check <span class="arw">→</span></a></nav>
   </div>
 </header>
 
-<section class="section danke">
-  <div class="wrap danke__wrap">
+<section class="section danke tbook">
+  <div class="wrap tb__grid">
 
-    <div class="danke__steps" aria-hidden="true">
-      <span class="danke__step danke__step--done"><span class="tick">✓</span> Anfrage eingegangen</span>
-      <span class="danke__bar"></span>
-      <span class="danke__step danke__step--now">Termin sichern</span>
+    <!-- Links: warum sich die 30 Minuten lohnen -->
+    <div class="tb__pitch">
+      <h1>Buchen Sie Ihr kostenfreies Erstgespräch.</h1>
+      <p class="danke__lead tb__lead"><strong>Wählen Sie direkt Ihren Wunschtermin.</strong> Keine Unterlagen nötig, keine Verpflichtung – nur 30 Minuten Klarheit.</p>
+      <div class="danke__chips tb__chips">
+        <span>Unverbindlich</span><span>Kostenlos</span><span>100&nbsp;% diskret</span>
+      </div>
+
+      <figure class="tb__portrait">
+        <picture>
+          <source srcset="assets/andre-eschweiler.webp" type="image/webp">
+          <img src="assets/andre-eschweiler.jpg" width="1100" height="880" alt="Andrè Eschweiler, Geschäftsführender Partner" loading="lazy">
+        </picture>
+        <figcaption>
+          <b>Andrè Eschweiler</b>
+          <span>Geschäftsführender Partner · Ihr Gesprächspartner</span>
+        </figcaption>
+      </figure>
+
+      <p class="tb__outtitle">Das nehmen Sie aus dem Gespräch mit:</p>
+      <ul class="tb__outs">
+        <li>Eine <strong>klare Ersteinschätzung</strong> Ihrer Lage – ehrlich, ohne Beschönigung</li>
+        <li>Ob die <strong>StaRUG-Sanierung</strong> Ihr Unternehmen tragen kann – und was sie konkret regeln würde</li>
+        <li>Ihre <strong>konkreten nächsten Schritte</strong> – und was Sie ab jetzt vermeiden sollten</li>
+      </ul>
+
+      <p class="tb__proof"><span class="dot" aria-hidden="true"></span>Gesetzlicher Rahmen seit 2021 – vertraulich &amp; ohne öffentliches Verfahren</p>
     </div>
 
-    <h1 id="dkTitle">Geschafft – Ihre Anfrage ist eingegangen.</h1>
-    <p class="danke__lead" id="dkLead">Machen Sie es sich jetzt einfach: <strong>Wählen Sie direkt Ihren Wunschtermin</strong> für das Erstgespräch. <span id="dkPrefill">Ihre Angaben sind bereits eingetragen – nur noch Zeitpunkt wählen und bestätigen, das dauert keine 30 Sekunden.</span></p>
-
-    <div class="danke__chips">
-      <span>Unverbindlich</span><span>Kostenlos</span><span>100&nbsp;% diskret</span>
+    <!-- Rechts: der Kalender -->
+    <div class="tb__calside">
+      <div class="danke__calcard">
+        <div id="cal-inline" class="danke__cal"></div>
+        <p class="danke__fallback">Öffnet der Kalender nicht? <a id="calFallback" href="https://cal.com/andre-eschweiler/30min" rel="noopener">Termin direkt auf cal.com wählen →</a></p>
+      </div>
     </div>
-
-    <div class="danke__calcard">
-      <div id="cal-inline" class="danke__cal"></div>
-      <p class="danke__fallback">Öffnet der Kalender nicht? <a id="calFallback" href="https://cal.com/andre-eschweiler/30min" rel="noopener">Termin direkt auf cal.com wählen →</a></p>
-    </div>
-
-    <p class="danke__noslot">Kein passender Termin dabei? Kein Problem – <strong>wir melden uns in jedem Fall zeitnah bei Ihnen.</strong> Der gebuchte Termin ist nur der schnellste Weg.</p>
 
   </div>
 </section>
@@ -78,7 +95,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function () {
   var CAL_LINK = "andre-eschweiler/30min";
 
-  /* Lead-Daten aus dem Sanierungs-Check übernehmen (sessionStorage, nichts in der URL) */
+  /* Falls vorhanden: Lead-Daten aus dem Sanierungs-Check übernehmen (sessionStorage, nichts in der URL) */
   var lead = {};
   try { lead = JSON.parse(sessionStorage.getItem("eks_lead") || "{}"); } catch (e) {}
 
@@ -94,13 +111,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   add("Größenordnung", "groesse");
   add("Erreichbarkeit", "erreichbarkeit");
   add("Wochentage", "erreichbarkeit_tage");
-
-  /* /danke gehört exklusiv den Check-Absendern (sauberes Conversion-Tracking).
-     Direktaufrufe ohne Lead-Daten -> öffentliche Terminseite */
-  if (!lead.name && !lead.email) {
-    window.location.replace("/terminbuchen");
-    return;
-  }
 
   var config = { layout: "month_view", theme: "light", useSlotsViewOnSmallScreen: "true" };
   if (lead.name)  config.name  = lead.name;

@@ -721,3 +721,32 @@ body.subpage .site-footer{margin-top:auto}
 .danke__noslot{color:#5c6879;font-size:.9rem;margin-top:1.4rem;line-height:1.6}
 .danke__noslot strong{color:var(--ink)}
 
+
+/* 20. TERMINBUCHEN (öffentliche Kalender-Seite) --------------- */
+.tbook .tb__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,64px);align-items:start}
+.tb__pitch{text-align:left;position:sticky;top:96px}
+.tb__pitch h1{font-size:clamp(1.65rem,2.6vw,2.3rem);letter-spacing:-.02em;margin:0 0 .6rem}
+.tb__lead{margin:0 0 1rem;max-width:none}
+.tb__chips{justify-content:flex-start;margin-bottom:1.6rem}
+.tb__portrait{position:relative;margin:0 0 1.6rem;border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:0 24px 55px rgba(14,26,44,.18)}
+.tb__portrait img{display:block;width:100%;height:clamp(260px,26vw,340px);object-fit:cover;object-position:center 18%}
+.tb__portrait figcaption{position:absolute;left:12px;right:12px;bottom:12px;
+  background:rgba(10,17,30,.66);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:.7rem .95rem}
+.tb__portrait b{display:block;color:#fff;font-size:1.05rem;letter-spacing:-.01em}
+.tb__portrait span{color:rgba(255,255,255,.78);font-size:.8rem}
+.tb__outtitle{font-weight:800;color:var(--ink);font-size:.95rem;margin:0 0 .6rem}
+.tb__outs{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.6rem}
+.tb__outs li{position:relative;padding-left:1.7rem;color:#4c5a6e;font-size:.93rem;line-height:1.6}
+.tb__outs li strong{color:var(--ink)}
+.tb__outs li::before{content:"\2713";position:absolute;left:0;top:0;width:1.15rem;height:1.15rem;border-radius:50%;
+  background:rgba(34,180,92,.12);color:#1d7a44;font-size:.7rem;font-weight:800;display:grid;place-items:center;margin-top:.15rem}
+.tb__proof{display:flex;align-items:center;gap:.55rem;color:#6b7a90;font-size:.8rem;font-weight:600;margin:0}
+.tb__proof .dot{width:7px;height:7px;border-radius:50%;background:#22b45c;flex:0 0 auto}
+.tb__calside .danke__calcard{padding:clamp(6px,1vw,14px)}
+@media(max-width:980px){
+  .tbook .tb__grid{grid-template-columns:1fr}
+  .tb__pitch{position:static}
+  .tb__outs{margin-bottom:1.2rem}
+}
