@@ -57,7 +57,7 @@ h2{font-size:clamp(1.8rem,3.9vw,2.9rem)}
   h1,h2,h3,h4,p,li,summary,figcaption,blockquote{
     -webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:7 4 3}
   h1,h2,h3{text-wrap:balance}
-  p,li{text-wrap:pretty}
+  p{text-wrap:pretty}
 }
 h3{font-size:1.18rem}
 p{margin:.4em 0 1em}
@@ -757,6 +757,15 @@ img{max-width:100%;display:block}
   .qly__or{position:static;transform:none;margin:-4px auto}
   .qly-hand{display:none}
   .qly-lead{margin-top:1.2rem}
+  /* Karten mobil kompakter: kleinerer Kopf, engere Liste */
+  .qly__card{padding:1.15rem 1.1rem 1.1rem}
+  .qly__head{gap:.7rem;margin-bottom:.9rem}
+  .qly__ic{width:38px;height:38px}
+  .qly__ic svg{width:18px;height:18px}
+  .qly__head h3{font-size:1.06rem}
+  .qly ul{gap:.45rem;margin-bottom:1rem}
+  .qly li{font-size:.9rem;line-height:1.45}
+  .qly__note{font-size:.84rem;padding:.75rem .85rem}
   .tst-banner{flex-direction:column;text-align:center;gap:.9rem}
   .tst-banner .btn{margin-left:0}}
 @media (max-width:640px){
