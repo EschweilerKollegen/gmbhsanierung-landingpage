@@ -278,43 +278,41 @@ img{max-width:100%;display:block}
 /* 8. KRISEN-TIMELINE (Optionen, baut sich beim Scrollen auf) --- */
 /* Editorial-Serif links, vertikale Zeitachse rechts */
 .wj{background:#f5f4f0}
-.wj__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,5vw,5.5rem);align-items:start}
+.wj__grid{display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start}
 .wj__eyebrow{display:block;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--strong)}
 .wj__eyebrow::after{content:"";display:block;width:52px;height:2px;background:var(--blue);margin-top:.55rem}
 .wj__h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.005em;
-  font-size:clamp(2rem,3.4vw,2.85rem);line-height:1.18;margin:1.5rem 0 0;color:var(--strong)}
+  font-size:clamp(1.9rem,3vw,2.55rem);line-height:1.2;margin:1.5rem 0 0;color:var(--strong)}
 .wj__em{font-style:italic;color:var(--blue)}
 .wj__rule{display:block;width:44px;height:1.5px;background:#c8c7c0;margin:1.7rem 0 1.4rem}
 .wj__copy{color:var(--text-soft);max-width:34rem}
 .wj .law-note{margin-top:2rem;background:#fff;border:1.5px solid rgba(14,95,88,.45);border-radius:10px}
 .wj .lnico{background:transparent;border:2px solid var(--blue)}
 .wj .lnico svg{stroke:var(--blue)}
-.tline{position:relative;display:flex;flex-direction:column;gap:1.15rem;padding-left:26px}
-.tline::before{content:"";position:absolute;left:4px;top:20px;bottom:20px;width:2px;background:#dbdad3}
-.tcard{position:relative;background:#fff;border:1px solid #e6e5df;border-radius:12px;
-  padding:1.15rem 1.4rem 1.2rem;box-shadow:var(--sh-sm);
-  display:grid;grid-template-columns:auto 1fr;column-gap:1.35rem;row-gap:.1rem;align-items:start}
-.tnum{grid-row:span 2;font-family:Georgia,"Times New Roman",serif;font-size:2.7rem;line-height:1;
-  color:var(--strong);font-weight:500;padding-top:.1rem;font-variant-numeric:tabular-nums}
-.tcard h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:1.22rem;line-height:1.25;margin:0;align-self:end}
-.tcard p{font-size:.92rem;color:var(--text);margin:.25rem 0 0;line-height:1.55}
-.twin{grid-column:1/-1;display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem;
-  font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
-.twin::after{content:"";flex:0 0 44px;height:1px;background:rgba(14,95,88,.4)}
-.tcard--win{border:1.5px solid var(--blue);background:linear-gradient(180deg,#f7fbfa,#eef5f3)}
+.tline{position:relative;display:flex;flex-direction:column;gap:1.5rem;padding-left:32px}
+.tline::before{content:"";position:absolute;left:4px;top:58px;bottom:110px;width:1.5px;background:#dbdad3}
+.tcard{position:relative;background:#fff;border:1px solid #e9e8e2;border-radius:8px;
+  padding:1.7rem 2rem 1.8rem;
+  display:grid;grid-template-columns:auto 1fr;column-gap:1.9rem;row-gap:.1rem;align-items:start}
+.tnum{grid-row:span 2;font-family:Georgia,"Times New Roman",serif;font-size:3.4rem;line-height:.95;
+  color:var(--strong);font-weight:500;font-variant-numeric:tabular-nums}
+.tcard h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.42rem;line-height:1.25;margin:0}
+.tcard p{font-size:.98rem;color:var(--text);margin:.4rem 0 0;line-height:1.6}
+.twin{grid-column:1/-1;display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;
+  font-size:.7rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
+.twin::after{content:"";flex:0 0 52px;height:1px;background:rgba(14,95,88,.4)}
+.tcard--win{border:1.5px solid var(--blue);background:linear-gradient(180deg,#fbfdfc,#f1f7f5)}
 .tcard--win .tnum{color:var(--blue)}
-.tcard--bad{border:1px solid rgba(193,78,66,.45);background:#fdf1ee}
+.tcard--bad{border:1px solid rgba(193,78,66,.5);background:#fdf3f0}
 .tcard--bad .tnum,.tcard--bad h3{color:#b0473c}
-/* Punkte & Füll-Segmente auf der Achse */
-.tcard::before{content:"";position:absolute;left:-26px;top:26px;width:10px;height:10px;border-radius:50%;
-  background:var(--strong);transform:translateX(-50%) translateX(5px);z-index:1}
-.tcard--win::before{width:14px;height:14px;background:#fff;border:2.5px solid var(--blue);top:24px}
+/* Punkte & Füll-Segmente auf der Achse (auf Höhe der Nummern) */
+.tcard::before{content:"";position:absolute;left:-32px;top:52px;width:9px;height:9px;border-radius:50%;
+  background:var(--ink);transform:translateX(-50%) translateX(5px);z-index:1}
+.tcard--win::before{width:15px;height:15px;background:#fff;border:2.5px solid var(--blue);top:80px}
 .tcard--bad::before{background:#b0473c}
-.tcard:not(:last-child)::after{content:"";position:absolute;left:-22px;top:36px;width:2px;
-  height:calc(100% - 36px + 2.2rem);background:var(--blue);transform-origin:top;transform:scaleY(1)}
-.tcard--win:not(:last-child)::after{background:#b0473c}
-/* Achse endet am letzten Punkt: Rest der Grundlinie abdecken */
-.tcard:last-child::after{content:"";position:absolute;left:-23px;top:36px;bottom:-24px;width:4px;background:#f5f4f0}
+.tcard:not(:last-child)::after{content:"";position:absolute;left:-28px;top:60px;width:1.5px;
+  height:calc(100% - 60px + 1.5rem + 56px);background:var(--blue);transform-origin:top;transform:scaleY(1)}
+.tcard--win:not(:last-child)::after{background:#b0473c;top:90px;height:calc(100% - 90px + 1.5rem + 56px)}
 /* Scroll-Scrubbing: Aufbau oben → unten, an die Scrollposition gekoppelt.
    Ohne .scrub (Mobile/reduced-motion) ist alles statisch sichtbar. */
 .tline.scrub .tcard{opacity:var(--co,0);transform:translateY(var(--cy,16px));
