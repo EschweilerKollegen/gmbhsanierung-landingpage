@@ -238,8 +238,6 @@
   if (tline && !reduced && window.matchMedia('(min-width: 961px)').matches) {
     tline.classList.add('scrub');
     var tcards = [].slice.call(tline.querySelectorAll('.tcard'));
-    var trider = document.getElementById('trider');
-    var N = tcards.length;
     var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
     var ticking = false;
     var tupdate = function () {
@@ -249,34 +247,12 @@
          Einblendung, während die Karte zwischen 90 % und 62 % der
          Viewporthöhe steht — so ist die Animation immer sichtbar,
          egal wie hoch der Bildschirm ist. */
-      var f = 0;
-      tcards.forEach(function (c, i) {
+      tcards.forEach(function (c) {
         var r = c.getBoundingClientRect();
         var ci = clamp((vh * 0.9 - r.top) / (vh * 0.28), 0, 1);
-        f += ci;
         c.style.setProperty('--co', ci.toFixed(3));
         c.style.setProperty('--cy', (16 * (1 - ci)).toFixed(1) + 'px');
       });
-      /* Wandernder Punkt: Position zwischen den Stationen interpolieren.
-         Die Füllsegmente folgen EXAKT der Punktposition — der Punkt ist
-         die Spitze der Linie, alles bleibt geometrisch gekoppelt. */
-      if (trider) {
-        var stations = tcards.map(function (c) {
-          return c.offsetTop + (c.classList.contains('tcard--win') ? 87.5 : 56.5);
-        });
-        var fi = clamp(f, 0, N - 1);
-        var i0 = Math.min(N - 2, Math.floor(fi));
-        var frac = clamp(fi - i0, 0, 1);
-        var y = stations[i0] + (stations[i0 + 1] - stations[i0]) * frac;
-        trider.style.transform = 'translate(-50%,' + (y - 7).toFixed(1) + 'px)';
-        trider.className = 'trider' + (fi >= 2.6 ? ' trider--red' : fi >= 1.7 ? ' trider--win' : '');
-        tcards.forEach(function (c, i) {
-          if (i >= N - 1) return;
-          var segFill = clamp((y - stations[i]) / (stations[i + 1] - stations[i]), 0, 1);
-          c.style.setProperty('--cg', segFill.toFixed(3));
-          c.style.setProperty('--cd', segFill >= 1 ? 1 : 0);
-        });
-      }
     };
     var onTScroll = function () {
       if (!ticking) { ticking = true; requestAnimationFrame(tupdate); }
