@@ -202,10 +202,10 @@ img{max-width:100%;display:block}
 .check-success .big{font-size:2.4rem;color:var(--green)}
 .check-submit{width:100%;background:var(--ink)}
 .check-submit:hover{background:var(--ink-2)}
-/* Konstante Karten-Höhe: Nav klebt unten, Schritte springen nicht */
-#checkBody{min-height:480px;display:flex;flex-direction:column}
-#checkBody .msf__nav{margin-top:auto;padding-top:1.2rem}
-@media (max-width:520px){#checkBody{min-height:400px}}
+/* Schritt-Wechsel wie Hauptseite: natürliche Höhe + Fade */
+.msf__step{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.msf__step{animation:none}}
 /* Erreichbarkeits-Schritt (Muster Hauptseite) */
 .check-hint{font-size:.84rem;color:var(--text-soft);margin:-.5rem 0 .9rem}
 .grouplabel{font-size:.86rem;font-weight:700;color:var(--strong);margin:.2rem 0 .45rem}

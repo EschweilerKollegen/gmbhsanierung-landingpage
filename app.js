@@ -124,7 +124,7 @@
           '</div>';
       }
     }
-    body.innerHTML = html;
+    body.innerHTML = '<div class="msf__step">' + html + '</div>';
     bind();
   }
 
