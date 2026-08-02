@@ -334,22 +334,30 @@ img{max-width:100%;display:block}
 .foot-note{margin-top:1.6rem;font-size:.92rem;color:var(--text-soft);font-style:italic;max-width:46rem}
 
 /* 9a. EMOTIONALE MITTE (Bild + Stat-Badge, Muster Hauptseite) -- */
-.emo__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,60px);align-items:center}
-.emo__media{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);
-  aspect-ratio:4/5;background:linear-gradient(160deg,#3a4657,#7c8698)}
+.emo__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,60px);align-items:center}
+.em-serif{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:var(--blue);letter-spacing:.005em}
+.emo__media{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md);
+  aspect-ratio:1/1;background:#eceeed}
 .emo__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.stat-badge{position:absolute;left:0;right:0;bottom:0;color:#fff;
-  background:linear-gradient(180deg,rgba(9,32,27,0) 0%,rgba(9,32,27,.62) 34%,rgba(9,32,27,.94) 100%);
-  padding:3rem 1.25rem 1.15rem;display:flex;align-items:flex-end;gap:.95rem}
-.stat-badge b{font-size:clamp(1.9rem,2.6vw,2.4rem);line-height:1;letter-spacing:-.02em;flex:0 0 auto;font-variant-numeric:tabular-nums}
-.stat-badge span{font-size:.8rem;line-height:1.35;color:rgba(255,255,255,.82);max-width:30ch;padding-bottom:.15rem}
-.stat-badge span strong{display:block;margin-top:.2rem;color:#fff;font-weight:700}
+/* Stat-Karte: weiße Karte unten rechts im Bild (deckt die einbelichtete Variante ab) */
+.stat-badge{position:absolute;right:2%;bottom:2%;left:auto;width:64%;min-width:300px;min-height:34%;
+  background:#fff;border-radius:18px;box-shadow:0 16px 44px rgba(9,32,27,.16);
+  padding:1.25rem 1.35rem;display:flex;align-items:center;gap:1rem;color:var(--text)}
+.stat-badge__ic{width:52px;height:52px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--blue);
+  display:grid;place-items:center}
+.stat-badge__ic svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat-badge__tx{display:block}
+.stat-badge b{display:block;font-size:clamp(1.7rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;
+  color:var(--blue);font-variant-numeric:tabular-nums}
+.stat-badge__tx > span{font-size:.82rem;line-height:1.4;color:var(--text-soft);display:block;margin-top:.2rem}
+.stat-badge span strong{display:block;margin-top:.35rem;color:var(--strong);font-weight:700}
 .emo__body p{color:var(--text-soft)}
-@media (max-width:860px){.emo__grid{grid-template-columns:1fr}.emo__media{order:2}}
+@media (max-width:860px){.emo__grid{grid-template-columns:1fr}.emo__media{order:2;margin-top:.5rem}}
 @media (max-width:560px){
-  .stat-badge{flex-direction:column;align-items:flex-start;gap:.4rem;padding:2.4rem 1rem .95rem}
-  .stat-badge b{font-size:2rem}
-  .stat-badge span{font-size:.8rem;max-width:none;padding-bottom:0}
+  .stat-badge{right:3.5%;bottom:3.5%;width:auto;left:3.5%;min-width:0;padding:.95rem 1rem;gap:.8rem}
+  .stat-badge__ic{width:44px;height:44px}
+  .stat-badge__ic svg{width:22px;height:22px}
+  .stat-badge b{font-size:1.7rem}
 }
 
 /* 9a2. WARNZEICHEN-KLICKSTRECKE (Muster Hauptseite) ----------- */
