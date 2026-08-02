@@ -208,19 +208,42 @@
     /* TODO: Redirect /danke (Cal-Prefill) nach Webhook-Anbindung */
   }
 
-  /* ---------- Krisen-Timeline: baut sich beim Scrollen auf ---------- */
+  /* ---------- Krisen-Timeline: Scroll-Scrubbing (vor & zurück) ----------
+     Fortschritt haengt direkt an der Scrollposition: Karten + Verbinder
+     bauen sich von links nach rechts auf, waehrend die Sektion nach oben
+     wandert – und wieder ab, wenn man zurueckscrollt. */
   var tline = document.getElementById('tline');
-  if (tline) {
-    if (!reduced && 'IntersectionObserver' in window) {
-      var tio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { tline.classList.add('go'); tio.disconnect(); }
-        });
-      }, { threshold: 0.25 });
-      tio.observe(tline);
-    } else {
-      tline.classList.add('go');
-    }
+  if (tline && !reduced && window.matchMedia('(min-width: 961px)').matches) {
+    tline.classList.add('scrub');
+    var tcards = [].slice.call(tline.querySelectorAll('.tcard'));
+    var N = tcards.length;
+    var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var ticking = false;
+    var tupdate = function () {
+      ticking = false;
+      var vh = window.innerHeight;
+      var r = tline.getBoundingClientRect();
+      /* p: 0 wenn die Timeline bei 88 % des Viewports auftaucht,
+         1 wenn sie bei 30 % angekommen ist */
+      var p = clamp((vh * 0.88 - r.top) / (vh * 0.58), 0, 1);
+      var f = p * N;
+      var idx = Math.min(N - 1, Math.floor(f));
+      tcards.forEach(function (c, i) {
+        var ci = clamp(f - i, 0, 1);
+        var lift = (i === idx && ci > 0.65 && p < 1) ? -5 : 0;
+        c.style.setProperty('--co', ci.toFixed(3));
+        c.style.setProperty('--cy', (lift || (16 * (1 - ci))).toFixed(1) + 'px');
+        var cg = clamp((f - (i + 0.7)) / 0.3, 0, 1);
+        c.style.setProperty('--cg', cg.toFixed(3));
+        c.style.setProperty('--cd', (cg >= 1 ? 1 : 0));
+      });
+    };
+    var onTScroll = function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(tupdate); }
+    };
+    window.addEventListener('scroll', onTScroll, { passive: true });
+    window.addEventListener('resize', onTScroll, { passive: true });
+    tupdate();
   }
 
   /* ---------- Warnzeichen-Klickstrecke (Muster Hauptseite) ----------

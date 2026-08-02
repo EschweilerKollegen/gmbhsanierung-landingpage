@@ -282,27 +282,16 @@ img{max-width:100%;display:block}
 .tcard:not(:last-child)::before{content:"";position:absolute;top:42px;right:-1.35rem;width:9px;height:9px;
   border-radius:50%;background:var(--blue);opacity:0;z-index:1}
 .tcard--last-safe:not(:last-child)::after,.tcard--last-safe:not(:last-child)::before{background:#d94a3c}
-/* Aufbau-Animation links → rechts */
-.tline .tcard{opacity:0;transform:translateY(16px)}
-.tline.go .tcard{animation:tcardIn .55s cubic-bezier(.3,.7,.3,1) forwards}
-.tline.go .tcard:nth-child(2){animation-delay:.35s}
-.tline.go .tcard:nth-child(3){animation-delay:.7s}
-.tline.go .tcard:nth-child(4){animation-delay:1.05s}
-.tline.go .tcard:not(:last-child)::after{animation:tlineGrow .3s ease forwards}
-.tline.go .tcard:not(:last-child)::before{animation:tdotIn .2s ease forwards}
-.tline.go .tcard:nth-child(1)::after{animation-delay:.3s}.tline.go .tcard:nth-child(1)::before{animation-delay:.42s}
-.tline.go .tcard:nth-child(2)::after{animation-delay:.65s}.tline.go .tcard:nth-child(2)::before{animation-delay:.77s}
-.tline.go .tcard:nth-child(3)::after{animation-delay:1s}.tline.go .tcard:nth-child(3)::before{animation-delay:1.12s}
-@keyframes tcardIn{0%{opacity:0;transform:translateY(16px)}70%{opacity:1;transform:translateY(-5px)}100%{opacity:1;transform:none}}
-@keyframes tlineGrow{to{transform:scaleX(1)}}
-@keyframes tdotIn{to{opacity:1}}
-@media (prefers-reduced-motion:reduce){
-  .tline .tcard{opacity:1;transform:none;animation:none!important}
-  .tline .tcard::after{transform:scaleX(1);animation:none!important}
-  .tline .tcard::before{opacity:1;animation:none!important}}
+/* Scroll-Scrubbing: Aufbau links → rechts, direkt an die Scrollposition gekoppelt.
+   Ohne .scrub (Mobile/reduced-motion) ist alles statisch sichtbar. */
+.tcard:not(:last-child)::after{transform:scaleX(1)}
+.tcard:not(:last-child)::before{opacity:1}
+.tline.scrub .tcard{opacity:var(--co,0);transform:translateY(var(--cy,16px));
+  transition:transform .25s ease-out}
+.tline.scrub .tcard:not(:last-child)::after{transform:scaleX(var(--cg,0))}
+.tline.scrub .tcard:not(:last-child)::before{opacity:var(--cd,0)}
 @media (max-width:960px){.tline{grid-template-columns:1fr 1fr;gap:1rem}
-  .tcard::after,.tcard::before{display:none}
-  .tline .tcard{opacity:1;transform:none;animation:none!important}}
+  .tcard::after,.tcard::before{display:none}}
 @media (max-width:520px){.tline{grid-template-columns:1fr}}
 .law-note{margin-top:2rem;display:flex;gap:.9rem;align-items:center;background:var(--green-050);
   border:1px solid rgba(51,162,74,.25);border-radius:var(--r-md);padding:1rem 1.2rem;max-width:46rem}
