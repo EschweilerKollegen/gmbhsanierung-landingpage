@@ -503,9 +503,6 @@ img{max-width:100%;display:block}
 /* Editorial-Layout: Serif links, animierter 75%-Ring rechts, 3er-Streifen unten */
 .plan-ed{background:#f2f2f0}
 .plan-ed__grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
-.pe__eyebrow{display:flex;align-items:center;gap:.8rem;font-size:.78rem;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
-.pe__eyebrow i{width:44px;height:2px;background:var(--blue)}
 .pe__h2{margin:1.2rem 0 0}
 .pe__em{font-style:italic;color:#1f8f85;font-weight:500}
 .pe__copy{color:var(--text);margin:1.3rem 0 0;max-width:36rem;line-height:1.65}
