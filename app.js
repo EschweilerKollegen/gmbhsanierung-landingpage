@@ -48,9 +48,12 @@
       ['500-1m', '500.000 € – 1 Mio. €'], ['ue1m', 'über 1 Mio. €']] },
     { key: 'groesse', q: 'Größenordnung Ihres Unternehmens (Mitarbeiter):', opts: [
       ['bis5', 'bis 5 Mitarbeiter'], ['6-20', '6 – 20'], ['21-50', '21 – 50'], ['ue50', 'über 50']] },
-    { key: 'kontakt', q: 'Wie erreichen wir Sie für die Ersteinschätzung?', form: true }
+    { key: 'erreichbarkeit', q: 'Wann erreichen wir Sie am besten?', reach: true },
+    { key: 'kontakt', q: 'Wohin dürfen wir die Einschätzung senden?', form: true }
   ];
-  var LABELS = ['Ihre Situation', 'Kerngeschäft', 'Liquidität', 'Gläubiger', 'Verbindlichkeiten', 'Größenordnung', 'Kontakt'];
+  var LABELS = ['Ihre Situation', 'Kerngeschäft', 'Liquidität', 'Gläubiger', 'Verbindlichkeiten', 'Größenordnung', 'Erreichbarkeit', 'Kontakt'];
+  var FENSTER = ['08:00 – 12:00 Uhr', '12:00 – 15:00 Uhr', 'ab 17:00 Uhr', 'Ganztags flexibel'];
+  var TAGE = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
   var state = { step: 0, answers: {}, started: false };
   var body = document.getElementById('checkBody');
@@ -74,12 +77,27 @@
     var metaLeft = remaining > 1 ? 'Nur noch ' + remaining + ' kurze Schritte' : 'Letzter Schritt';
     var html = '<div class="check-meta"><span>' + metaLeft + '</span><span>' + LABELS[state.step] + '</span></div>' +
       '<p class="check-q">' + s.q + '</p>';
-    if (s.form) {
-      html += '<input type="text" id="f_name" placeholder="Ihr Name" autocomplete="name">' +
+    if (s.reach) {
+      var r = state.answers.erreichbarkeit || { fenster: '', tage: [] };
+      html += '<p class="check-hint">Wir rufen nur in Ihrem Wunschfenster an – diskret.</p>' +
+        '<div class="gfield"><div class="grouplabel">Uhrzeitfenster</div><div class="opts opts--2" role="radiogroup" aria-label="Erreichbarkeit">';
+      FENSTER.forEach(function (f, i) {
+        html += '<div class="opt"><input type="radio" name="fenster" id="fen' + i + '" value="' + f + '"' + (r.fenster === f ? ' checked' : '') + '><label for="fen' + i + '"><span class="rdot"></span> ' + f + '</label></div>';
+      });
+      html += '</div></div><div class="gfield"><div class="grouplabel">An welchen Tagen? <span class="soft">(mehrere möglich)</span></div><div class="days" role="group" aria-label="Bevorzugte Wochentage">';
+      TAGE.forEach(function (t, i) {
+        html += '<span class="day"><input type="checkbox" name="tage" id="tag' + i + '" value="' + t + '"' + (r.tage.indexOf(t) > -1 ? ' checked' : '') + '><label for="tag' + i + '">' + t + '</label></span>';
+      });
+      html += '</div></div>' +
+        '<div class="msf__nav">' +
+        '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
+        '<button type="button" class="btn" id="checkNext">Weiter <span class="arw">→</span></button>' +
+        '</div>';
+    } else if (s.form) {
+      html += '<p class="check-hint">Ihre Daten werden vertraulich behandelt.</p>' +
+        '<input type="text" id="f_name" placeholder="Vor- und Zuname" autocomplete="name">' +
         '<input type="email" id="f_email" placeholder="E-Mail-Adresse" autocomplete="email">' +
         '<input type="tel" id="f_tel" placeholder="Telefonnummer" autocomplete="tel">' +
-        '<select id="f_zeit"><option value="">Beste Erreichbarkeit wählen …</option>' +
-        '<option>Vormittags</option><option>Nachmittags</option><option>Abends</option></select>' +
         '<div class="msf__nav">' +
         '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
         '<button type="button" class="btn" id="checkSubmit">Ersteinschätzung anfordern <span class="arw">→</span></button>' +
@@ -130,14 +148,29 @@
     });
     var nextBtn = document.getElementById('checkNext');
     if (nextBtn) nextBtn.addEventListener('click', function () {
-      var val = state.answers[s.key];
-      var hasVal = s.multi ? (val || []).length > 0 : !!val;
-      if (!hasVal) {
-        nextBtn.innerHTML = 'Bitte eine Antwort wählen';
-        setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
-        return;
+      var hasVal, ev;
+      if (s.reach) {
+        var fen = (body.querySelector('input[name="fenster"]:checked') || {}).value || '';
+        var tage = [].slice.call(body.querySelectorAll('input[name="tage"]:checked')).map(function (i) { return i.value; });
+        state.answers.erreichbarkeit = { fenster: fen, tage: tage };
+        hasVal = !!fen && tage.length > 0;
+        ev = fen + ' / ' + tage.join(',');
+        if (!hasVal) {
+          nextBtn.innerHTML = !fen ? 'Bitte Zeitfenster wählen' : 'Bitte Tag(e) wählen';
+          setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
+          return;
+        }
+      } else {
+        var val = state.answers[s.key];
+        hasVal = s.multi ? (val || []).length > 0 : !!val;
+        ev = s.multi ? (val || []).join(',') : val;
+        if (!hasVal) {
+          nextBtn.innerHTML = 'Bitte eine Antwort wählen';
+          setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
+          return;
+        }
       }
-      dl('check_step_' + (state.step + 1), { antwort: s.multi ? val.join(',') : val });
+      dl('check_step_' + (state.step + 1), { antwort: ev });
       next();
     });
     var backBtn = document.getElementById('checkBack');
@@ -154,12 +187,11 @@
     var name = document.getElementById('f_name').value.trim();
     var email = document.getElementById('f_email').value.trim();
     var tel = document.getElementById('f_tel').value.trim();
-    var zeit = document.getElementById('f_zeit').value;
     if (!name || !email || !tel) {
       document.getElementById('checkSubmit').textContent = 'Bitte alle Felder ausfüllen';
       return;
     }
-    state.answers.kontakt = { name: name, email: email, tel: tel, erreichbarkeit: zeit };
+    state.answers.kontakt = { name: name, email: email, tel: tel };
     /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
        (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
     dl('lead', { lead_value: 1000, currency: 'EUR' });

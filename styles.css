@@ -202,6 +202,39 @@ img{max-width:100%;display:block}
 .check-success .big{font-size:2.4rem;color:var(--green)}
 .check-submit{width:100%;background:var(--ink)}
 .check-submit:hover{background:var(--ink-2)}
+/* Konstante Karten-Höhe: Nav klebt unten, Schritte springen nicht */
+#checkBody{min-height:480px;display:flex;flex-direction:column}
+#checkBody .msf__nav{margin-top:auto;padding-top:1.2rem}
+@media (max-width:520px){#checkBody{min-height:400px}}
+/* Erreichbarkeits-Schritt (Muster Hauptseite) */
+.check-hint{font-size:.84rem;color:var(--text-soft);margin:-.5rem 0 .9rem}
+.grouplabel{font-size:.86rem;font-weight:700;color:var(--strong);margin:.2rem 0 .45rem}
+.grouplabel .soft{font-weight:500;color:var(--text-soft)}
+.gfield{margin-bottom:.95rem}
+.opts{display:grid;gap:.55rem}
+.opts--2{grid-template-columns:1fr 1fr}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt label{display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:var(--r-sm);font-weight:600;font-size:.96rem;cursor:pointer;background:#fff;transition:all .12s;color:var(--strong)}
+.opt label .rdot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;display:grid;place-items:center}
+.opt input:checked+label{border-color:var(--ink);background:#eef1f6}
+.opt input:checked+label .rdot{border-color:var(--ink)}
+.opt input:checked+label .rdot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.opt input:focus-visible+label{outline:3px solid var(--blue);outline-offset:2px}
+.days{display:flex;flex-wrap:wrap;gap:.45rem}
+.day{position:relative}
+.day input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.day label{display:grid;place-items:center;min-width:46px;padding:.55rem .6rem;border:1.5px solid var(--line);
+  border-radius:var(--r-pill);font-weight:700;font-size:.9rem;cursor:pointer;background:#fff;color:var(--text-soft);
+  transition:all .13s ease}
+.day input:checked+label{border-color:var(--ink);background:var(--ink);color:#fff}
+.day input:focus-visible+label{outline:3px solid var(--blue);outline-offset:2px}
+.day label:hover{border-color:var(--blue);color:var(--blue)}
+.day input:checked+label:hover{color:#fff}
+@media (max-width:460px){.opts--2{grid-template-columns:1fr}
+  .opt label{padding:.58rem .75rem;font-size:.88rem;gap:.55rem}
+  .opt label .rdot{width:15px;height:15px}
+  .day label{min-width:40px;padding:.42rem .5rem;font-size:.82rem}.days{gap:.35rem}}
 
 /* 8. TREPPE (Optionen) ---------------------------------------- */
 .stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;align-items:end}
