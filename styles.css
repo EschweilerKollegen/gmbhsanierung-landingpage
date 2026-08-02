@@ -383,33 +383,44 @@ img{max-width:100%;display:block}
 }
 @keyframes wsPop{0%{transform:scale(1)}45%{transform:scale(.965)}100%{transform:scale(1)}}
 
-/* 9b. VERGLEICH INSOLVENZ VS. SANIERUNG ----------------------- */
-.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem;max-width:56rem}
-.cmpcard{border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.3rem;border:1.5px solid}
-.cmpcard b{display:block;font-size:1.05rem;margin-bottom:.55rem;letter-spacing:.01em;
-  padding-bottom:.55rem;border-bottom:1px solid rgba(0,0,0,.08)}
-.cmpcard .arr{margin-right:.35rem}
+/* 9b. EINORDNUNG: helles Büro-Motiv + schwebende Vergleichskarten */
+.einord{position:relative;overflow:hidden;
+  background-image:url("assets/buero-hell.jpg");
+  background-image:image-set(url("assets/buero-hell.webp") type("image/webp"),url("assets/buero-hell.jpg") type("image/jpeg"));
+  background-size:cover;background-position:center}
+.einord::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(95deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.9) 36%, rgba(255,255,255,.55) 62%, rgba(255,255,255,.25) 100%)}
+.einord .wrap{position:relative;z-index:1}
+.einord__hi{color:var(--blue)}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem;max-width:56rem}
+.cmpcard{border-radius:var(--r-lg);padding:1.6rem 1.6rem 1.4rem;background:#fff;box-shadow:var(--sh-md)}
+.cmphead{display:flex;align-items:center;gap:.7rem;font-weight:800;font-size:1.12rem;margin-bottom:.9rem;color:var(--strong)}
+.cico{width:44px;height:44px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center}
+.cico svg{width:22px;height:22px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cmpcard ul{list-style:none;margin:0;padding:0}
-.cmpcard li{position:relative;padding:.32rem 0 .32rem 1.1rem;font-size:.95rem}
-.cmpcard li::before{content:"";position:absolute;left:0;top:.85em;width:7px;height:7px;border-radius:50%}
-.cmpcard .cmpfoot{display:block;margin-top:.9rem;font-weight:800;font-size:.9rem}
-.cmpcard--bad{border-color:rgba(217,74,60,.45);background:#fdf1ef}
-.cmpcard--bad b,.cmpcard--bad .cmpfoot{color:#b3372a}
-.cmpcard--bad li::before{background:#d94a3c}
-.cmpcard--good{border-color:rgba(51,162,74,.5);background:var(--green-050)}
-.cmpcard--good b,.cmpcard--good .cmpfoot{color:#1f7a35}
-.cmpcard--good li::before{background:var(--green)}
+.cmpcard li{position:relative;padding:.34rem 0 .34rem 1.5rem;font-size:.95rem;color:var(--text)}
+.cmpcard li::before{content:"—";position:absolute;left:0;top:.34rem;font-weight:700}
+.cmpcard .cmpfoot{display:block;margin-top:1rem;font-weight:800;font-size:.92rem}
+.cmpcard--bad .cmphead{color:#d13b2e}
+.cmpcard--bad .cico{background:#fbe7e4}
+.cmpcard--bad .cico svg{stroke:#d13b2e}
+.cmpcard--bad li::before{color:#e08a80}
+.cmpcard--bad .cmpfoot{color:#d13b2e}
+.cmpcard--good .cmphead{color:var(--blue)}
+.cmpcard--good .cico{background:var(--blue-050)}
+.cmpcard--good .cico svg{stroke:var(--blue)}
+.cmpcard--good li::before{color:#8fa9dd}
+.cmpcard--good .cmpfoot{color:var(--blue)}
 @media (max-width:700px){.cmp2{grid-template-columns:1fr}}
-.quote-card{display:flex;align-items:center;gap:1.4rem;max-width:56rem;margin-top:1.4rem;
-  background:#fff;border:1px solid rgba(55,94,184,.25);border-radius:var(--r-lg);
-  padding:1.3rem 1.6rem;box-shadow:var(--sh-sm)}
-.qico{width:64px;height:64px;flex:0 0 auto;border-radius:50%;background:var(--blue-tint);
-  display:grid;place-items:center;color:var(--blue)}
-.qico svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.quote-card p{margin:0;font-size:1rem;color:var(--strong)}
-.quote-card .qbig{font-size:clamp(1.05rem,1.8vw,1.35rem);margin-top:.2rem}
+.quote-card{display:flex;align-items:center;gap:1.1rem;max-width:56rem;margin-top:1.4rem;
+  background:var(--blue-tint);border:1px solid rgba(55,94,184,.22);border-radius:var(--r-lg);
+  padding:1.1rem 1.4rem;box-shadow:var(--sh-sm)}
+.qico{width:48px;height:48px;flex:0 0 auto;border-radius:50%;background:var(--blue);
+  display:grid;place-items:center;color:#fff}
+.qico svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.quote-card p{margin:0;font-size:.98rem;color:var(--strong)}
 .quote-card .qbig b{color:var(--blue);font-weight:800}
-@media (max-width:520px){.quote-card{flex-direction:column;align-items:flex-start;gap:.8rem}.qico{width:48px;height:48px}.qico svg{width:24px;height:24px}}
+@media (max-width:520px){.quote-card{flex-direction:column;align-items:flex-start;gap:.8rem}}
 .section-cta{margin-top:2rem}
 .section-cta .micro{margin-top:.7rem}
 
