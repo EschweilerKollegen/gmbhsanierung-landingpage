@@ -596,18 +596,41 @@ img{max-width:100%;display:block}
   .cta2__note{flex-direction:column;align-items:flex-start;gap:1rem}
   .cta2__notelabel{border-right:0;padding-right:0}}
 
-/* 15. FOOTER -------------------------------------------------- */
-.site-footer{background:var(--ink);color:var(--text-inv-soft);border-top:1px solid var(--line-dark);
-  padding-block:3rem 2rem;font-size:.9rem}
-.site-footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
-.site-footer h4{color:#fff;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem}
-.site-footer ul{list-style:none;margin:0;padding:0}
-.site-footer li{margin-bottom:.45rem}
-.site-footer a{color:var(--text-inv-soft);text-decoration:none}
+/* 15. FOOTER (identisch Hauptseite: Justitia-Motiv) ----------- */
+.site-footer{position:relative;background:
+   linear-gradient(90deg,#0a121e 44%,rgba(10,18,30,.9) 66%,rgba(10,18,30,.62)),
+   url("assets/justitia.webp") right top/cover no-repeat,#0a121e;
+   color:var(--text-inv-soft);padding-block:60px 30px;font-size:.92rem}
+.site-footer a{text-decoration:none;color:var(--text-inv-soft)}
 .site-footer a:hover{color:#fff}
-.site-footer .legal{border-top:1px solid var(--line-dark);padding-top:1.4rem;font-size:.78rem;line-height:1.6}
-.site-footer .brandline{color:#fff;font-weight:800;margin-bottom:.5rem}
-@media (max-width:860px){.site-footer .cols{grid-template-columns:1fr}}
+.footer__grid{display:grid;grid-template-columns:1.35fr 1fr .85fr;gap:clamp(2rem,4vw,4.5rem)}
+.footer__grid h4{color:#fff;font-size:1.06rem;margin-bottom:0}
+.ftr-rule{display:block;width:44px;height:1px;background:rgba(255,255,255,.35);margin:.85rem 0 1.1rem}
+.ftr-brand p{max-width:38ch}
+.ftr-badges{display:flex;align-items:flex-start;gap:1rem;margin-top:1.6rem;flex-wrap:wrap}
+.ftr-badge{display:flex;flex-direction:column;align-items:center;gap:.45rem;font-size:.78rem;text-align:center;max-width:96px;line-height:1.3}
+.ftr-badge__ic{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.28);display:grid;place-items:center;color:#9db8e8}
+.ftr-badge__ic svg{width:21px;height:21px}
+.ftr-badges__sep{width:1px;height:46px;background:var(--line-dark)}
+.ftr-contact{display:grid;gap:1.05rem}
+.ftr-crow{display:flex;gap:.85rem;align-items:center;color:var(--text-inv-soft)}
+.ftr-crow:hover{color:#fff}
+.ftr-crow__ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.05);display:grid;place-items:center;color:#c9d7f1;flex:0 0 auto}
+.ftr-crow__ic svg{width:20px;height:20px}
+.ftr-crow b{display:block;color:#fff;font-size:.9rem;line-height:1.35}
+.ftr-links{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.ftr-links a{display:inline-flex;align-items:center;gap:.55rem;color:var(--text-inv-soft)}
+.ftr-links a::before{content:"\203A";color:#9db8e8;font-weight:700;font-size:1.05rem;line-height:1}
+.ftr-links a:hover{color:#fff}
+.footer__disclaimer{margin-top:2rem;font-size:.76rem;color:#5a6b80;line-height:1.55;max-width:90ch}
+.footer__disclaimer+.footer__disclaimer{margin-top:.7rem}
+.footer__legal{border-top:1px solid var(--line-dark);margin-top:2rem;padding-top:1.4rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.82rem;color:#6b7a8d}
+.footer__legal a{color:#6b7a8d}
+@media (max-width:900px){.footer__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.footer__grid{grid-template-columns:1fr}
+  .site-footer{background:linear-gradient(rgba(10,18,30,.94),rgba(10,18,30,.94)),url("assets/justitia.webp") right top/cover no-repeat,#0a121e}
+  .ftr-badges__sep{display:none}
+  .ftr-badges{gap:1.3rem}}
 
 /* 16. REVEALS ------------------------------------------------- */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}

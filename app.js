@@ -6,6 +6,10 @@
     try { window.dataLayer.push(Object.assign({ event: ev }, data || {})); } catch (e) {}
   };
 
+  /* ---------- Footer-Jahr ---------- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   /* ---------- Header: transparent → stuck ---------- */
   var header = document.getElementById('siteHeader');
   if (header) {
