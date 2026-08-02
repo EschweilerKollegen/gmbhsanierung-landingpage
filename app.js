@@ -50,6 +50,7 @@
       ['bis5', 'bis 5 Mitarbeiter'], ['6-20', '6 – 20'], ['21-50', '21 – 50'], ['ue50', 'über 50']] },
     { key: 'kontakt', q: 'Wie erreichen wir Sie für die Ersteinschätzung?', form: true }
   ];
+  var LABELS = ['Ihre Situation', 'Kerngeschäft', 'Liquidität', 'Gläubiger', 'Verbindlichkeiten', 'Größenordnung', 'Kontakt'];
 
   var state = { step: 0, answers: {}, started: false };
   var body = document.getElementById('checkBody');
@@ -69,14 +70,17 @@
   function render() {
     renderProgress();
     var s = STEPS[state.step];
-    var html = '<p class="check-q">' + s.q + '</p>';
+    var remaining = STEPS.length - state.step;
+    var metaLeft = remaining > 1 ? 'Nur noch ' + remaining + ' kurze Schritte' : 'Letzter Schritt';
+    var html = '<div class="check-meta"><span>' + metaLeft + '</span><span>' + LABELS[state.step] + '</span></div>' +
+      '<p class="check-q">' + s.q + '</p>';
     if (s.form) {
       html += '<input type="text" id="f_name" placeholder="Ihr Name" autocomplete="name">' +
         '<input type="email" id="f_email" placeholder="E-Mail-Adresse" autocomplete="email">' +
         '<input type="tel" id="f_tel" placeholder="Telefonnummer" autocomplete="tel">' +
         '<select id="f_zeit"><option value="">Beste Erreichbarkeit wählen …</option>' +
         '<option>Vormittags</option><option>Nachmittags</option><option>Abends</option></select>' +
-        '<button class="btn btn--primary" style="width:100%" id="checkSubmit">Ersteinschätzung anfordern</button>' +
+        '<button class="btn check-submit" id="checkSubmit">Ersteinschätzung anfordern <span class="arw">→</span></button>' +
         '<p class="privacy">Vertraulich &amp; unverbindlich. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz" style="color:#8fb0e8">Datenschutzerklärung</a>.</p>';
     } else {
       html += '<div class="check-opts">';

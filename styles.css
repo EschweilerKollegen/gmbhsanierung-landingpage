@@ -120,6 +120,15 @@ img{max-width:100%;display:block}
 .trust-line{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.5rem;padding:0;list-style:none}
 .trust-line li{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:600;color:#d6e0ef}
 .trust-line li::before{content:"✓";color:var(--green);font-weight:800}
+.witness{display:flex;align-items:center;gap:1.05rem;margin-top:1.8rem}
+.witness .avs{display:flex;flex:0 0 auto}
+.witness .avs img{width:52px;height:52px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,.55);background:#1d3050;margin-left:-14px}
+.witness .avs img:first-child{margin-left:0}
+.witness p{margin:0;font-size:1rem;color:var(--text-inv-soft);line-height:1.55;max-width:30rem}
+.witness b{color:#fff}
+.witness a{color:#fff;font-weight:700}
+@media (max-width:520px){.witness .avs img{width:42px;height:42px;margin-left:-12px}}
 @media (max-width:960px){.hero .wrap{grid-template-columns:1fr;padding-block:2.5rem}.hero{min-height:0}}
 
 /* 6. FEATURE BAR ---------------------------------------------- */
@@ -134,35 +143,50 @@ img{max-width:100%;display:block}
 @media (max-width:960px){.feature-bar .wrap{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){.feature-bar .wrap{grid-template-columns:1fr;gap:.9rem;padding-block:1.1rem}}
 
-/* 7. CHECK-WIDGET (Frosted Card) ------------------------------ */
-.check-card{background:rgba(15,28,49,.82);border:1px solid rgba(255,255,255,.10);
-  border-radius:var(--r-xl);padding:clamp(1.4rem,2.5vw,2.2rem);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sh-lg)}
-.check-card h3{color:#fff;margin-bottom:.2rem}
-.check-progress{display:flex;gap:.35rem;margin:1rem 0 1.3rem}
-.check-progress i{height:4px;flex:1;border-radius:2px;background:rgba(255,255,255,.16)}
-.check-progress i.on{background:var(--green)}
-.check-q{font-weight:700;color:#fff;font-size:1.05rem;margin:0 0 1rem}
+/* 7. CHECK-WIDGET (weiße Karte) ------------------------------- */
+.check-side{position:relative}
+.handnote{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem;
+  color:#fff;font-family:"Caveat",cursive;font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:700;
+  transform:rotate(-2deg);line-height:1;padding-left:.4rem}
+.handarrow{width:44px;height:38px;margin-top:.5rem;color:#fff;
+  animation:arrowbob 1.4s ease-in-out infinite alternate}
+@keyframes arrowbob{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(7px) rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.handarrow{animation:none}}
+.check-card{background:#fff;color:var(--text);border:0;
+  border-radius:26px;padding:clamp(1.5rem,2.5vw,2.3rem);box-shadow:var(--sh-lg)}
+.check-card h3{color:var(--strong);margin-bottom:.2rem}
+.check-card .micro{color:var(--text-soft)}
+.check-progress{display:flex;gap:.35rem;margin:1.05rem 0 .55rem}
+.check-progress i{height:5px;flex:1;border-radius:3px;background:#e9edf3}
+.check-progress i.on{background:var(--ink)}
+.check-meta{display:flex;justify-content:space-between;gap:1rem;font-size:.84rem;
+  color:var(--text-soft);font-weight:600;margin-bottom:1.05rem}
+.check-q{font-weight:800;color:var(--strong);font-size:1.12rem;margin:0 0 1rem;letter-spacing:-.01em}
 .check-opts{display:grid;gap:.6rem}
-.check-opt{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;
-  background:rgba(255,255,255,.05);border:1px solid var(--line-dark);color:#e6ecf5;
-  padding:.85rem 1.05rem;border-radius:var(--r-md);font:inherit;font-size:.97rem;font-weight:600;
+.check-opt{display:flex;align-items:center;gap:.75rem;width:100%;text-align:left;
+  background:#fff;border:1px solid var(--line);color:var(--strong);
+  padding:.9rem 1.05rem;border-radius:var(--r-md);font:inherit;font-size:.97rem;font-weight:600;
   cursor:pointer;transition:background .15s ease,border-color .15s ease}
-.check-opt:hover{background:rgba(255,255,255,.11)}
-.check-opt.sel{border-color:var(--green);background:rgba(51,162,74,.15)}
-.check-opt .dot{width:10px;height:10px;border-radius:50%;border:2px solid #7f8ea3;flex:0 0 auto}
-.check-opt.sel .dot{background:var(--green);border-color:var(--green)}
-.check-note{font-size:.86rem;color:#ffd9a0;background:rgba(224,169,46,.12);
-  border:1px solid rgba(224,169,46,.35);border-radius:var(--r-sm);padding:.6rem .8rem;margin-top:.7rem}
+.check-opt:hover{background:var(--blue-tint);border-color:rgba(55,94,184,.4)}
+.check-opt.sel{border-color:var(--blue);background:var(--blue-tint)}
+.check-opt .dot{width:12px;height:12px;border-radius:50%;border:2px solid #c7cfda;flex:0 0 auto;background:#fff}
+.check-opt.sel .dot{background:var(--blue);border-color:var(--blue)}
+.check-note{font-size:.86rem;color:#7c5c12;background:#fdf4dd;
+  border:1px solid rgba(224,169,46,.4);border-radius:var(--r-sm);padding:.6rem .8rem;margin-top:.7rem}
 .check-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem}
-.check-back{background:none;border:0;color:var(--text-inv-soft);font:inherit;font-size:.9rem;cursor:pointer}
-.check-card input,.check-card select{width:100%;background:rgba(255,255,255,.06);
-  border:1px solid var(--line-dark);color:#fff;border-radius:var(--r-md);
-  padding:.8rem 1rem;font:inherit;margin-bottom:.65rem}
-.check-card input::placeholder{color:#8fa0b8}
-.check-card .privacy{font-size:.78rem;color:var(--text-inv-soft);margin-top:.5rem}
+.check-back{background:none;border:0;color:var(--text-soft);font:inherit;font-size:.9rem;cursor:pointer}
+.check-back:hover{color:var(--strong)}
+.check-card input,.check-card select{width:100%;background:#fff;
+  border:1px solid var(--line);color:var(--strong);border-radius:var(--r-md);
+  padding:.85rem 1rem;font:inherit;margin-bottom:.65rem}
+.check-card input::placeholder{color:#9aa4b2}
+.check-card input:focus,.check-card select:focus{outline:2px solid rgba(55,94,184,.35);border-color:var(--blue)}
+.check-card .privacy{font-size:.78rem;color:var(--text-soft);margin-top:.5rem}
+.check-card .privacy a{color:var(--blue)}
 .check-success{text-align:center;padding:1.5rem 0}
 .check-success .big{font-size:2.4rem;color:var(--green)}
+.check-submit{width:100%;background:var(--ink)}
+.check-submit:hover{background:var(--ink-2)}
 
 /* 8. TREPPE (Optionen) ---------------------------------------- */
 .stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;align-items:end}

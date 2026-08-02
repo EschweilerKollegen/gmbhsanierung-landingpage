@@ -10,9 +10,7 @@
 <meta property="og:description" content="Gesetzlich geregelte Sanierungswege ohne öffentliches Insolvenzverfahren. Zahlenbasierte Ersteinschätzung in 24 Stunden.">
 <meta property="og:url" content="https://www.gmbhsanierung.de/">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 <!-- GTM: wird nach Consent-Setup eingebunden (siehe Blueprint, Schritt 5) -->
 <script>window.dataLayer = window.dataLayer || [];</script>
@@ -45,12 +43,30 @@
         <li>Keine öffentliche Bekanntmachung</li>
         <li>Gesetzlicher Rahmen (StaRUG, seit 2021)</li>
       </ul>
+      <div class="witness">
+        <div class="avs">
+          <img src="assets/avatar-michael.webp" alt="" width="52" height="52" loading="lazy">
+          <img src="assets/avatar-ulrike.webp" alt="" width="52" height="52" loading="lazy">
+          <img src="assets/avatar-thomas.webp" alt="" width="52" height="52" loading="lazy">
+          <img src="assets/avatar-claus.webp" alt="" width="52" height="52" loading="lazy">
+        </div>
+        <p><b>Michael, Ulrike, Thomas</b> — und über 100 weitere haben den Schritt hinter sich. <a href="#faq">Erfahrungen lesen&nbsp;→</a></p>
+      </div>
     </div>
-    <div class="check-card" id="check">
-      <h3>Sanierungs-Check</h3>
-      <span class="micro">3 Minuten · vertraulich · unverbindlich</span>
-      <div class="check-progress" id="checkProgress"></div>
-      <div id="checkBody"><!-- JS --></div>
+    <div class="check-side">
+      <div class="handnote" aria-hidden="true">
+        <span>Jetzt Klarheit gewinnen</span>
+        <svg class="handarrow" viewBox="0 0 60 52" fill="none">
+          <path d="M6 6c20 2 34 10 40 34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M36 32l10 9 8-12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="check-card" id="check">
+        <h3>Sanierungs-Check</h3>
+        <span class="micro">3 Minuten · vertraulich · unverbindlich</span>
+        <div class="check-progress" id="checkProgress"></div>
+        <div id="checkBody"><!-- JS --></div>
+      </div>
     </div>
   </div>
   <div class="feature-bar">
