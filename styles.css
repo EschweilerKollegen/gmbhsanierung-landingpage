@@ -298,7 +298,9 @@ img{max-width:100%;display:block}
 /* 9b. VERGLEICH INSOLVENZ VS. SANIERUNG ----------------------- */
 .cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem;max-width:56rem}
 .cmpcard{border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.3rem;border:1.5px solid}
-.cmpcard b{display:block;font-size:1rem;margin-bottom:.7rem;letter-spacing:.02em}
+.cmpcard b{display:block;font-size:1.05rem;margin-bottom:.55rem;letter-spacing:.01em;
+  padding-bottom:.55rem;border-bottom:1px solid rgba(0,0,0,.08)}
+.cmpcard .arr{margin-right:.35rem}
 .cmpcard ul{list-style:none;margin:0;padding:0}
 .cmpcard li{position:relative;padding:.32rem 0 .32rem 1.1rem;font-size:.95rem}
 .cmpcard li::before{content:"";position:absolute;left:0;top:.85em;width:7px;height:7px;border-radius:50%}
@@ -310,6 +312,18 @@ img{max-width:100%;display:block}
 .cmpcard--good b,.cmpcard--good .cmpfoot{color:#1f7a35}
 .cmpcard--good li::before{background:var(--green)}
 @media (max-width:700px){.cmp2{grid-template-columns:1fr}}
+.quote-card{display:flex;align-items:center;gap:1.4rem;max-width:56rem;margin-top:1.4rem;
+  background:#fff;border:1px solid rgba(55,94,184,.25);border-radius:var(--r-lg);
+  padding:1.3rem 1.6rem;box-shadow:var(--sh-sm)}
+.qico{width:64px;height:64px;flex:0 0 auto;border-radius:50%;background:var(--blue-tint);
+  display:grid;place-items:center;color:var(--blue)}
+.qico svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.quote-card p{margin:0;font-size:1rem;color:var(--strong)}
+.quote-card .qbig{font-size:clamp(1.05rem,1.8vw,1.35rem);margin-top:.2rem}
+.quote-card .qbig b{color:var(--blue);font-weight:800}
+@media (max-width:520px){.quote-card{flex-direction:column;align-items:flex-start;gap:.8rem}.qico{width:48px;height:48px}.qico svg{width:24px;height:24px}}
+.section-cta{margin-top:2rem}
+.section-cta .micro{margin-top:.7rem}
 
 /* 9c. PLAN & MEHRHEIT ----------------------------------------- */
 .plan2{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2.3rem;align-items:center;max-width:60rem}
