@@ -46,7 +46,8 @@ body{margin:0;font-family:var(--font);color:var(--text);background:var(--paper);
   font-size:1.02rem;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{color:var(--strong);font-weight:800;line-height:1.08;margin:0 0 .4em;letter-spacing:-.02em}
 h1{font-size:clamp(2.1rem,5.4vw,3.6rem)}
-h2{font-size:clamp(1.8rem,3.9vw,2.9rem)}
+h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.005em;
+  font-size:clamp(1.95rem,3.3vw,2.75rem);line-height:1.16;color:var(--strong)}
 /* Desktop-Zeilenumbrüche in Überschriften mobil aufheben:
    der Text fließt natürlich, statt einzelne Wörter abzuschneiden */
 @media (max-width:640px){.section h2 br{display:none}}
@@ -64,7 +65,7 @@ p{margin:.4em 0 1em}
 a{color:var(--blue)}
 img{max-width:100%;display:block}
 .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
-.em-blue{font-style:italic;color:#1f8f85}
+.em-blue{font-style:italic;font-weight:500;color:#1f8f85}
 .section{padding-block:clamp(60px,8.5vw,120px)}
 .section--paper2{background:var(--paper-2)}
 .section--ink{background:var(--ink);color:var(--text-inv)}
@@ -288,9 +289,8 @@ img{max-width:100%;display:block}
 .wj__grid{display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start}
 .wj__eyebrow{display:block;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--strong)}
 .wj__eyebrow::after{content:"";display:block;width:52px;height:2px;background:var(--blue);margin-top:.55rem}
-.wj__h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.005em;
-  font-size:clamp(1.9rem,3vw,2.55rem);line-height:1.2;margin:1.5rem 0 0;color:var(--strong)}
-.wj__em{font-style:italic;color:var(--blue)}
+.wj__h2{margin:1.5rem 0 0}
+.wj__em{font-style:italic;font-weight:500;color:#1f8f85}
 .wj__rule{display:block;width:44px;height:1.5px;background:#c8c7c0;margin:1.7rem 0 1.4rem}
 .wj__copy{color:var(--text-soft);max-width:34rem}
 .wj .law-note{margin-top:2rem;background:#fff;border:1.5px solid rgba(14,95,88,.45);border-radius:10px}
@@ -355,7 +355,7 @@ img{max-width:100%;display:block}
 
 /* 9a. EMOTIONALE MITTE (Bild + Stat-Badge, Muster Hauptseite) -- */
 .emo__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,60px);align-items:center}
-.em-serif{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:var(--blue);letter-spacing:.005em}
+.em-serif{font-style:italic;font-weight:500;color:#1f8f85}
 /* Vergleichskarte: Insolvenzen vs. Sanierungen (beide Zahlen zählen hoch) */
 .cmpstat{background:#fff;border-radius:var(--r-xl);box-shadow:var(--sh-md);padding:clamp(12px,1.2vw,18px)}
 .cmpstat__grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.2vw,18px)}
@@ -408,7 +408,7 @@ img{max-width:100%;display:block}
 
 /* 9a2. WARNZEICHEN-KLICKSTRECKE (Muster Hauptseite) ----------- */
 .warn{margin-top:clamp(40px,5vw,70px)}
-.warn__title{font-size:clamp(1.5rem,3vw,2.1rem)}
+.warn__title{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem)}
 .warn__sub{color:var(--text-soft);max-width:56ch;margin:0 auto 1.8rem;font-size:.95rem}
 .warn__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px)}
 .wsign{position:relative;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);
@@ -466,7 +466,7 @@ img{max-width:100%;display:block}
 .einord::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(95deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.9) 36%, rgba(255,255,255,.55) 62%, rgba(255,255,255,.25) 100%)}
 .einord .wrap{position:relative;z-index:1}
-.einord__hi{color:var(--blue)}
+.einord__hi{font-style:italic;font-weight:500;color:#1f8f85}
 .cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem;max-width:56rem}
 .cmpcard{border-radius:var(--r-lg);padding:1.6rem 1.6rem 1.4rem;background:#fff;box-shadow:var(--sh-md)}
 .cmphead{display:flex;align-items:center;gap:.7rem;font-weight:800;font-size:1.12rem;margin-bottom:.9rem;color:var(--strong)}
@@ -506,8 +506,7 @@ img{max-width:100%;display:block}
 .pe__eyebrow{display:flex;align-items:center;gap:.8rem;font-size:.78rem;font-weight:800;
   letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .pe__eyebrow i{width:44px;height:2px;background:var(--blue)}
-.pe__h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.005em;
-  font-size:clamp(2.2rem,3.6vw,3.1rem);line-height:1.12;margin:1.2rem 0 0;color:var(--strong)}
+.pe__h2{margin:1.2rem 0 0}
 .pe__em{font-style:italic;color:#1f8f85;font-weight:500}
 .pe__copy{color:var(--text);margin:1.3rem 0 0;max-width:36rem;line-height:1.65}
 .pe__label{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
@@ -946,7 +945,7 @@ body.subpage .site-footer{margin-top:auto}
 .legal-hero{padding-block:clamp(48px,7vw,96px)}
 .legal{max-width:780px}
 .legal h1{font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-.02em;margin:.35rem 0 2.2rem}
-.legal h2{font-size:1.12rem;font-weight:700;color:var(--ink);margin:2.1rem 0 .55rem}
+.legal h2{font-family:var(--font);font-size:1.12rem;font-weight:700;color:var(--ink);margin:2.1rem 0 .55rem}
 .legal h3{font-size:1.12rem;font-weight:700;color:var(--ink);margin:2.1rem 0 .55rem}
 .legal h4{font-size:.98rem;font-weight:700;color:var(--ink);margin:1.4rem 0 .35rem}
 .legal p{color:var(--text-soft);line-height:1.7;margin:0 0 .6rem}
@@ -983,7 +982,7 @@ body.subpage .site-footer{margin-top:auto}
 .danke__step--done .tick{margin-right:.3rem}
 .danke__step--now{color:#fff;background:var(--blue);box-shadow:0 10px 26px rgba(14,95,88,.35)}
 .danke__bar{width:34px;height:2px;background:#cdd6e4;border-radius:2px}
-.danke h1{font-size:clamp(1.55rem,3vw,2.25rem);letter-spacing:-.02em;margin:.2rem 0 .55rem}
+.danke h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(1.55rem,3vw,2.25rem);letter-spacing:-.01em;margin:.2rem 0 .55rem;color:var(--strong)}
 .danke__lead{color:#4c5a6e;font-size:clamp(.95rem,1.2vw,1.05rem);line-height:1.65;max-width:64ch;margin:0 auto 1rem}
 .danke__lead strong{color:var(--ink)}
 .danke__chips{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.3rem}
@@ -1036,7 +1035,7 @@ body.subpage .site-footer{margin-top:auto}
 /* 20. TERMINBUCHEN (öffentliche Kalender-Seite) --------------- */
 .tbook .tb__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,64px);align-items:start}
 .tb__pitch{text-align:left;position:sticky;top:96px}
-.tb__pitch h1{font-size:clamp(1.65rem,2.6vw,2.3rem);letter-spacing:-.02em;margin:0 0 .6rem}
+.tb__pitch h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(1.65rem,2.6vw,2.3rem);letter-spacing:-.01em;margin:0 0 .6rem;color:var(--strong)}
 .tb__lead{margin:0 0 1rem;max-width:none}
 .tb__chips{justify-content:flex-start;margin-bottom:1.6rem}
 .tb__portrait{position:relative;margin:0 0 1.6rem;border-radius:var(--r-lg);overflow:hidden;
