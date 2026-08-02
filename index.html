@@ -124,13 +124,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="btn btn--primary" href="#check" style="margin-top:.6rem">Sanierungs-Check starten <span class="arw">→</span></a>
     </div>
     <div class="emo__media reveal">
-      <picture>
-        <source srcset="assets/mahnungen-hell.webp" type="image/webp">
-        <img src="assets/mahnungen-hell.jpg" width="740" height="736" alt="Briefumschläge: Finanzamt, Mahnung, Zahlungsaufforderung" loading="lazy">
-      </picture>
-      <div class="stat-badge">
-        <span class="stat-badge__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M7.5 14.5l3-3 2 2 4-4.5"/><path d="M13.5 9h3v3"/></svg></span>
-        <span class="stat-badge__tx"><b>+26.880</b><span>Unternehmen kapitulierten 2025 vor der Insolvenz.<strong>Sie müssen nicht der nächste sein.</strong></span></span>
+      <div class="cmpstat">
+        <div class="cmpstat__grid">
+          <div class="cs__panel cs__panel--bad">
+            <span class="cs__pill cs__pill--bad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5L21 19H3z"/><path d="M12 10v4"/><path d="M12 16.6h.01"/></svg> Insolvenzen 2025</span>
+            <b class="cs__num cs__num--bad" data-count="26880">26.880</b>
+            <p>Unternehmen kapitulierten 2025 vor der Insolvenz.</p>
+          </div>
+          <div class="cs__panel cs__panel--good">
+            <span class="cs__pill cs__pill--good"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 9.5C8 19.2 5 15.5 5 11V6l7-3z"/><path d="M9 11.8l2.1 2.1 3.9-4.2"/></svg> Sanierungen seit 2021</span>
+            <span class="cs__pre">nur ca.</span>
+            <b class="cs__num cs__num--good" data-count="300">300</b>
+            <p>Sanierungen seit 2021.</p>
+          </div>
+          <span class="cs__vs" aria-hidden="true">vs.</span>
+        </div>
+        <div class="cs__foot">
+          <div class="cs__side cs__side--bad"><b>26.880</b><span>Insolvenzen (2025)</span></div>
+          <div class="cs__mid"><span class="cs__bar" aria-hidden="true"></span><span class="cs__ratio">≈ 1&nbsp;:&nbsp;90</span></div>
+          <div class="cs__side cs__side--good"><b>ca. 300</b><span>Sanierungen (seit 2021)</span></div>
+        </div>
       </div>
     </div>
   </div>

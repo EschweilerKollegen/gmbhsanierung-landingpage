@@ -336,28 +336,54 @@ img{max-width:100%;display:block}
 /* 9a. EMOTIONALE MITTE (Bild + Stat-Badge, Muster Hauptseite) -- */
 .emo__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,60px);align-items:center}
 .em-serif{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:var(--blue);letter-spacing:.005em}
-.emo__media{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md);
-  aspect-ratio:1/1;background:#eceeed}
-.emo__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* Stat-Karte: weiße Karte unten rechts im Bild (deckt die einbelichtete Variante ab) */
-.stat-badge{position:absolute;right:2%;bottom:2%;left:auto;width:64%;min-width:300px;min-height:34%;
-  background:#fff;border-radius:18px;box-shadow:0 16px 44px rgba(9,32,27,.16);
-  padding:1.25rem 1.35rem;display:flex;align-items:center;gap:1rem;color:var(--text)}
-.stat-badge__ic{width:52px;height:52px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--blue);
-  display:grid;place-items:center}
-.stat-badge__ic svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.stat-badge__tx{display:block}
-.stat-badge b{display:block;font-size:clamp(1.7rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;
-  color:var(--blue);font-variant-numeric:tabular-nums}
-.stat-badge__tx > span{font-size:.82rem;line-height:1.4;color:var(--text-soft);display:block;margin-top:.2rem}
-.stat-badge span strong{display:block;margin-top:.35rem;color:var(--strong);font-weight:700}
+/* Vergleichskarte: Insolvenzen vs. Sanierungen (beide Zahlen zählen hoch) */
+.cmpstat{background:#fff;border-radius:var(--r-xl);box-shadow:var(--sh-md);padding:clamp(12px,1.2vw,18px)}
+.cmpstat__grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.2vw,18px)}
+.cmpstat__grid::before{content:"";position:absolute;top:4%;bottom:4%;left:50%;border-left:2px dotted var(--line)}
+.cs__panel{position:relative;border-radius:18px;overflow:hidden;padding:1.5rem 1.2rem 0;text-align:center;
+  aspect-ratio:5/8;background-size:cover;background-position:center bottom}
+.cs__panel--bad{
+  background-image:url("assets/stat-umschlaege.jpg");
+  background-image:image-set(url("assets/stat-umschlaege.webp") type("image/webp"),url("assets/stat-umschlaege.jpg") type("image/jpeg"))}
+.cs__panel--good{
+  background-image:url("assets/stat-ordner.jpg");
+  background-image:image-set(url("assets/stat-ordner.webp") type("image/webp"),url("assets/stat-ordner.jpg") type("image/jpeg"))}
+.cs__pill{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;border-radius:var(--r-pill);padding:.45rem .8rem;margin-bottom:1rem}
+.cs__pill svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cs__pill--bad{color:#c14e42;background:#fdf3f1;border:1px solid rgba(193,78,66,.35)}
+.cs__pill--good{color:var(--blue);background:#eef7f4;border:1px solid rgba(14,95,88,.3)}
+.cs__pre{display:block;font-size:.95rem;color:var(--text-soft);margin-bottom:.1rem}
+.cs__num{display:block;font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.05;
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;font-size:clamp(2.6rem,4vw,3.6rem)}
+.cs__num--bad{color:#b0473c}
+.cs__num--good{color:var(--blue)}
+.cs__panel p{font-size:.9rem;color:var(--text);max-width:22ch;margin:.5rem auto 0;line-height:1.45}
+.cs__vs{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;
+  border-radius:50%;background:#fff;box-shadow:0 8px 26px rgba(9,32,27,.14);display:grid;place-items:center;
+  font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);z-index:1}
+.cs__foot{display:grid;grid-template-columns:auto 1fr auto;gap:1.1rem;align-items:center;
+  padding:1.1rem .6rem .5rem}
+.cs__side b{display:block;font-size:1.02rem;font-weight:800;font-variant-numeric:tabular-nums}
+.cs__side span{font-size:.75rem;color:var(--text-soft)}
+.cs__side--bad b{color:#b0473c}
+.cs__side--good{text-align:right}
+.cs__side--good b{color:var(--blue)}
+.cs__mid{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+.cs__bar{width:100%;height:6px;border-radius:99px;background:linear-gradient(90deg,#c14e42 0%,#d99c92 55%,#5aa79e 85%,var(--blue) 100%)}
+.cs__ratio{font-size:.9rem;font-weight:700;color:var(--strong)}
 .emo__body p{color:var(--text-soft)}
 @media (max-width:860px){.emo__grid{grid-template-columns:1fr}.emo__media{order:2;margin-top:.5rem}}
 @media (max-width:560px){
-  .stat-badge{right:3.5%;bottom:3.5%;width:auto;left:3.5%;min-width:0;padding:.95rem 1rem;gap:.8rem}
-  .stat-badge__ic{width:44px;height:44px}
-  .stat-badge__ic svg{width:22px;height:22px}
-  .stat-badge b{font-size:1.7rem}
+  .cs__panel{padding:1rem .6rem 0;aspect-ratio:4/6.4}
+  .cs__pill{font-size:.56rem;letter-spacing:.06em;padding:.35rem .55rem;margin-bottom:.7rem;gap:.3rem}
+  .cs__pill svg{width:12px;height:12px}
+  .cs__num{font-size:1.9rem}
+  .cs__panel p{font-size:.78rem}
+  .cs__vs{width:44px;height:44px;font-size:.7rem}
+  .cs__foot{gap:.7rem;padding:1rem .2rem .3rem}
+  .cs__side b{font-size:.92rem}
+  .cs__side span{font-size:.68rem}
 }
 
 /* 9a2. WARNZEICHEN-KLICKSTRECKE (Muster Hauptseite) ----------- */
