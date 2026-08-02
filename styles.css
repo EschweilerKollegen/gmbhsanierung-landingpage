@@ -116,8 +116,9 @@ img{max-width:100%;display:block}
 .brand__logo{height:30px;width:auto;display:block}
 @media (max-width:520px){.brand__logo{height:24px}}
 .nav{display:flex;align-items:center;gap:1.4rem}
-.nav a{color:var(--strong);text-decoration:none;font-size:.94rem;font-weight:600}
-.nav a:hover{color:var(--blue)}
+.nav a:not(.btn){color:var(--strong);text-decoration:none;font-size:.94rem;font-weight:600}
+.nav a:not(.btn):hover{color:var(--blue)}
+.nav a.btn{color:#fff;text-decoration:none}
 .nav .btn{padding:.6rem 1.15rem;font-size:.9rem}
 @media (max-width:860px){.nav a:not(.btn){display:none}}
 
