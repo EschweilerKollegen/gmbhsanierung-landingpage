@@ -208,6 +208,30 @@
     /* TODO: Redirect /danke (Cal-Prefill) nach Webhook-Anbindung */
   }
 
+  /* ---------- Stat-Badge: Zahl zählt hoch (Muster Hauptseite) ---------- */
+  var statNum = document.querySelector('.stat-badge b');
+  if (statNum && 'IntersectionObserver' in window) {
+    var target = parseInt(statNum.textContent.replace(/[^\d]/g, ''), 10) || 0;
+    var fmt = function (n) { return '+' + n.toLocaleString('de-DE'); };
+    statNum.style.minWidth = statNum.offsetWidth + 'px';
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        sio.disconnect();
+        if (reduced) { statNum.textContent = fmt(target); return; }
+        var dur = 1600, t0 = performance.now();
+        var tick = function (t) {
+          var p = Math.min((t - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          statNum.textContent = fmt(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    sio.observe(statNum);
+  }
+
   /* ---------- Mini-Starter (Schluss-CTA) ---------- */
   var mini = document.getElementById('miniStarter');
   if (mini) {
