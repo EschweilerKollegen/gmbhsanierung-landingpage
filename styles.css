@@ -47,6 +47,9 @@ body{margin:0;font-family:var(--font);color:var(--text);background:var(--paper);
 h1,h2,h3,h4{color:var(--strong);font-weight:800;line-height:1.08;margin:0 0 .4em;letter-spacing:-.02em}
 h1{font-size:clamp(2.1rem,5.4vw,3.6rem)}
 h2{font-size:clamp(1.8rem,3.9vw,2.9rem)}
+/* Desktop-Zeilenumbrüche in Überschriften mobil aufheben:
+   der Text fließt natürlich, statt einzelne Wörter abzuschneiden */
+@media (max-width:640px){.section h2 br{display:none}}
 h3{font-size:1.18rem}
 p{margin:.4em 0 1em}
 a{color:var(--blue)}
@@ -531,7 +534,15 @@ img{max-width:100%;display:block}
   .praxis::before{width:100%;opacity:.35}
 }
 @media (max-width:640px){
+  .prx{padding:1.3rem 1.15rem 1.25rem}
+  .prx__tags{gap:.4rem;margin-bottom:1.2rem}
+  .prx__tag{font-size:.57rem;letter-spacing:.02em;padding:.38rem .62rem;gap:.35rem;box-shadow:none}
+  .prx__tag svg{width:12px;height:12px}
   .prx__res2{grid-template-columns:1fr}
+  .prx__res{padding:1.2rem 1.2rem 1.1rem}
+  .prx__res p{font-size:.9rem}
+  .prx__rico{width:48px;height:48px;margin-bottom:.7rem}
+  .prx__rico svg{width:23px;height:23px}
   .prx__res + .prx__res{border-left:0;border-top:1px solid var(--line)}
   .prx__story{gap:.9rem}
   .prx__ico{width:56px;height:56px}
