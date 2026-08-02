@@ -245,18 +245,18 @@
     var tupdate = function () {
       ticking = false;
       var vh = window.innerHeight;
-      var r = tline.getBoundingClientRect();
-      /* p: 0 wenn die Timeline bei 88 % des Viewports auftaucht,
-         1 wenn sie bei 30 % angekommen ist */
-      var p = clamp((vh * 0.88 - r.top) / (vh * 0.58), 0, 1);
-      var f = p * N;
-      var idx = Math.min(N - 1, Math.floor(f));
+      /* Jede Karte animiert anhand ihrer EIGENEN Viewport-Position:
+         Einblendung, während die Karte zwischen 90 % und 62 % der
+         Viewporthöhe steht — so ist die Animation immer sichtbar,
+         egal wie hoch der Bildschirm ist. */
+      var f = 0;
       tcards.forEach(function (c, i) {
-        var ci = clamp(f - i, 0, 1);
-        var lift = (i === idx && ci > 0.65 && p < 1) ? -5 : 0;
+        var r = c.getBoundingClientRect();
+        var ci = clamp((vh * 0.9 - r.top) / (vh * 0.28), 0, 1);
+        f += ci;
         c.style.setProperty('--co', ci.toFixed(3));
-        c.style.setProperty('--cy', (lift || (16 * (1 - ci))).toFixed(1) + 'px');
-        var cg = clamp((f - (i + 0.7)) / 0.3, 0, 1);
+        c.style.setProperty('--cy', (16 * (1 - ci)).toFixed(1) + 'px');
+        var cg = clamp((ci - 0.7) / 0.3, 0, 1);
         c.style.setProperty('--cg', cg.toFixed(3));
         c.style.setProperty('--cd', (cg >= 1 ? 1 : 0));
       });
@@ -271,8 +271,7 @@
         var frac = clamp(fi - i0, 0, 1);
         var y = stations[i0] + (stations[i0 + 1] - stations[i0]) * frac;
         trider.style.transform = 'translate(-50%,' + (y - 7).toFixed(1) + 'px)';
-        var zone = Math.round(fi);
-        trider.className = 'trider' + (zone >= 3 ? ' trider--red' : zone === 2 ? ' trider--win' : '');
+        trider.className = 'trider' + (fi >= 2.6 ? ' trider--red' : fi >= 1.7 ? ' trider--win' : '');
       }
     };
     var onTScroll = function () {
@@ -300,21 +299,25 @@
     var vupdate = function () {
       vticking = false;
       var vh = window.innerHeight;
-      var r = vgrid.getBoundingClientRect();
-      var p = vclamp((vh * 0.88 - r.top) / (vh * 0.58), 0, 1);
-      var f = p * vN;
+      /* Jede Zeile animiert anhand ihrer eigenen Viewport-Position
+         (gleiche Mechanik wie die Warum-jetzt-Zeitachse) */
+      var f = 0;
+      var cis = vcards.map(function (c) {
+        var r = c.getBoundingClientRect();
+        return vclamp((vh * 0.9 - r.top) / (vh * 0.28), 0, 1);
+      });
       vcards.forEach(function (c, i) {
-        var ci = vclamp(f - i, 0, 1);
-        c.style.setProperty('--co', ci.toFixed(3));
-        c.style.setProperty('--cy', (14 * (1 - ci)).toFixed(1) + 'px');
+        f += cis[i];
+        c.style.setProperty('--co', cis[i].toFixed(3));
+        c.style.setProperty('--cy', (14 * (1 - cis[i])).toFixed(1) + 'px');
       });
       vsegs.forEach(function (s, i) {
-        s.style.setProperty('--sf', vclamp(f - i, 0, 1).toFixed(3));
+        s.style.setProperty('--sf', vclamp((cis[i] - 0.6) / 0.4, 0, 1).toFixed(3));
       });
       vdots.forEach(function (d, i) {
-        d.classList.toggle('is-on', f >= i + 0.05);
+        d.classList.toggle('is-on', cis[i] >= 0.5);
       });
-      if (vcheck) vcheck.classList.toggle('is-done', p >= 0.985);
+      if (vcheck) vcheck.classList.toggle('is-done', cis[vN - 1] >= 0.97);
     };
     var onVScroll = function () {
       if (!vticking) { vticking = true; requestAnimationFrame(vupdate); }
