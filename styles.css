@@ -314,6 +314,58 @@ img{max-width:100%;display:block}
   .stat-badge span{font-size:.8rem;max-width:none;padding-bottom:0}
 }
 
+/* 9a2. WARNZEICHEN-KLICKSTRECKE (Muster Hauptseite) ----------- */
+.warn{margin-top:clamp(40px,5vw,70px)}
+.warn__title{font-size:clamp(1.5rem,3vw,2.1rem)}
+.warn__sub{color:var(--text-soft);max-width:56ch;margin:0 auto 1.8rem;font-size:.95rem}
+.warn__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px)}
+.wsign{position:relative;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);
+  padding:1.1rem 1.15rem;box-shadow:var(--sh-sm);user-select:none;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .35s ease,border-color .15s ease,background .15s ease,box-shadow .15s ease}
+.wsign.in-view{opacity:1;transform:none}
+.wsign:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:var(--sh-md)}
+.wsign b{display:block;color:var(--strong);font-size:.97rem;margin-bottom:.25rem;padding-right:2.1rem;line-height:1.3}
+.wsign p{margin:0;font-size:.85rem;color:var(--text-soft);line-height:1.5}
+.wsign .wck{position:absolute;top:.95rem;right:.95rem;width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--line);display:grid;place-items:center;font-size:.68rem;font-weight:800;color:transparent;transition:all .15s ease}
+.wsign.is-on{border-color:var(--ink);background:#eef1f6}
+.wsign.is-on .wck{background:var(--ink);border-color:var(--ink);color:#fff}
+.warn__empathy{text-align:center;margin:1.6rem auto 0;max-width:52ch;color:var(--text-soft);font-style:italic}
+.warn__resp{margin-top:.9rem;text-align:center;font-weight:700;color:var(--strong);min-height:1.6em}
+.warn__cta{text-align:center;margin-top:1.1rem}
+.warn__cta .micro{margin-top:.7rem}
+.warn__cta.is-hot #warnCta{animation:ctaPulse 1.7s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.btn--lg{padding:1.1rem 2rem;font-size:1.06rem}
+.warn-pill{display:none}
+@media (max-width:860px){.warn__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.warn__grid{grid-template-columns:1fr;gap:.5rem}
+  .wsign{display:grid;grid-template-columns:auto 1fr;column-gap:.7rem;row-gap:.05rem;
+    align-items:start;padding:.75rem .85rem;border-radius:14px}
+  .wsign .wck{position:static;grid-row:1/3;width:26px;height:26px;margin-top:2px;font-size:.8rem}
+  .wsign b{font-size:.9rem;padding-right:0;margin-bottom:.15rem;grid-column:2}
+  .wsign p{font-size:.78rem;grid-column:2}
+  .wsign:active{transform:scale(.985)}
+  .wsign.is-on{animation:wsPop .22s ease}
+  .warn-pill{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));z-index:71;
+    display:flex;align-items:center;gap:.5rem;max-width:calc(100vw - 32px);
+    transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;
+    background:rgba(16,24,40,.78);backdrop-filter:saturate(170%) blur(20px);-webkit-backdrop-filter:saturate(170%) blur(20px);
+    border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.6rem 1rem;
+    color:#fff;font-size:.83rem;font-weight:600;white-space:nowrap;text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:opacity .25s ease,transform .3s cubic-bezier(.32,.72,.28,1)}
+  .warn-pill.is-show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+  .warn-pill__count{display:grid;place-items:center;min-width:22px;height:22px;border-radius:50%;
+    background:#3ecf6e;color:#06331b;font-weight:800;font-size:.8rem;flex:0 0 auto;padding:0 4px;
+    transition:background .2s ease}
+  .warn-pill.is-hot .warn-pill__count{background:#e0a92e}
+  .warn-pill.is-urgent .warn-pill__count{background:#e23b3b;color:#fff}
+  .warn-pill__arw{font-weight:800}
+}
+@keyframes wsPop{0%{transform:scale(1)}45%{transform:scale(.965)}100%{transform:scale(1)}}
+
 /* 9b. VERGLEICH INSOLVENZ VS. SANIERUNG ----------------------- */
 .cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem;max-width:56rem}
 .cmpcard{border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.3rem;border:1.5px solid}

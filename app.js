@@ -208,6 +208,94 @@
     /* TODO: Redirect /danke (Cal-Prefill) nach Webhook-Anbindung */
   }
 
+  /* ---------- Warnzeichen-Klickstrecke (Muster Hauptseite) ----------
+     Auswahl bleibt lokal, nichts wird gespeichert oder übertragen. */
+  var signs = [].slice.call(document.querySelectorAll('.wsign'));
+  if (signs.length) {
+    var resp = document.getElementById('warnResp');
+    var ctaWrap = document.getElementById('warnCtaWrap');
+    var wmsg = function (n) {
+      if (n === 0) return 'Seien Sie ehrlich zu sich – niemand sieht Ihre Auswahl.';
+      if (n === 1) return 'Ein Zeichen ist ein Signal. Beobachten Sie die nächsten Wochen sehr genau.';
+      if (n === 2) return 'Zwei Zeichen sind kein Zufall. Jetzt ist der Moment für Klarheit – solange Sie noch alle Wege haben.';
+      if (n <= 4) return 'Drei und mehr Zeichen: Die Krise ist meist längst da. Je früher Sie prüfen, desto mehr lässt sich retten.';
+      return 'Sie tragen gerade sehr viel. Genau dafür sind wir da – diskret, ohne Urteil, mit einem klaren Plan.';
+    };
+    var pill = document.getElementById('warnPill');
+    var pillCount = document.getElementById('warnPillCount');
+    var pillText = document.getElementById('warnPillText');
+    var pillArw = document.getElementById('warnPillArw');
+    var warnInView = false;
+    var pillMsg = function (n) {
+      if (n === 1) return 'Ein Zeichen – im Blick behalten';
+      if (n === 2) return 'Kein Zufall – Zeit für Klarheit';
+      if (n <= 4) return 'Jetzt prüfen, was noch geht';
+      return 'Wir sind für Sie da – diskret';
+    };
+    var updatePill = function (n) {
+      if (!pill) return;
+      if (pillCount) pillCount.textContent = n;
+      if (pillText && n > 0) pillText.textContent = pillMsg(n);
+      if (pillArw) pillArw.hidden = n < 2;
+      pill.classList.toggle('is-hot', n >= 2 && n < 3);
+      pill.classList.toggle('is-urgent', n >= 3);
+      pill.classList.toggle('is-show', warnInView && n >= 1);
+    };
+    var warnWrap = document.querySelector('.warn');
+    if (pill && warnWrap && 'IntersectionObserver' in window) {
+      var pio = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          warnInView = en.isIntersecting;
+          updatePill(signs.filter(function (s) { return s.classList.contains('is-on'); }).length);
+        });
+      }, { threshold: 0.05 });
+      pio.observe(warnWrap);
+    }
+    var autoJumped = false;
+    var wupdate = function () {
+      var n = signs.filter(function (s) { return s.classList.contains('is-on'); }).length;
+      if (ctaWrap) ctaWrap.classList.toggle('is-hot', n >= 2);
+      updatePill(n);
+      if (n >= 3 && !autoJumped) {
+        autoJumped = true;
+        dl('warnzeichen_drei', { anzahl: n });
+        if (resp) resp.textContent = 'Drei Zeichen sind genug. Einen Moment – wir bringen Sie zum unverbindlichen Sanierungs-Check …';
+        setTimeout(function () {
+          var target = document.getElementById('check');
+          if (target) target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        }, 1400);
+        return;
+      }
+      if (resp) resp.textContent = wmsg(n);
+    };
+    signs.forEach(function (s) {
+      var toggle = function () {
+        s.classList.toggle('is-on');
+        s.setAttribute('aria-pressed', s.classList.contains('is-on') ? 'true' : 'false');
+        wupdate();
+      };
+      s.addEventListener('click', toggle);
+      s.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+      });
+    });
+    wupdate();
+    var wgrid = document.getElementById('warnGrid');
+    if (wgrid && 'IntersectionObserver' in window && !reduced) {
+      var wio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            signs.forEach(function (s, i) { setTimeout(function () { s.classList.add('in-view'); }, i * 80); });
+            wio.disconnect();
+          }
+        });
+      }, { threshold: 0.12 });
+      wio.observe(wgrid);
+    } else {
+      signs.forEach(function (s) { s.classList.add('in-view'); });
+    }
+  }
+
   /* ---------- Stat-Badge: Zahl zählt hoch (Muster Hauptseite) ---------- */
   var statNum = document.querySelector('.stat-badge b');
   if (statNum && 'IntersectionObserver' in window) {
