@@ -1,0 +1,253 @@
+/* =============================================================
+   gmbhsanierung.de – Landingpage
+   styles.css · Zentrales Stylesheet
+   Editorial-System übernommen von gmbhabwicklung.de.
+   Font Figtree · Blau #375EB8 · Navy #0E1A2C · Fläche #E8EBF1
+   Abweichung zur Hauptseite: KEINE Eskalationsfarben –
+   Grün als Zuversichts-Akzent.
+   ============================================================= */
+
+/* 1. TOKENS -------------------------------------------------- */
+:root{
+  --blue:      #375eb8;
+  --blue-600:  #2d4d9b;
+  --blue-700:  #243e7e;
+  --blue-050:  #e8ebf1;
+  --blue-tint: #eff3fa;
+  --ink:       #0e1a2c;
+  --ink-2:     #14233c;
+  --ink-3:     #1d3050;
+  --strong:    #1c2634;
+  --text:      #3f3f3f;
+  --text-soft: #6b7480;
+  --text-inv:  #eef2f8;
+  --text-inv-soft:#aebaccf2;
+  --paper:     #ffffff;
+  --paper-2:   #f5f7fb;
+  --line:      #e6e9f0;
+  --line-dark: rgba(255,255,255,.14);
+  --green:     #33a24a;
+  --green-050: #e7f4ea;
+  --gold:      #e0a92e;
+  --font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px; --r-pill:999px;
+  --sh-sm:0 1px 2px rgba(14,26,44,.05), 0 4px 14px rgba(14,26,44,.06);
+  --sh-md:0 10px 30px rgba(14,26,44,.10);
+  --sh-lg:0 30px 70px rgba(14,26,44,.20);
+  --maxw:1180px;
+  --pad:clamp(18px,5vw,40px);
+}
+
+/* 2. BASE ----------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:var(--font);color:var(--text);background:var(--paper);
+  font-size:1.02rem;line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{color:var(--strong);font-weight:800;line-height:1.08;margin:0 0 .4em;letter-spacing:-.02em}
+h1{font-size:clamp(2.1rem,5.4vw,3.6rem)}
+h2{font-size:clamp(1.8rem,3.9vw,2.9rem)}
+h3{font-size:1.18rem}
+p{margin:.4em 0 1em}
+a{color:var(--blue)}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.em-blue{font-style:italic;color:var(--blue)}
+.section{padding-block:clamp(60px,8.5vw,120px)}
+.section--paper2{background:var(--paper-2)}
+.section--ink{background:var(--ink);color:var(--text-inv)}
+.section--ink h2,.section--ink h3{color:#fff}
+.section--ink p{color:var(--text-inv-soft)}
+.lead{font-size:clamp(1.02rem,1.6vw,1.2rem);color:var(--text-soft);max-width:46rem}
+.section--ink .lead{color:var(--text-inv-soft)}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+
+/* 3. EYEBROW / BUTTONS ---------------------------------------- */
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--blue);
+  background:rgba(255,255,255,.72);border:1px solid rgba(55,94,184,.22);
+  padding:.5rem .95rem .5rem .8rem;border-radius:var(--r-pill);margin-bottom:1.1rem;
+  box-shadow:0 6px 22px rgba(14,26,44,.06)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.section--ink .eyebrow,.hero .eyebrow{background:rgba(255,255,255,.08);border-color:var(--line-dark);color:#cfd9ea}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  background:var(--ink);color:#fff;font-weight:700;font-size:1rem;
+  padding:.95rem 1.6rem;border:0;border-radius:var(--r-pill);box-shadow:var(--sh-md);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+  line-height:1.1;white-space:nowrap;cursor:pointer;text-decoration:none}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--sh-lg)}
+.btn--primary{background:var(--blue)}
+.btn--primary:hover{background:var(--blue-600)}
+.btn--light{background:#fff;color:var(--strong)}
+.btn--light:hover{background:#f0f3fa}
+.micro{display:block;font-size:.85rem;color:var(--text-soft);margin-top:.6rem}
+.hero .micro,.section--ink .micro{color:var(--text-inv-soft)}
+
+/* 4. HEADER --------------------------------------------------- */
+.site-header{position:sticky;top:0;z-index:50;height:72px;display:flex;align-items:center;
+  background:rgba(14,26,44,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-dark)}
+.site-header .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-weight:800;color:#fff;text-decoration:none;font-size:1.06rem;letter-spacing:-.01em}
+.brand span{color:#8fb0e8}
+.nav{display:flex;align-items:center;gap:1.4rem}
+.nav a{color:#cfd9ea;text-decoration:none;font-size:.94rem;font-weight:600}
+.nav a:hover{color:#fff}
+.nav .btn{padding:.6rem 1.15rem;font-size:.9rem}
+@media (max-width:860px){.nav a:not(.btn){display:none}}
+
+/* 5. HERO ----------------------------------------------------- */
+.hero{position:relative;background:var(--ink);color:var(--text-inv);overflow:hidden;
+  margin-top:-72px;padding-top:72px;min-height:min(100vh,880px);display:flex;flex-direction:column}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 78% 10%, rgba(55,94,184,.35), transparent 60%),
+    radial-gradient(45% 45% at 12% 88%, rgba(51,162,74,.12), transparent 60%),
+    linear-gradient(160deg, #14233c 0%, #0e1a2c 55%, #0b1524 100%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;
+  gap:clamp(2rem,4vw,4rem);align-items:center;padding-block:clamp(3rem,7vh,5.5rem);flex:1}
+.hero h1{color:#fff}
+.hero .lead{color:var(--text-inv-soft)}
+.trust-line{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.5rem;padding:0;list-style:none}
+.trust-line li{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:600;color:#d6e0ef}
+.trust-line li::before{content:"✓";color:var(--green);font-weight:800}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;padding-block:2.5rem}.hero{min-height:0}}
+
+/* 6. FEATURE BAR ---------------------------------------------- */
+.feature-bar{position:relative;z-index:1;background:var(--blue);color:#fff}
+.feature-bar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:1.05rem}
+.feature-bar b{display:block;font-size:.95rem}
+.feature-bar span{font-size:.8rem;opacity:.85}
+@media (max-width:860px){.feature-bar .wrap{grid-template-columns:repeat(2,1fr)}}
+
+/* 7. CHECK-WIDGET (Frosted Card) ------------------------------ */
+.check-card{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);
+  border-radius:var(--r-xl);padding:clamp(1.4rem,2.5vw,2.2rem);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sh-lg)}
+.check-card h3{color:#fff;margin-bottom:.2rem}
+.check-progress{display:flex;gap:.35rem;margin:1rem 0 1.3rem}
+.check-progress i{height:4px;flex:1;border-radius:2px;background:rgba(255,255,255,.16)}
+.check-progress i.on{background:var(--green)}
+.check-q{font-weight:700;color:#fff;font-size:1.05rem;margin:0 0 1rem}
+.check-opts{display:grid;gap:.6rem}
+.check-opt{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;
+  background:rgba(255,255,255,.05);border:1px solid var(--line-dark);color:#e6ecf5;
+  padding:.85rem 1.05rem;border-radius:var(--r-md);font:inherit;font-size:.97rem;font-weight:600;
+  cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.check-opt:hover{background:rgba(255,255,255,.11)}
+.check-opt.sel{border-color:var(--green);background:rgba(51,162,74,.15)}
+.check-opt .dot{width:10px;height:10px;border-radius:50%;border:2px solid #7f8ea3;flex:0 0 auto}
+.check-opt.sel .dot{background:var(--green);border-color:var(--green)}
+.check-note{font-size:.86rem;color:#ffd9a0;background:rgba(224,169,46,.12);
+  border:1px solid rgba(224,169,46,.35);border-radius:var(--r-sm);padding:.6rem .8rem;margin-top:.7rem}
+.check-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem}
+.check-back{background:none;border:0;color:var(--text-inv-soft);font:inherit;font-size:.9rem;cursor:pointer}
+.check-card input,.check-card select{width:100%;background:rgba(255,255,255,.06);
+  border:1px solid var(--line-dark);color:#fff;border-radius:var(--r-md);
+  padding:.8rem 1rem;font:inherit;margin-bottom:.65rem}
+.check-card input::placeholder{color:#8fa0b8}
+.check-card .privacy{font-size:.78rem;color:var(--text-inv-soft);margin-top:.5rem}
+.check-success{text-align:center;padding:1.5rem 0}
+.check-success .big{font-size:2.4rem;color:var(--green)}
+
+/* 8. TREPPE (Optionen) ---------------------------------------- */
+.stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;align-items:end}
+.stair{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.3rem 1.2rem;box-shadow:var(--sh-sm)}
+.stair .num{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--blue-050);
+  color:var(--blue-700);font-weight:800;align-items:center;justify-content:center;margin-bottom:.7rem}
+.stair h3{font-size:1.02rem}
+.stair p{font-size:.9rem;color:var(--text-soft);margin:0}
+.stair--1{margin-bottom:4.5rem}.stair--2{margin-bottom:3rem}.stair--3{margin-bottom:1.5rem}
+.stair--off{background:var(--paper-2);border-style:dashed;opacity:.75}
+.stair--off .num{background:#e3e6ec;color:var(--text-soft)}
+@media (max-width:860px){.stairs{grid-template-columns:1fr 1fr;align-items:stretch}
+  .stair--1,.stair--2,.stair--3{margin-bottom:0}}
+@media (max-width:520px){.stairs{grid-template-columns:1fr}}
+.law-note{margin-top:2rem;display:flex;gap:.8rem;align-items:flex-start;background:var(--green-050);
+  border:1px solid rgba(51,162,74,.25);border-radius:var(--r-md);padding:1rem 1.2rem;max-width:46rem}
+.law-note p{margin:0;font-size:.95rem;color:var(--strong)}
+
+/* 9. NUMMERIERTE KARTEN (Drei Wege) --------------------------- */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
+.wcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.6rem 1.5rem;box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:.6rem}
+.wcard .num{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.wcard p{font-size:.94rem;margin:0}
+.wcard .fits{border-top:1px solid var(--line);padding-top:.8rem;margin-top:.4rem}
+.wcard .fits b{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);margin-bottom:.25rem}
+.wcard .adv{display:flex;gap:.5rem;align-items:flex-start;font-size:.92rem;color:var(--strong);font-weight:600}
+.wcard .adv::before{content:"✓";color:var(--green);font-weight:800}
+@media (max-width:960px){.cards3{grid-template-columns:1fr}}
+.foot-note{margin-top:1.6rem;font-size:.92rem;color:var(--text-soft);font-style:italic;max-width:46rem}
+
+/* 10. TIMELINE (Ablauf) --------------------------------------- */
+.timeline{list-style:none;margin:2.5rem 0 0;padding:0;max-width:46rem}
+.timeline li{position:relative;padding:0 0 2.2rem 3.4rem}
+.timeline li::before{content:attr(data-step);position:absolute;left:0;top:-.15rem;
+  width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center}
+.timeline li::after{content:"";position:absolute;left:19px;top:42px;bottom:6px;width:2px;background:var(--line)}
+.timeline li:last-child::after{display:none}
+.timeline h3{margin-bottom:.2rem}
+.timeline p{margin:0;font-size:.95rem;color:var(--text-soft)}
+
+/* 11. FROSTED (Diskretion) ------------------------------------ */
+.frost2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
+.frost{background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:var(--r-lg);
+  padding:1.7rem 1.6rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.frost .ico{width:34px;height:34px;margin-bottom:.8rem;color:#8fb0e8}
+.frost .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.6}
+.frost p{font-size:.96rem;margin:0}
+@media (max-width:860px){.frost2{grid-template-columns:1fr}}
+
+/* 12. AUSSCHLUSS ---------------------------------------------- */
+.no-list{list-style:none;margin:2rem 0 0;padding:0;max-width:46rem}
+.no-list li{display:flex;gap:.8rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.no-list li:last-child{border-bottom:0}
+.no-list li::before{content:"—";font-weight:800;color:var(--text-soft);flex:0 0 auto}
+
+/* 13. FAQ ----------------------------------------------------- */
+.faq{max-width:46rem;margin-top:2.2rem}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--strong);padding:1.05rem 2rem 1.05rem 0;
+  list-style:none;position:relative;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:.2rem;top:50%;transform:translateY(-50%);
+  color:var(--blue);font-weight:800;font-size:1.3rem;transition:transform .2s ease}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 1.1rem;font-size:.96rem;color:var(--text)}
+
+/* 14. FINAL CTA ----------------------------------------------- */
+.finalcta{background:linear-gradient(160deg,var(--ink-2),var(--ink));color:var(--text-inv)}
+.finalcta h2{color:#fff}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0}
+.pill{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);color:#e6ecf5;
+  border-radius:var(--r-pill);padding:.7rem 1.2rem;font:inherit;font-size:.93rem;font-weight:600;
+  cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.pill:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.3)}
+
+/* 15. FOOTER -------------------------------------------------- */
+.site-footer{background:var(--ink);color:var(--text-inv-soft);border-top:1px solid var(--line-dark);
+  padding-block:3rem 2rem;font-size:.9rem}
+.site-footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.site-footer h4{color:#fff;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem}
+.site-footer ul{list-style:none;margin:0;padding:0}
+.site-footer li{margin-bottom:.45rem}
+.site-footer a{color:var(--text-inv-soft);text-decoration:none}
+.site-footer a:hover{color:#fff}
+.site-footer .legal{border-top:1px solid var(--line-dark);padding-top:1.4rem;font-size:.78rem;line-height:1.6}
+.site-footer .brandline{color:#fff;font-weight:800;margin-bottom:.5rem}
+@media (max-width:860px){.site-footer .cols{grid-template-columns:1fr}}
+
+/* 16. REVEALS ------------------------------------------------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* 17. MOBILE FEIN --------------------------------------------- */
+@media (max-width:390px){
+  .btn{white-space:normal}
+  .m-hide{display:none}
+}
