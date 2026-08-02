@@ -76,13 +76,20 @@ img{max-width:100%;display:block}
 .center .lead{margin-inline:auto}
 
 /* 3. EYEBROW / BUTTONS ---------------------------------------- */
-.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:800;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--blue);
-  background:rgba(255,255,255,.72);border:1px solid rgba(14,95,88,.22);
-  padding:.5rem .95rem .5rem .8rem;border-radius:var(--r-pill);margin-bottom:1.1rem;
-  box-shadow:0 6px 22px rgba(9,32,27,.06)}
-.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
-.section--ink .eyebrow{background:rgba(255,255,255,.08);border-color:var(--line-dark);color:#cfd9ea}
+/* Eyebrow im Editorial-Stil (wie "Warum jetzt"): Versalien + Unterstrich */
+.eyebrow{display:block;font-size:.78rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--strong);margin-bottom:1.3rem}
+.eyebrow::after{content:"";display:block;width:52px;height:2px;background:var(--blue);margin-top:.55rem}
+.center .eyebrow::after{margin-inline:auto}
+.section--ink .eyebrow{color:#e9f2ef}
+.section--ink .eyebrow::after{background:#57b585}
+/* Ausnahme Hero: dort bleibt die Pill aus dem freigegebenen Mockup */
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;
+  letter-spacing:.15em;color:var(--blue);background:rgba(255,255,255,.72);
+  border:1px solid rgba(14,95,88,.22);padding:.5rem .95rem .5rem .8rem;
+  border-radius:var(--r-pill);margin-bottom:1.1rem;box-shadow:0 6px 22px rgba(9,32,27,.06)}
+.hero .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.hero .eyebrow::after{display:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
   background:var(--blue);color:#fff;font-weight:700;font-size:1rem;
   padding:.95rem 1.6rem;border:0;border-radius:var(--r-pill);box-shadow:var(--sh-md);
