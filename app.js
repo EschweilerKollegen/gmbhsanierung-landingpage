@@ -202,8 +202,6 @@
       setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1400);
       return;
     }
-    /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
-       (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
     var eventId = (window.eksTrack && window.eksTrack.uuid()) || (Date.now() + '-' + Math.random());
     dl('lead', {
       lead_value: 100, currency: 'EUR', event_id: eventId,
@@ -231,6 +229,32 @@
       erreichbarkeit_tage: ((a.erreichbarkeit || {}).tage || []).join(', ')
     };
     eks.event_id = eventId;
+
+    /* ---------- Lead an n8n → Pipedrive (Pipeline "Sanierung") ----------
+       Feuert parallel zur Weiterleitung. keepalive sorgt dafür, dass der
+       Request auch dann zu Ende läuft, wenn die Seite sofort wechselt.
+       Fehler blockieren die Journey NICHT — der Nutzer kommt immer zu /danke. */
+    try {
+      var at = (window.eksTrack && window.eksTrack.attrib) || {};
+      fetch('https://eschweiler.app.n8n.cloud/webhook/sanierung-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          name: name, firma: firma, email: email, tel: tel,
+          lage: eks.lage, kerngeschaeft: eks.kerngeschaeft, liquiditaet: eks.liquiditaet,
+          glaeubiger: eks.glaeubiger, verbindlichkeiten: eks.verbindlichkeiten,
+          groesse: eks.groesse, erreichbarkeit: eks.erreichbarkeit,
+          erreichbarkeit_tage: eks.erreichbarkeit_tage,
+          quelle: 'gmbhsanierung.de', event_id: eventId,
+          external_id: at.external_id || '', fbc: at.fbc || '', fbp: at.fbp || '',
+          utm_source: at.utm_source || '', utm_medium: at.utm_medium || '',
+          utm_campaign: at.utm_campaign || '', utm_content: at.utm_content || '',
+          landing_url: location.href
+        })
+      }).catch(function () {});
+    } catch (e) {}
+
     /* Kontaktdaten SHA-256-hashen (Meta-Normalisierung), DANN weiterleiten —
        die /danke-Seite seedet die Hashes synchron vor GTM in den dataLayer. */
     var go = function () {
