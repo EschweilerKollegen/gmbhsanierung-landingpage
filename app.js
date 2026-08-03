@@ -106,6 +106,11 @@
         '<div class="field"><label for="f_email">E-Mail</label><input type="email" id="f_email" autocomplete="email" placeholder="name@firma.de" value="' + (k.email || '') + '"></div>' +
         '<div class="field"><label for="f_tel">Telefon</label><input type="tel" id="f_tel" autocomplete="tel" placeholder="+49 …" value="' + (k.tel || '') + '"></div>' +
         '</div>' +
+        '<label class="formcheck" for="f_rechtsform">' +
+        '<input type="checkbox" id="f_rechtsform"' + (k.rechtsform ? ' checked' : '') + '>' +
+        '<span>Mein Unternehmen ist eine <strong>GmbH, UG, AG</strong> oder <strong>GmbH &amp; Co.&nbsp;KG</strong>.</span>' +
+        '</label>' +
+        '<p class="formcheck__hint">Einzelunternehmen und reine Personengesellschaften (GbR, OHG, KG) können wir über diesen Weg leider nicht begleiten.</p>' +
         '<div class="msf__nav">' +
         '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
         '<button type="button" class="btn" id="checkSubmit">Check absenden</button>' +
@@ -196,10 +201,19 @@
     var firma = document.getElementById('f_firma').value.trim();
     var email = document.getElementById('f_email').value.trim();
     var tel = document.getElementById('f_tel').value.trim();
-    state.answers.kontakt = { name: name, firma: firma, email: email, tel: tel };
+    var rfBox = document.getElementById('f_rechtsform');
+    var rechtsform = !!(rfBox && rfBox.checked);
+    state.answers.kontakt = { name: name, firma: firma, email: email, tel: tel, rechtsform: rechtsform };
     if (!name || !firma || !email || !tel) {
       document.getElementById('checkSubmit').textContent = 'Bitte alle Felder ausfüllen';
       setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1400);
+      return;
+    }
+    if (!rechtsform) {
+      document.getElementById('checkSubmit').textContent = 'Bitte Rechtsform bestätigen';
+      setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1800);
+      var fw = document.querySelector('.formcheck');
+      if (fw) { fw.classList.add('formcheck--warn'); setTimeout(function () { fw.classList.remove('formcheck--warn'); }, 1800); }
       return;
     }
     var eventId = (window.eksTrack && window.eksTrack.uuid()) || (Date.now() + '-' + Math.random());
@@ -246,6 +260,7 @@
           glaeubiger: eks.glaeubiger, verbindlichkeiten: eks.verbindlichkeiten,
           groesse: eks.groesse, erreichbarkeit: eks.erreichbarkeit,
           erreichbarkeit_tage: eks.erreichbarkeit_tage,
+          rechtsform: 'GmbH / UG / AG / GmbH & Co. KG (bestätigt)',
           quelle: 'gmbhsanierung.de', event_id: eventId,
           external_id: at.external_id || '', fbc: at.fbc || '', fbp: at.fbp || '',
           utm_source: at.utm_source || '', utm_medium: at.utm_medium || '',

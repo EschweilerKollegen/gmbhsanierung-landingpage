@@ -233,9 +233,23 @@ img{max-width:100%;display:block}
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-050);outline:none}
 .form-legal{font-size:.72rem;color:var(--text-soft);margin-top:.65rem;text-align:center;line-height:1.45}
 .form-legal a{text-decoration:underline;color:var(--text-soft)}
+/* Rechtsform-Bestaetigung im Kontakt-Schritt */
+.formcheck{display:flex;align-items:flex-start;gap:.6rem;margin:.15rem 0 .3rem;padding:.7rem .8rem;
+  border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.formcheck:hover{border-color:var(--blue)}
+.formcheck input{flex:0 0 auto;width:1.05rem;height:1.05rem;margin:.12rem 0 0;accent-color:var(--blue);cursor:pointer}
+.formcheck span{font-size:.86rem;line-height:1.45;color:var(--strong)}
+.formcheck--warn{border-color:#b3261e;background:#fdf2f2;animation:fcshake .3s ease}
+@keyframes fcshake{0%,100%{transform:none}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.formcheck__hint{font-size:.72rem;color:var(--text-soft);line-height:1.45;margin:.35rem 0 0}
+@media (prefers-reduced-motion:reduce){.formcheck--warn{animation:none}}
 @media (max-width:460px){.fields2{grid-template-columns:1fr}
   .field>label{font-size:.78rem;margin-bottom:.25rem}
   .field input{padding:.58rem .75rem;font-size:.92rem}
+  .formcheck{padding:.55rem .65rem;gap:.5rem}
+  .formcheck span{font-size:.78rem}
+  .formcheck__hint{font-size:.65rem}
   .form-legal{font-size:.62rem;margin-top:.5rem;line-height:1.4}}
 .check-card .privacy{font-size:.78rem;color:var(--text-soft);margin-top:.5rem}
 .check-card .privacy a{color:var(--blue)}
