@@ -204,7 +204,7 @@
     }
     /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
        (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
-    dl('lead', { lead_value: 1000, currency: 'EUR' });
+    dl('lead', { lead_value: 100, currency: 'EUR' });
     /* Lead-Daten für die /danke-Journey (Cal-Prefill) — nur sessionStorage, nichts in der URL */
     var labelFor = function (key, val) {
       var st = null;
