@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 <script>window.dataLayer = window.dataLayer || [];</script>
+<script src="/tracking.js"></script>
+<script>window.eksTrack && window.eksTrack.seedFromLead("eks_lead");</script>
+<!-- TODO Cookiebot (Consent Mode v2): Snippet hier VOR GTM einfügen, sobald Domain-Gruppen-ID vorliegt -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -164,7 +167,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var when = d && (d.date || (d.booking && d.booking.startTime) || (d.confirmed && d.confirmed.date));
       if (when) sessionStorage.setItem("eks_termin", when);
     } catch (err) {}
-    try { window.dataLayer.push({ event: "termin_gebucht" }); } catch (err) {}
+    try {
+      var teid = (window.eksTrack && window.eksTrack.uuid()) || String(Date.now());
+      try { sessionStorage.setItem("eks_termin_eid", teid); } catch (e2) {}
+      window.dataLayer.push({ event: "termin_gebucht", event_id: teid,
+        external_id: window.eksTrack ? window.eksTrack.attrib.external_id : undefined });
+    } catch (err) {}
     window.location.href = "/termin-bestaetigt";
   } });
 

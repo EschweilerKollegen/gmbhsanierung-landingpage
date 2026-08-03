@@ -204,7 +204,11 @@
     }
     /* TODO (Schritt 6 Blueprint): Webhook-Anbindung analog Hauptseite
        (Payload: Antworten + fbclid/fbc/fbp/gclid/UTMs/landing_url/first_touch) */
-    dl('lead', { lead_value: 100, currency: 'EUR' });
+    var eventId = (window.eksTrack && window.eksTrack.uuid()) || (Date.now() + '-' + Math.random());
+    dl('lead', {
+      lead_value: 100, currency: 'EUR', event_id: eventId,
+      external_id: window.eksTrack ? window.eksTrack.attrib.external_id : undefined
+    });
     /* Lead-Daten für die /danke-Journey (Cal-Prefill) — nur sessionStorage, nichts in der URL */
     var labelFor = function (key, val) {
       var st = null;
@@ -226,8 +230,26 @@
       erreichbarkeit: (a.erreichbarkeit || {}).fenster || '',
       erreichbarkeit_tage: ((a.erreichbarkeit || {}).tage || []).join(', ')
     };
-    try { sessionStorage.setItem('eks_lead', JSON.stringify(eks)); } catch (e) {}
-    window.location.href = '/danke';
+    eks.event_id = eventId;
+    /* Kontaktdaten SHA-256-hashen (Meta-Normalisierung), DANN weiterleiten —
+       die /danke-Seite seedet die Hashes synchron vor GTM in den dataLayer. */
+    var go = function () {
+      try { sessionStorage.setItem('eks_lead', JSON.stringify(eks)); } catch (e) {}
+      window.location.href = '/danke';
+    };
+    if (window.eksTrack) {
+      var done = false;
+      var finish = function (h) {
+        if (done) return; done = true;
+        if (h) Object.assign(eks, h);
+        go();
+      };
+      window.eksTrack.hashContact({ name: name, email: email, tel: tel })
+        .then(finish, function () { finish(null); });
+      setTimeout(function () { finish(null); }, 800); /* Sicherheitsnetz: nie am Hashing hängen bleiben */
+    } else {
+      go();
+    }
   }
 
   /* ---------- Krisen-Timeline: Scroll-Scrubbing (vor & zurück) ----------
@@ -469,4 +491,15 @@
   }
 
   render();
+  /* ---------- Formularfeld-Fokus + WhatsApp-Klick (Muster Hauptseite) ---------- */
+  var seenFocus = {};
+  document.addEventListener('focusin', function (e) {
+    var id = e.target && e.target.id;
+    if (id === 'f_name' && !seenFocus.name) { seenFocus.name = true; dl('formular_name'); }
+    if (id === 'f_firma' && !seenFocus.firma) { seenFocus.firma = true; dl('formular_unternehmensname'); }
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="https://wa.me"]') : null;
+    if (a) dl('whatsapp_klick');
+  });
 })();
