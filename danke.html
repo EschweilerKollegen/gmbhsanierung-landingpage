@@ -56,7 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="danke__calcard">
       <div id="cal-inline" class="danke__cal"></div>
-      <p class="danke__fallback">Öffnet der Kalender nicht? <a id="calFallback" href="https://cal.com/andre-eschweiler/30min" rel="noopener">Termin direkt auf cal.com wählen →</a></p>
+      <p class="danke__fallback">Öffnet der Kalender nicht? <a id="calFallback" href="https://cal.com/andre-eschweiler/kostenfreies-erstgesprach-sanierung" rel="noopener">Termin direkt auf cal.com wählen →</a></p>
     </div>
 
     <p class="danke__noslot">Kein passender Termin dabei? Kein Problem – <strong>wir melden uns in jedem Fall zeitnah bei Ihnen.</strong> Der gebuchte Termin ist nur der schnellste Weg.</p>
@@ -118,7 +118,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
 (function () {
-  var CAL_LINK = "andre-eschweiler/30min";
+  var CAL_LINK = "andre-eschweiler/kostenfreies-erstgesprach-sanierung";
+  var CAL_NS = "kostenfreies-erstgesprach-sanierung";
 
   /* Lead-Daten aus dem Sanierungs-Check übernehmen (sessionStorage, nichts in der URL) */
   var lead = {};
@@ -156,12 +157,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   if (notesLines.length) config.notes = "Sanierungs-Check:\n" + notesLines.join("\n");
 
-  Cal("init", "30min", { origin: "https://app.cal.com" });
-  Cal.ns["30min"]("inline", { elementOrSelector: "#cal-inline", calLink: CAL_LINK, config: config });
-  Cal.ns["30min"]("ui", { "theme": "light", "hideEventTypeDetails": false, "layout": "month_view" });
+  Cal("init", CAL_NS, { origin: "https://app.cal.com" });
+  Cal.config = Cal.config || {};
+  Cal.config.forwardQueryParams = true;
+  Cal.ns[CAL_NS]("inline", { elementOrSelector: "#cal-inline", calLink: CAL_LINK, config: config });
+  Cal.ns[CAL_NS]("ui", { "theme": "light", "hideEventTypeDetails": false, "layout": "month_view" });
 
   /* Nach erfolgreicher Buchung: weiter zur finalen Bestätigungsseite */
-  Cal.ns["30min"]("on", { action: "bookingSuccessful", callback: function (e) {
+  Cal.ns[CAL_NS]("on", { action: "bookingSuccessful", callback: function (e) {
     try {
       var d = e && e.detail && e.detail.data;
       var when = d && (d.date || (d.booking && d.booking.startTime) || (d.confirmed && d.confirmed.date));
