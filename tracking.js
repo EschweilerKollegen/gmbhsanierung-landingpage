@@ -107,3 +107,7 @@
     }
   };
 })();
+
+
+// Vercel Web Analytics: laedt /_vercel/insights/script.js auf jeder Seite (cookielos).
+(function(){if(document.querySelector('script[src="/_vercel/insights/script.js"]'))return;var s=document.createElement('script');s.defer=true;s.src='/_vercel/insights/script.js';document.head.appendChild(s);})();
