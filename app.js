@@ -297,9 +297,10 @@
          sie abschneidet; der setTimeout ist das Netz, falls GTM gar nicht laedt. */
       try {
         var push = { event: 'lead_submit', lead_value: 100, currency: 'EUR', event_id: eventId };
-        if (window.eksTrack && window.eksTrack.attrib.external_id) {
-          push.external_id = window.eksTrack.attrib.external_id;
-        }
+        var atr = (window.eksTrack && window.eksTrack.attrib) || {};
+        if (atr.external_id) push.external_id = atr.external_id;
+        if (atr.fbc) push.fbc = atr.fbc;
+        if (atr.fbp) push.fbp = atr.fbp;
         ['em_h', 'ph_h', 'fn_h', 'ln_h'].forEach(function (k) {
           if (eks[k]) push[k] = eks[k];
         });
