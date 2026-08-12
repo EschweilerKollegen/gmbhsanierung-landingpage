@@ -88,11 +88,12 @@
       FENSTER.forEach(function (f, i) {
         html += '<div class="opt"><input type="radio" name="fenster" id="fen' + i + '" value="' + f + '"' + (r.fenster === f ? ' checked' : '') + '><label for="fen' + i + '"><span class="rdot"></span> ' + f + '</label></div>';
       });
-      html += '</div></div><div class="gfield"><div class="grouplabel">An welchen Tagen? <span class="soft">(mehrere möglich)</span></div><div class="days" role="group" aria-label="Bevorzugte Wochentage">';
+      html += '</div><div class="err" data-err-for="fenster">Bitte wählen Sie ein Zeitfenster.</div></div>' +
+        '<div class="gfield"><div class="grouplabel">An welchen Tagen? <span class="soft">(mehrere möglich)</span></div><div class="days" role="group" aria-label="Bevorzugte Wochentage">';
       TAGE.forEach(function (t, i) {
         html += '<span class="day"><input type="checkbox" name="tage" id="tag' + i + '" value="' + t + '"' + (r.tage.indexOf(t) > -1 ? ' checked' : '') + '><label for="tag' + i + '">' + t + '</label></span>';
       });
-      html += '</div></div>' +
+      html += '</div><div class="err" data-err-for="tage">Bitte mindestens einen Tag wählen.</div></div>' +
         '<div class="msf__nav">' +
         '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
         '<button type="button" class="btn" id="checkNext">Weiter <span class="arw">→</span></button>' +
@@ -101,15 +102,16 @@
       var k = state.answers.kontakt || {};
       html += '<p class="check-hint">Ihre Daten werden vertraulich behandelt.</p>' +
         '<div class="fields2">' +
-        '<div class="field"><label for="f_name">Vor- und Zuname</label><input type="text" id="f_name" autocomplete="name" placeholder="Max Mustermann" value="' + (k.name || '') + '"></div>' +
-        '<div class="field"><label for="f_firma">Unternehmensname</label><input type="text" id="f_firma" autocomplete="organization" placeholder="Mustermann GmbH" value="' + (k.firma || '') + '"></div>' +
-        '<div class="field"><label for="f_email">E-Mail</label><input type="email" id="f_email" autocomplete="email" placeholder="name@firma.de" value="' + (k.email || '') + '"></div>' +
-        '<div class="field"><label for="f_tel">Telefon</label><input type="tel" id="f_tel" autocomplete="tel" placeholder="+49 …" value="' + (k.tel || '') + '"></div>' +
+        '<div class="field"><label for="f_name">Vor- und Zuname</label><input type="text" id="f_name" autocomplete="name" placeholder="Max Mustermann" value="' + (k.name || '') + '"><div class="err" data-err-for="f_name">Bitte geben Sie Ihren Namen an.</div></div>' +
+        '<div class="field"><label for="f_firma">Unternehmensname</label><input type="text" id="f_firma" autocomplete="organization" placeholder="Mustermann GmbH" value="' + (k.firma || '') + '"><div class="err" data-err-for="f_firma">Bitte geben Sie den Unternehmensnamen an.</div></div>' +
+        '<div class="field"><label for="f_email">E-Mail</label><input type="email" id="f_email" autocomplete="email" placeholder="name@firma.de" value="' + (k.email || '') + '"><div class="err" data-err-for="f_email">Bitte geben Sie eine gültige E-Mail an.</div></div>' +
+        '<div class="field"><label for="f_tel">Telefon</label><input type="tel" id="f_tel" autocomplete="tel" placeholder="+49 …" value="' + (k.tel || '') + '"><div class="err" data-err-for="f_tel">Bitte geben Sie eine Telefonnummer an.</div></div>' +
         '</div>' +
         '<label class="formcheck" for="f_rechtsform">' +
         '<input type="checkbox" id="f_rechtsform"' + (k.rechtsform ? ' checked' : '') + '>' +
         '<span>Mein Unternehmen ist eine <strong>GmbH, UG, AG</strong> oder <strong>GmbH &amp; Co.&nbsp;KG</strong>.</span>' +
         '</label>' +
+        '<div class="err" data-err-for="f_rechtsform">Bitte bestätigen Sie die Rechtsform.</div>' +
         '<p class="formcheck__hint">Einzelunternehmen und reine Personengesellschaften (GbR, OHG, KG) können wir über diesen Weg leider nicht begleiten.</p>' +
         '<div class="msf__nav">' +
         '<button type="button" class="btn btn--ghost msf__back" id="checkBack">Zurück</button>' +
@@ -124,7 +126,10 @@
           : state.answers[s.key] === o[0];
         html += '<button type="button" class="check-opt' + (sel ? ' sel' : '') + '" data-val="' + o[0] + '"><span class="dot"></span>' + o[1] + '</button>';
       });
-      html += '</div>';
+      html += '</div>' +
+        '<div class="err" data-err-for="' + s.key + '">' +
+        (s.multi ? 'Bitte mindestens eine Option wählen.' : 'Bitte wählen Sie eine Option.') +
+        '</div>';
       if (s.note && state.answers[s.key] && s.note[state.answers[s.key]]) {
         html += '<div class="check-note">' + s.note[state.answers[s.key]] + '</div>';
       }
@@ -141,6 +146,24 @@
     bind();
   }
 
+  /* ---------- Feld-Fehlermeldungen ----------
+     Zeigt die Meldung direkt an der betroffenen Stelle statt nur den Button
+     umzubenennen: Bei vier Kontaktfeldern sieht man sonst nicht, welches fehlt.
+     Die Meldung bleibt stehen, bis der Fehler behoben ist. */
+  function fieldError(key, show) {
+    var err = body.querySelector('[data-err-for="' + key + '"]');
+    if (!err) return;
+    err.classList.toggle('is-shown', show);
+    var field = err.closest ? err.closest('.field') : null;
+    if (field) field.classList.toggle('has-error', show);
+  }
+  function clearErrors() {
+    body.querySelectorAll('.err.is-shown').forEach(function (el) { el.classList.remove('is-shown'); });
+    body.querySelectorAll('.has-error').forEach(function (el) { el.classList.remove('has-error'); });
+    var fc = body.querySelector('.formcheck--warn');
+    if (fc) fc.classList.remove('formcheck--warn');
+  }
+
   function bind() {
     var s = STEPS[state.step];
     body.querySelectorAll('.check-opt').forEach(function (btn) {
@@ -153,6 +176,7 @@
           if (ix > -1) arr.splice(ix, 1); else arr.push(val);
           state.answers[s.key] = arr;
           btn.classList.toggle('sel');
+          fieldError(s.key, arr.length === 0);
         } else {
           state.answers[s.key] = val;
           render();
@@ -168,23 +192,40 @@
         state.answers.erreichbarkeit = { fenster: fen, tage: tage };
         hasVal = !!fen && tage.length > 0;
         ev = fen + ' / ' + tage.join(',');
-        if (!hasVal) {
-          nextBtn.innerHTML = !fen ? 'Bitte Zeitfenster wählen' : 'Bitte Tag(e) wählen';
-          setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
-          return;
-        }
+        fieldError('fenster', !fen);
+        fieldError('tage', tage.length === 0);
+        if (!hasVal) return;
       } else {
         var val = state.answers[s.key];
         hasVal = s.multi ? (val || []).length > 0 : !!val;
         ev = s.multi ? (val || []).join(',') : val;
-        if (!hasVal) {
-          nextBtn.innerHTML = 'Bitte eine Antwort wählen';
-          setTimeout(function () { nextBtn.innerHTML = 'Weiter <span class="arw">→</span>'; }, 1400);
-          return;
-        }
+        fieldError(s.key, !hasVal);
+        if (!hasVal) return;
       }
       dl('check_step_' + (state.step + 1), { antwort: ev });
       next();
+    });
+    /* Erreichbarkeit: sobald etwas gewählt ist, verschwindet die Meldung wieder */
+    body.querySelectorAll('input[name="fenster"]').forEach(function (el) {
+      el.addEventListener('change', function () { fieldError('fenster', false); });
+    });
+    body.querySelectorAll('input[name="tage"]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        fieldError('tage', body.querySelectorAll('input[name="tage"]:checked').length === 0);
+      });
+    });
+    /* Kontaktfelder: Meldung raeumt sich beim Tippen weg, nicht erst beim naechsten Klick */
+    ['f_name', 'f_firma', 'f_email', 'f_tel'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function () { fieldError(id, false); });
+    });
+    var rf = document.getElementById('f_rechtsform');
+    if (rf) rf.addEventListener('change', function () {
+      if (rf.checked) {
+        fieldError('f_rechtsform', false);
+        var fc = body.querySelector('.formcheck');
+        if (fc) fc.classList.remove('formcheck--warn');
+      }
     });
     var backBtn = document.getElementById('checkBack');
     if (backBtn) backBtn.addEventListener('click', function () { state.step = Math.max(0, state.step - 1); render(); });
@@ -204,18 +245,30 @@
     var rfBox = document.getElementById('f_rechtsform');
     var rechtsform = !!(rfBox && rfBox.checked);
     state.answers.kontakt = { name: name, firma: firma, email: email, tel: tel, rechtsform: rechtsform };
-    if (!name || !firma || !email || !tel) {
-      document.getElementById('checkSubmit').textContent = 'Bitte alle Felder ausfüllen';
-      setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1400);
+    /* Jedes Feld einzeln pruefen und einzeln melden. Format-Pruefung fuer
+       E-Mail und Telefon wie auf gmbhabwicklung.de - ein Tippfehler in der
+       Mailadresse macht den Lead sonst unerreichbar. */
+    var ok = true;
+    var pruefungen = [
+      ['f_name', name.length > 1],
+      ['f_firma', firma.length > 1],
+      ['f_email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)],
+      ['f_tel', tel.replace(/[^\d]/g, '').length >= 6]
+    ];
+    pruefungen.forEach(function (p) {
+      fieldError(p[0], !p[1]);
+      if (!p[1]) ok = false;
+    });
+    fieldError('f_rechtsform', !rechtsform);
+    var fw = body.querySelector('.formcheck');
+    if (fw) fw.classList.toggle('formcheck--warn', !rechtsform);
+    if (!rechtsform) ok = false;
+    if (!ok) {
+      var erstes = body.querySelector('.err.is-shown');
+      if (erstes && erstes.scrollIntoView) erstes.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-    if (!rechtsform) {
-      document.getElementById('checkSubmit').textContent = 'Bitte Rechtsform bestätigen';
-      setTimeout(function () { document.getElementById('checkSubmit').textContent = 'Check absenden'; }, 1800);
-      var fw = document.querySelector('.formcheck');
-      if (fw) { fw.classList.add('formcheck--warn'); setTimeout(function () { fw.classList.remove('formcheck--warn'); }, 1800); }
-      return;
-    }
+    clearErrors();
     var eventId = (window.eksTrack && window.eksTrack.uuid()) || (Date.now() + '-' + Math.random());
     dl('lead', {
       lead_value: 100, currency: 'EUR', event_id: eventId,

@@ -231,6 +231,12 @@ img{max-width:100%;display:block}
   font:inherit;font-size:1rem;background:#fff;color:var(--text);transition:border-color .15s,box-shadow .15s}
 .field input::placeholder{color:#9aa4b2}
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-050);outline:none}
+/* Feld-Fehlermeldungen (wie auf gmbhabwicklung.de): stehen direkt an der
+   betroffenen Stelle, statt nur den Absende-Button umzubenennen. */
+.err{color:#b3261e;font-size:.8rem;margin-top:.3rem;display:none}
+.err.is-shown{display:block}
+.field .err{margin-top:.3rem}
+.field.has-error input{border-color:#b3261e}
 .form-legal{font-size:.72rem;color:var(--text-soft);margin-top:.65rem;text-align:center;line-height:1.45}
 .form-legal a{text-decoration:underline;color:var(--text-soft)}
 /* Rechtsform-Bestaetigung im Kontakt-Schritt */
