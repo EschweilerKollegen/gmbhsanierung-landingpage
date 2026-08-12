@@ -272,22 +272,56 @@
 
     /* Kontaktdaten SHA-256-hashen (Meta-Normalisierung), DANN weiterleiten —
        die /danke-Seite seedet die Hashes synchron vor GTM in den dataLayer. */
+    var weitergeleitet = false;
     var go = function () {
-      try { sessionStorage.setItem('eks_lead', JSON.stringify(eks)); } catch (e) {}
+      if (weitergeleitet) return;
+      weitergeleitet = true;
       window.location.href = '/danke';
+    };
+    var abschluss = function () {
+      try { sessionStorage.setItem('eks_lead', JSON.stringify(eks)); } catch (e) {}
+      /* Hashes zusaetzlich langlebig ablegen: sessionStorage gilt nur fuer diesen Tab,
+         und Cal.com oeffnet die Terminbestaetigung haeufig in einem neuen. Bewusst nur
+         die Hashes - der Klartext bleibt im sessionStorage und stirbt mit dem Tab. */
+      try {
+        var match = { v: 1, exp: Date.now() + 7 * 24 * 60 * 60 * 1000 };
+        var treffer = 0;
+        ['em_h', 'ph_h', 'fn_h', 'ln_h'].forEach(function (k) {
+          if (eks[k]) { match[k] = eks[k]; treffer++; }
+        });
+        if (treffer) localStorage.setItem('eks_match', JSON.stringify(match));
+      } catch (e) {}
+      /* Meta-Lead schon hier feuern, nicht erst auf /danke: An dieser Stelle liegen
+         E-Mail und Telefon sicher vor, auf der Danke-Seite fehlen sie in einem Teil
+         der Aufrufe. eventCallback laesst GTM die Tags absenden, bevor die Navigation
+         sie abschneidet; der setTimeout ist das Netz, falls GTM gar nicht laedt. */
+      try {
+        var push = { event: 'lead_submit', lead_value: 100, currency: 'EUR', event_id: eventId };
+        if (window.eksTrack && window.eksTrack.attrib.external_id) {
+          push.external_id = window.eksTrack.attrib.external_id;
+        }
+        ['em_h', 'ph_h', 'fn_h', 'ln_h'].forEach(function (k) {
+          if (eks[k]) push[k] = eks[k];
+        });
+        push.eventTimeout = 1200;
+        push.eventCallback = go;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(push);
+      } catch (e) {}
+      setTimeout(go, 1200);
     };
     if (window.eksTrack) {
       var done = false;
       var finish = function (h) {
         if (done) return; done = true;
         if (h) Object.assign(eks, h);
-        go();
+        abschluss();
       };
       window.eksTrack.hashContact({ name: name, email: email, tel: tel })
         .then(finish, function () { finish(null); });
       setTimeout(function () { finish(null); }, 800); /* Sicherheitsnetz: nie am Hashing hängen bleiben */
     } else {
-      go();
+      abschluss();
     }
   }
 
