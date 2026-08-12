@@ -90,14 +90,27 @@
     seedFromLead: function (storageKey, extra) {
       var lead = {};
       try { lead = JSON.parse(sessionStorage.getItem(storageKey || 'eks_lead') || '{}'); } catch (e) {}
+      /* sessionStorage gilt nur fuer diesen Tab. Cal.com oeffnet die Terminbestaetigung
+         haeufig in einem neuen, und ein Reload trifft dieselbe Luecke - deshalb liegen
+         die Hashes zusaetzlich im localStorage (eks_match, mit Ablauf). */
+      var match = {};
+      try { match = JSON.parse(localStorage.getItem('eks_match') || '{}'); } catch (e) {}
+      if (match.exp && Date.now() > match.exp) {
+        try { localStorage.removeItem('eks_match'); } catch (e) {}
+        match = {};
+      }
       var seed = {
         external_id: attrib.external_id,
         lead_value: 100,
         currency: 'EUR'
       };
-      ['em_h', 'ph_h', 'fn_h', 'ln_h', 'event_id'].forEach(function (k) {
-        if (lead[k]) seed[k] = lead[k];
+      ['em_h', 'ph_h', 'fn_h', 'ln_h'].forEach(function (k) {
+        var v = lead[k] || match[k];
+        if (v) seed[k] = v;
       });
+      /* event_id bewusst NUR aus dem sessionStorage: eine alte ID aus dem
+         localStorage wuerde ein neues Event faelschlich deduplizieren. */
+      if (lead.event_id) seed.event_id = lead.event_id;
       if (attrib.fbc) seed.fbc = attrib.fbc;
       if (attrib.fbp) seed.fbp = attrib.fbp;
       Object.assign(seed, extra || {}); /* extra gewinnt (z. B. eigenes event_id des Termins) */
