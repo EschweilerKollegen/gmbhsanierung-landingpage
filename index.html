@@ -35,11 +35,14 @@
 <script>window.dataLayer = window.dataLayer || [];</script>
 <script src="/tracking.js"></script>
 <!-- TODO Cookiebot (Consent Mode v2): Snippet hier VOR GTM einfügen, sobald Domain-Gruppen-ID vorliegt -->
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+<!-- Google Tag Manager: lädt bei der ersten Interaktion (Tippen, Scrollen, Taste, Mausbewegung), spätestens 3 Sekunden nach dem Laden der Seite.
+     So bleibt der erste Seitenaufbau frei von Tracking-Skripten. Ereignisse im dataLayer gehen nicht verloren: GTM arbeitet sie beim Start nach. -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];var done=false,ev=['pointerdown','touchstart','keydown','scroll','wheel','mousemove'];
+function go(){if(done)return;done=true;for(var k=0;k<ev.length;k++)w.removeEventListener(ev[k],go,true);
+w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}
+for(var k=0;k<ev.length;k++)w.addEventListener(ev[k],go,{capture:true,passive:true});
+function later(){w.setTimeout(go,3000);}
+if(d.readyState==='complete')later();else w.addEventListener('load',later);
 })(window,document,'script','dataLayer','GTM-KKQ6DNXB');</script>
 <!-- End Google Tag Manager -->
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "GmbH-Sanierung.de", "legalName": "Eschweiler & Kollegen Gesellschaftsmanagement UG (haftungsbeschränkt)", "url": "https://www.gmbhsanierung.de/", "logo": "https://www.gmbhsanierung.de/assets/ek-logo-dunkel.png", "image": "https://www.gmbhsanierung.de/assets/og-image.jpg", "description": "StaRUG-Sanierung für GmbHs: gesetzlich geregelte Restrukturierung ohne öffentliches Insolvenzverfahren. Zahlenbasierte Ersteinschätzung in 24 Stunden — vertraulich und unverbindlich.", "email": "info@gmbhsanierung.de", "telephone": "+49 171 4791314", "areaServed": "DE", "knowsAbout": ["StaRUG", "Restrukturierung", "Unternehmenssanierung", "Drohende Zahlungsunfähigkeit"], "sameAs": ["https://www.gmbhabwicklung.de", "https://www.eschweiler-kollegen.de"]}</script>
@@ -704,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="footer__grid">
       <div class="ftr-brand">
-        <a href="#top" class="brand"><img class="brand__logo" src="assets/ek-logo-weiss.png" alt="Eschweiler &amp; Kollegen – GmbH-Sanierung.de"></a>
+        <a href="#top" class="brand"><img class="brand__logo" src="assets/ek-logo-weiss.png" alt="Eschweiler &amp; Kollegen – GmbH-Sanierung.de" loading="lazy" decoding="async"></a>
         <span class="ftr-rule" aria-hidden="true"></span>
         <p>Die gesetzliche Sanierung für Unternehmen mit tragfähigem Kerngeschäft: StaRUG-Restrukturierung — zahlenbasiert, vertraulich und ohne öffentliches Insolvenzverfahren.</p>
         <div class="ftr-badges">
